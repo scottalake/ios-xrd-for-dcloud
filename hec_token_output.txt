@@ -1,0 +1,11 @@
+http://hec_from_telegraf
+	token=f18a42c7-3f8a-4cc4-98d7-8c4055b1bb1a
+	description=telegraf data
+	disabled=0
+	index=main
+	indexes=main
+	source=
+	sourcetype=telegraf
+	outputgroup=
+	use-ack=
+	allow-query-string-auth=
