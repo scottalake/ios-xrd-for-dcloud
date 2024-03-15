@@ -1,0 +1,16 @@
+apiVersion: 1
+providers:
+  - name: "Streaming Telemetry Dashboard"
+    orgId: 1
+    type: file
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/streaming.json 
+  - name: "Influxdb Source Dashboard"
+    orgId: 1
+    type: file
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/influxdb_dashboard.json

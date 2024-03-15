@@ -1,0 +1,11 @@
+/ignore
+/telemetry/etc/influxdb/
+/telemetry/influxdb/
+/telemetry/etc/influxdb/influx-configs
+telemetry/etc/influxdb/influx-configs
+/.vscode
+.vscode/settings.json
+.vscode/settings.json
+cleanup
+/host-check
+/xr-compose

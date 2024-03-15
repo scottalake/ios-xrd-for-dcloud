@@ -1,0 +1,249 @@
+#!/usr/bin/env bash
+#------------------------------------------------------------------------------
+# load-image - Loads a dockerv1 image produced by an XRd build to the local
+# container manager repository
+#
+# September 2020, Emily Smith
+#
+# Copyright (c) 2020-2022 by Cisco Systems, Inc.
+# All rights reserved.
+#------------------------------------------------------------------------------
+
+set -e
+
+# Load the utils for finding workspace root
+THIS_DIR=$(dirname "$(readlink -f "$0")")
+source "$THIS_DIR/utils.sh"
+
+# Constants
+SRC_CHK_TAG_PREFIX="src-"
+
+# Parameters that can be set via arguments
+CONTAINER_MGRS="{docker|podman}"
+CONTAINER_MGR="docker"
+# First guess platform from img-* dirs, else settle for 'xrd-control-plane'
+if ! PLATFORM="$(_find_platform 2>/dev/null)"; then
+    PLATFORM="xrd-control-plane"
+fi
+IMAGE_NAME=""
+SOURCE_FILE=""
+CLEANUP=0
+
+usage () {
+    echo "Usage: $(basename "$0") [-h|--help] [<opts>]"
+    echo ""
+    echo "Load built xrd image from workspace into container manager."
+    echo -n "
+Optional arguments:
+  -m, --container-manager $CONTAINER_MGRS
+                            Container manager to use (default: $CONTAINER_MGR)
+  -p, --plat PLATFORM       Platform to load image for (default: $PLATFORM)
+  -n, --name NAME[:TAG]     Use this image name when loading into container manager (and optional tag)
+                            (default: based on workspace and branch name)
+  -i, --image FILE          Image source file to load (default: built image from workspace)
+  -c, --cleanup             Cleanup old instance of image using the name, but don't load new one
+    "
+}
+
+bad_usage () {
+    usage >&2
+    exit 1
+}
+
+exit_error() {
+    echo "ERROR: $1" >&2
+    exit 1
+}
+
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h | --help )
+            usage
+            exit 0
+        ;;
+        
+        -m | --container-manager )
+            if [[ -z "$2" ]]; then
+                exit_error "Missing container manager argument value"
+            fi
+            CONTAINER_MGR="$2"
+            shift 2
+        ;;
+        
+        -p | --plat )
+            if [[ -z "$2" ]]; then
+                exit_error "Missing platform argument value"
+            fi
+            PLATFORM="$2"
+            shift 2
+        ;;
+        
+        -n | --name )
+            IMAGE_NAME="$2"
+            shift 2
+        ;;
+        
+        -i | --image )
+            SOURCE_FILE="$2"
+            shift 2
+        ;;
+    
+        -c | --cleanup )
+            CLEANUP=1
+            shift
+        ;;
+
+        *)
+            echo "Unexpected argument '$1'" >&2
+            bad_usage
+        ;;
+    esac
+done
+
+
+# If we don't have an image name or a source file, then we need to be in the
+# workspace root to use the defaults.
+if [[ ! $IMAGE_NAME || ! $SOURCE_FILE ]]; then
+    if ! WS_ROOT=$(find_ws_root); then
+        exit_error "Unable to find workspace root (required when image name or source file not specified)"
+    fi
+    cd "$WS_ROOT"
+fi
+
+# Now we're in the workspace root (if we need to be) set image name and
+# source file defaults if not specified
+if [[ ! $IMAGE_NAME ]]; then
+    IMAGE_NAME="$(platforms/espresso/tools/image-name "$PLATFORM")"
+fi
+
+if [[ ! $SOURCE_FILE ]]; then
+    SOURCE_FILE="img-$PLATFORM/$PLATFORM-container-x64.dockerv1.tgz"
+    if [[ ! -e $SOURCE_FILE ]]; then
+        exit_error "Could not find $SOURCE_FILE, has $PLATFORM been built successfully?"
+    fi
+elif [[ ! -e $SOURCE_FILE ]]; then
+    exit_error "Could not find $SOURCE_FILE" >&2
+fi
+
+#
+# In order to speed up the case where the image is already loaded, we also
+# tag the image with the same repo portion of the requested name but tag of
+# the checksum of the source archive.
+#
+# Generate that name here for use in checking and then in tagging.
+#
+src_file_chksum_id () {
+    # Need to trim the file name from the output, and then take 16 characters
+    # of the checksum, as this should be enough to avoid false positives
+    # without making container image ls output too wide
+    sha1sum "$1" | cut -d' ' -f1 | head -c 16
+}
+SRC_CHK_PREFIX="$(echo "$IMAGE_NAME" | cut -d ":" -f1):${SRC_CHK_TAG_PREFIX}"
+SRC_CHK_NAME="${SRC_CHK_PREFIX}$(src_file_chksum_id "$SOURCE_FILE")"
+
+
+#
+# Util function to get image id for a loaded container image name
+# If image not loaded then return failure
+#
+get_ctr_image_id() {
+    if ! img_id=$("$CONTAINER_MGR" inspect -f '{{ .Id }}' "$1" 2> /dev/null); then
+        return 1
+    fi
+    # Remove sha256: prefix
+    echo "$img_id" | cut -d ':' -f 2
+}
+
+
+#
+# Util function to check whether source file matches file in repo with
+# supplied image id
+#
+source_matches_ctr_image_id() {
+    img_id="$1"
+    
+    # Check for our special source-checksum based image name, if that exists
+    # and matches the id of the image we're checking against, then return
+    # success. Else fall back to slower check
+    if src_img_id=$(get_ctr_image_id "$SRC_CHK_NAME"); then
+        if [[ $src_img_id == "$img_id" ]]; then
+            return 0
+        fi
+    fi
+    
+    # Container image contains file that's named <checksum>.json, check whether
+    # it's there. If not then the image is different, so load it!
+    echo "Checking whether existing loaded $PLATFORM image matches..."
+    if tar -tf "$SOURCE_FILE" "$img_id.json" &>/dev/null; then
+        # Tag it with source-checksum (as the tag was missing) for faster check
+        # next time!
+        "$CONTAINER_MGR" tag "$IMAGE_NAME" "$SRC_CHK_NAME"
+        return 0
+    fi
+    
+    # Doesn't match so return failure
+    return 1
+}
+
+
+#
+# Check for old image
+#
+# Check if there is a loaded container image with this name.
+# If so, compare with checksum from image we're loading to see whether we need
+# to replace it
+#
+if img_id=$(get_ctr_image_id "$IMAGE_NAME"); then
+    # If we aren't doing cleanup and the image matches, then stop!
+    if [[ $CLEANUP == 0 ]] && source_matches_ctr_image_id "$img_id"; then
+        echo "Image $SOURCE_FILE matches $CONTAINER_MGR repo (name: $IMAGE_NAME)"
+        exit 0
+    fi
+    
+    echo "Removing old image from local $CONTAINER_MGR repository..."
+    # Remove the requested tag
+    if ! "$CONTAINER_MGR" image rm -f "$IMAGE_NAME" >/dev/null 2>&1; then
+        exit_error "$CONTAINER_MGR image delete failed"
+    fi
+    
+    # Remove our special tag if present
+    $CONTAINER_MGR images "$SRC_CHK_PREFIX*" --format "{{.Repository}}:{{.Tag}}" | xargs -I {} "$CONTAINER_MGR" image rm -f {} >/dev/null 2>&1
+    elif [[ $CLEANUP == 1 ]]; then
+    echo "No image found with name $IMAGE_NAME to cleanup"
+fi
+
+
+#
+# Stop now if this was cleanup
+#
+if [[ $CLEANUP == 1 ]]; then
+    exit 0
+fi
+
+
+#
+# Do the load
+#
+echo "Loading $SOURCE_FILE image into local $CONTAINER_MGR repository..."
+
+# If temp-img.tgz exists, the skopeo command will fail, so check it doesn't
+# exist (it may have been left over if someone e.g. ctrl-C'd this script)
+if [ -f temp-img.tgz ]; then
+    rm temp-img.tgz
+fi
+
+if ! /auto/ljam/skopeo-0.1.40/skopeo --insecure-policy copy docker-archive:"$SOURCE_FILE" docker-archive:temp-img.tgz:"$IMAGE_NAME" > /dev/null; then
+    exit_error "Skopio copy failed"
+fi
+if ! "$CONTAINER_MGR" load -i temp-img.tgz > /dev/null; then
+    exit_error "$CONTAINER_MGR image load failed"
+fi
+
+# Retag with the same tag so the last tagged timestamp reflects the
+# last time this was loaded, and tag with our special tag.
+"$CONTAINER_MGR" tag "$IMAGE_NAME" "$IMAGE_NAME"
+"$CONTAINER_MGR" tag "$IMAGE_NAME" "$SRC_CHK_NAME"
+rm temp-img.tgz
+
+echo "Image loaded with name: $IMAGE_NAME"

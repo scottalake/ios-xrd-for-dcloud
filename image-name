@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+#------------------------------------------------------------------------------
+# image-name - Generates developer image names for XR Docker images
+#
+# June 2020, Emily Smith
+#
+# Copyright (c) 2020-2022 by Cisco Systems, Inc.
+# All rights reserved.
+#------------------------------------------------------------------------------
+
+#
+# Script to generate image  to be used for XR Docker images in an XR workspace.
+#
+# Username, workspace name, and git branch name are used to make sure there 
+# is no clash between multiple users and workspaces.
+#
+
+set -e
+
+THIS_DIR=$(dirname "$(readlink -f "$0")")
+source "$THIS_DIR/utils.sh"
+
+# Find the root of the workspace.
+if ! WS_ROOT=$(find_ws_root); then
+    echo "Unable to find workspace root" >&2
+    exit 1
+fi
+
+if [[ -n "$1" ]]; then
+    PLATFORM="$1"
+# If not passing platform: first guess platform from img-* dirs, or settle
+# for 'xrd-control-plane'
+elif ! PLATFORM="$(_find_platform 2>/dev/null)"; then
+    PLATFORM="xrd-control-plane"
+fi
+
+USERN=$(whoami)
+BNAME="$(basename "$WS_ROOT")"
+# If not in a git repo, BRANCH will be empty.
+if BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); then
+    IMAGE_PREFIX="$PLATFORM/$USERN/$BNAME/$BRANCH"
+else
+    IMAGE_PREFIX="$PLATFORM/$USERN/$BNAME"
+fi
+
+# Docker image tags must be lower case
+echo -n "$IMAGE_PREFIX" | awk '{print tolower($0)}'

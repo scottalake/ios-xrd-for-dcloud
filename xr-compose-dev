@@ -1,0 +1,158 @@
+#!/usr/bin/env bash
+#------------------------------------------------------------------------------
+# xr-compose-dev - Wrapper to run the xr-compose from within an XR workspace.
+# Passes any specified arguments through, and specifies the appropriate dev
+# image for the user, workspace, branch.
+# If the user wishes to specify an image, they should use xr-compose
+#
+# June 2020, Emily Smith
+#
+# Copyright (c) 2020-2022 by Cisco Systems, Inc.
+# All rights reserved.
+#------------------------------------------------------------------------------
+
+set -e
+
+THIS_DIR=$(dirname "$(readlink -f "$0")")
+source "$THIS_DIR/utils.sh"
+
+
+#
+# Functions
+# -----------------------------------------------------------------------------
+
+get_service_file_paths () {
+    local input_file=$1
+    local field_name=$2
+    # Must use python instance with pyyaml installed.
+    /auto/ensoft/bin/python3 -c "
+import yaml
+r = yaml.safe_load(open('$input_file'))
+print('\n'.join(
+    s['$field_name'] for s in r['services'].values() if '$field_name' in s
+))
+"
+}
+
+usage () {
+    echo -n "\
+Usage: $(basename "$0") [-h|--help] [-f FILE] [-l|--launch] ...
+
+Wrapper around xr-compose for developers, to:
+ - load an image from a built workspace
+ - copy config files to remote DOCKER_HOST
+
+Optional arguments:
+  -f, --input-file FILE   Input xr-compose YAML file, defaults to
+                          $DEFAULT_INPUT_FILE. Used to copy any config
+                          files if DOCKER_HOST env var is set.
+  -o, --output-file FILE  Specify an alternative output file.
+  -i, --image IMAGE       Name/ID of loaded XRd image. Loaded from workspace if
+                          not specified. This will be overridden by any images
+                          specified in the input YAML.
+  -t, --topo-id STR       Specify a topology instance identifier used to suffix
+                          container, volume, and network names.
+  -l, --launch            Launch a topology from the generated docker-compose
+                          YAML.
+  -m, --mount PATH [PATH ...]
+                          A space separated list of paths to mount into each XR
+                          container. Relative paths will be treated as relative
+                          to the input YAML file. Each path can be of the form
+                          '<src>' or '<src>:<tgt>'.
+  -d, --debug             Enable debug output.
+  --privileged            Launch in privileged mode.
+  --plat PLATFORM         Choose which platform to load image for if -i not
+                          specified, defaults to 'xrd-control-plane'.
+                          Supported platforms: $(get_supported_platforms)
+"
+    exit 0
+}
+
+
+#
+# Parse args
+# -----------------------------------------------------------------------------
+
+IMAGE_NAME=""
+INPUT_FILE=""
+DEFAULT_INPUT_FILE="./docker-compose.xr.yml"
+XR_COMPOSE_ARGS=()
+PLATFORM="xrd-control-plane"
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h | --help )
+            usage
+            ;;
+        -i | --image )
+            IMAGE_NAME=$2
+            shift 2
+            ;;
+        -f | --filename )
+            INPUT_FILE=$2
+            XR_COMPOSE_ARGS+=("-f" "$2")
+            shift 2
+            ;;
+        --plat )
+            PLATFORM="$2"
+            if ! is_supported_platform "$PLATFORM"; then
+                echo "Unsupported platform $PLATFORM. Supported platforms: $(get_supported_platforms)" >&2
+                exit 1
+            fi
+            shift 2
+            ;;
+        *)
+            XR_COMPOSE_ARGS+=("$1")
+            shift
+            ;;
+    esac
+done
+
+# Error if image to launch is not specified outside a workspace.
+if [[ ! $IMAGE_NAME ]] && ! find_ws_root > /dev/null; then
+    echo "Must specify image outside of an XR workspace" >&2
+    exit 1
+fi
+
+if [[ ! $INPUT_FILE ]]; then
+    INPUT_FILE=$DEFAULT_INPUT_FILE
+fi
+
+if [[ ! -f $INPUT_FILE ]]; then
+    echo "xr-compose input file '$INPUT_FILE' not found" >&2
+    exit 1
+fi
+
+
+#
+# Main
+# -----------------------------------------------------------------------------
+
+# Copy config files to DOCKER_HOST if required. Config file paths are
+# interpreted as relative to the input file.
+FILES_TO_COPY=()
+INPUT_FILE_DIR=$(dirname "$(realpath "$INPUT_FILE")")
+for file in \
+    $(get_service_file_paths "$INPUT_FILE" xr_startup_cfg) \
+    $(get_service_file_paths "$INPUT_FILE" xr_boot_script)
+do
+    if [[ $file =~ ^/ ]]; then
+        FILES_TO_COPY+=("$file")
+    else
+        FILES_TO_COPY+=("$(realpath "$INPUT_FILE_DIR/$file")")
+    fi
+done
+copy_files_to_docker_host "${FILES_TO_COPY[@]}"
+
+# Load image if no image was specified.
+if [[ ! $IMAGE_NAME ]]; then
+    if ! "$THIS_DIR"/load-image -p "$PLATFORM"; then
+        echo "Failed to load image!" >&2
+        exit 1
+    fi
+    IMAGE_NAME=$("$THIS_DIR"/image-name "$PLATFORM")
+fi
+XR_COMPOSE_ARGS+=("-i" "$IMAGE_NAME")
+
+# Delegate to xr-compose.
+"$THIS_DIR"/xr-compose "${XR_COMPOSE_ARGS[@]}"
