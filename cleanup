@@ -1,0 +1,5 @@
+#!/bin/bash
+docker rm -f prometheus telegraf xrd-1 xrd-2 xrd-3 xrd-4 xrd-5 xrd-6 xrd-7 xrd-8 dest source lab1 lab2
+docker network rm xrd-1-gi1-xrd-2-gi0 streaming_mgmt streaming_source-xrd-1 streaming_xrd-2-dest xrd-1-gi0 xrd-2-gi1 ios-xr-streaming-telemetry-demo_mgmt xrd-1-gi1-xrd-2-gi0 xrd-1-gi6-xrd-3-gi6 xrd-2-gi1-xrd-3-gi1 ios-xr-streaming-telemetry-demo_lab1-xrd-1 ios-xr-streaming-telemetry-demo_lab2-xrd-2 ios-xr-streaming-telemetry-demo_source-xrd-1 ios-xr-streaming-telemetry-demo_xrd-2-dest 
+docker volume rm xrd-1 xrd-2 xrd-3 xrd-4 xrd-5 xrd-6 xrd-7 xrd-8 dest source lab1 lab2
+docker network rm xrd-1-gi0-xrd-3-gi2  xrd-1-gi1-xrd-5-gi2  xrd-2-gi0-xrd-4-gi2  xrd-2-gi1-xrd-6-gi2  xrd-3-gi0-xrd-4-gi0  xrd-3-gi1-xrd-5-gi1  xrd-3-gi3-xrd-7-gi0  xrd-4-gi1-xrd-6-gi1  xrd-4-gi3-xrd-7-gi1  xrd-5-gi0-xrd-6-gi0  xrd-5-gi3-xrd-8-gi0  xrd-6-gi3-xrd-8-gi1
