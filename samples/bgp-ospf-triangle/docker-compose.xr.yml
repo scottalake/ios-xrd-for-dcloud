@@ -1,0 +1,114 @@
+# ------------------------------------------------------------------------------
+# docker-compose.xr.yml - XR compose topology
+#
+# Copyright (c) 2020-2021 by Cisco Systems, Inc.
+# All rights reserved.
+# ------------------------------------------------------------------------------
+
+# Topology
+# --------------
+#      lab1
+#       |
+#      xrd-1
+#     /    \
+#  xrd-2 -- xrd-3
+#   |
+#  lab2
+
+# Networks
+# --------------
+# host (172.28.0.1/16): xrd-1 172.28.0.10, xrd-2 172.28.0.20, xrd-3 172.28.0.30
+# lab1-xrd-1 (172.30.1.0/24):  172.30.1.100 - 172.30.1.200 (<lab1> - Gi0/0/0/0)
+# lab2-xrd-2 (172.31.1.0/24):  172.31.1.100 - 172.31.1.200 (<lab2> - Gi0/0/0/2)
+# xrd-1-xrd-2 (10.0.3.0/24):  10.0.3.1 - 10.0.3.2 (Gi0/0/0/1 - Gi0/0/0/0)
+# xrd-1-xrd-3 (10.0.4.0/24):  10.0.4.1 - 10.0.4.3 (Gi0/0/0/6 - Gi0/0/0/6)
+# xrd-2-xrd-3 (10.0.5.0/24):  10.0.5.2 - 10.0.5.3 (Gi0/0/0/1 - Gi0/0/0/1)
+
+services:
+  lab1:
+    non_xr: true
+    image: ubuntu:14.04
+    container_name: lab1
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    command: /bin/bash -c "ip route add 10.0.0.0/8 via 172.30.1.200 && /bin/bash"
+    networks:
+      lab1-xrd-1:
+        ipv4_address: 172.30.1.100
+  lab2:
+    non_xr: true
+    image: ubuntu:14.04
+    container_name: lab2
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    command: /bin/bash -c "ip route add 10.0.0.0/8 via 172.31.1.200 && /bin/bash"
+    networks:
+      lab2-xrd-2:
+        ipv4_address: 172.31.1.100
+  xrd-1:
+    container_name: xrd-1
+    xr_startup_cfg: xrd-1_xrconf.cfg
+    xr_interfaces:
+      - Mg0/RP0/CPU0/0
+      - Gi0/0/0/0
+      - Gi0/0/0/1
+      - Gi0/0/0/6
+    networks:
+      lab1-xrd-1:
+        ipv4_address: 172.30.1.200
+      mgmt:
+        ipv4_address: 172.28.0.10
+  xrd-2:
+    container_name: xrd-2
+    xr_startup_cfg: xrd-2_xrconf.cfg
+    xr_interfaces:
+      - Mg0/RP0/CPU0/0
+      - Gi0/0/0/0
+      - Gi0/0/0/1
+      - Gi0/0/0/2
+    networks:
+      lab2-xrd-2:
+        ipv4_address: 172.31.1.200
+      mgmt:
+        ipv4_address: 172.28.0.20
+  xrd-3:
+    container_name: xrd-3
+    xr_startup_cfg: xrd-3_xrconf.cfg
+    xr_interfaces:
+      - Mg0/RP0/CPU0/0
+      - Gi0/0/0/1
+      - Gi0/0/0/6
+    networks:
+      mgmt:
+        ipv4_address: 172.28.0.30
+
+xr_l2networks:
+  - ["xrd-1:Gi0/0/0/1", "xrd-2:Gi0/0/0/0"]
+  - ["xrd-1:Gi0/0/0/6", "xrd-3:Gi0/0/0/6"]
+  - ["xrd-2:Gi0/0/0/1", "xrd-3:Gi0/0/0/1"]
+
+networks:
+  mgmt:
+    xr_interfaces:
+      - xrd-1:Mg0/RP0/CPU0/0
+      - xrd-2:Mg0/RP0/CPU0/0
+      - xrd-3:Mg0/RP0/CPU0/0
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+  lab1-xrd-1:
+    ipam:
+      config:
+        - subnet: 172.30.1.0/24
+    xr_interfaces:
+      - xrd-1:Gi0/0/0/0
+  lab2-xrd-2:
+    ipam:
+      config:
+        - subnet: 172.31.1.0/24
+    xr_interfaces:
+      - xrd-2:Gi0/0/0/2

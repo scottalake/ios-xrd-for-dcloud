@@ -1,0 +1,13 @@
+#!/bin/bash
+# -----------------------------------------------------------------------------
+# ctre.py - Container Rebuild - shell wrapper running ./ctre.py
+#
+# May 2022, Joe Jenne
+#
+# Copyright (c) 2022 by cisco Systems, Inc.
+# All rights reserved.
+# -----------------------------------------------------------------------------
+# Shell wrapper simply runs the ctre module with an appropriate python exe.
+
+THIS_DIR="$(dirname "$(readlink -f "$0")")"
+/auto/ensoft/bin/python3 "$THIS_DIR"/ctre.py "$@"

@@ -1,0 +1,277 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+# load-vpp-core - Helper script for loading a gdplane VPP core into GDB
+#
+# March 2022, Paul Stanley
+#
+# Copyright (c) 2022 by Cisco Systems, Inc.
+# All rights reserved.
+#------------------------------------------------------------------------------
+
+THIS_DIR=$(dirname "$(readlink -f "$0")")
+
+# Directory where tar will extract to
+LIB64_DIR="lib64"
+
+# GDB load commands file
+GDB_CMDS_FILE="gdb_cmds"
+
+# Location in workspace of key files
+GDPLANE_DIR="platforms/common/gdplane"
+LIB_SYM_TAR="$GDPLANE_DIR/platform/sunstone/vpp_hw/production_runtime_libs_syms.tar.gz"
+VPE_SYM="$GDPLANE_DIR/platform/sunstone/vpp_hw/install-x86_64/vpe.sym"
+
+# Tar that has the symbol files
+#    Located at $GDPLANE_DIR/<obj dir>/
+# Can't use hardcoded obj path as it varies for xrd vs sunstone and want this
+# script to work for both
+MUCODE_TAR_FILE="sunstone-x86-fs-prod.mucode.flag"
+
+# File inside the mucode tar that has the symbol file
+#    Will have path $GDPLANE_DIR/<obj dir>/$MUCODE_SYM
+MUCODE_SYM_FILE="sunstone-x86-fs-prod.mucode.sym"
+
+# Variables that can be changed by args
+STAGING_DIR="vpp_core"
+WORKSPACE=""
+CORE_FILE=""
+VPP_SRC=""
+SKIP_COPY=0
+
+
+usage () {
+    echo -n "\
+Usage: $(basename "$0") [-h|--help] [<opts>] -c CORE
+
+Collate together the required files to launch gdb for a VPP core, and
+then launch GDB with correct set of commands to load VPP core with symbols.
+
+Required arguments:
+  -c CORE                    The core file to load (can be core file or .gz compressed file)
+
+Optional arguments:
+  -w, --workspace WORKSPACE  The workspace to source the symbol files from
+                             (default: detect from script location or working dir)
+  -d, --dir DIR              The staging directory to create to stage the required
+                             files in (default: $STAGING_DIR in cwd)
+  -v, --vpp-src VPP_SRC      Directory where VPP source code can be found if
+                             wanting to see source code in GDB.
+  -s, --skip-copy            Skip copying core and load in place (extracting if necessary)
+"
+}
+
+bad_usage () {
+    usage >&2
+    exit 1
+}
+
+exit_error() {
+    echo "ERROR: $1" >&2
+    exit 1
+}
+
+find_ws_root() {
+    local WORKSPACE=$1
+    while [[ ! -d "$WORKSPACE/.ACMEROOT" ]]; do
+        echo "$WORKSPACE"
+        WORKSPACE=$(dirname "$WORKSPACE")
+        if [[ "$WORKSPACE" == '/' ]]; then
+            return 1
+        fi
+    done
+    echo "$WORKSPACE"
+}
+
+copy_ws_file() {
+    SRC=$1
+    DST=$2
+    cp "$WORKSPACE/$SRC" "$DST" || exit_error "Failed to copy $SRC to staging"
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h | --help )
+            usage
+            exit 0
+            ;;
+
+        -w | --workspace )
+            if [[ -z "$2" ]]; then
+                exit_error "Missing workspace argument value"
+            fi
+            WORKSPACE="$2"
+            shift 2
+            ;;
+
+        -d | --dir )
+            if [[ -z "$2" ]]; then
+                exit_error "Missing dir argument value"
+            fi
+            STAGING_DIR="$2"
+            shift 2
+            ;;
+
+        -v | --vpp-src )
+            if [[ -z "$2" ]]; then
+                exit_error "Missing vpp src argument value"
+            fi
+            VPP_SRC="$2"
+            shift 2
+            ;;
+
+
+        -c | --core )
+            if [[ -z "$2" ]]; then
+                exit_error "Missing dir argument value"
+            fi
+            CORE_FILE="$2"
+            shift 2
+            ;;
+
+        -s | --skip-copy )
+            SKIP_COPY=1
+            shift
+            ;;
+
+        *)
+            echo "Unexpected argument '$1'" >&2
+            bad_usage
+            ;;
+    esac
+done
+
+#
+# Sanity check arguments
+#
+if [[ ! $CORE_FILE ]]; then
+    exit_error "Core file must be specified"
+fi
+
+if [[ ! -f $CORE_FILE ]]; then
+    exit_error "Core file $CORE_FILE does not exist"
+fi
+
+if [[ $WORKSPACE ]] && [[ ! -d $WORKSPACE ]]; then
+    exit_error "Workspace $WORKSPACE does not exist"
+fi
+
+#
+# If workspace not provided, then try to find it from CWD first, then if not,
+# from script location.
+#
+if [[ ! $WORKSPACE ]]; then
+    WORKSPACE=$(find_ws_root "$PWD")
+fi
+if [[ ! $WORKSPACE ]]; then
+    WORKSPACE=$(find_ws_root "$THIS_DIR")
+fi
+if [[ ! $WORKSPACE ]]; then
+    exit_error "Unable to determine workspace - try passing via -w"
+fi
+
+# Find the mucode tar file, as obj dir can vary between builds
+MUCODE_TAR=$(find "$GDPLANE_DIR" -name "$MUCODE_TAR_FILE" | head -n1)
+if [[ ! $MUCODE_TAR ]]; then
+    exit_error "Cannot find mucode tar file $MUCODE_TAR_FILE in $GDPLANE_DIR"
+fi
+
+#
+# Create staging dir if it doesn't exist.
+# If it does, then delete the lib64 dir so we start from fresh.
+#
+if [[ ! -e "$STAGING_DIR" ]]; then
+    echo "Creating staging dir '$STAGING_DIR'"
+    mkdir "$STAGING_DIR"
+else
+    echo "Using existing staging dir '$STAGING_DIR'"
+fi
+
+# Before we change, get absolute paths for core and workspace
+WORKSPACE=$(realpath "$WORKSPACE")
+CORE_FILE=$(realpath "$CORE_FILE")
+
+# Now change to the staging dir
+cd "$STAGING_DIR" || exit_error "Failed to cd to $STAGING_DIR"
+
+if [[ -e $LIB64_DIR ]]; then
+    echo "Removing $STAGING_DIR/$LIB64_DIR/ from previous execution..."
+    rm -rf "$LIB64_DIR"
+fi
+
+# Copy over and extract the lib syms tar first, so it can be extracted
+echo "Copying required files from workspace ($WORKSPACE) to staging"
+copy_ws_file "$LIB_SYM_TAR" ./
+tar xf "$(basename "$LIB_SYM_TAR")" || exit_error "Failed to extract lib syms"
+
+# Copy over other files
+copy_ws_file "$VPE_SYM" ./
+copy_ws_file "$MUCODE_TAR" ./
+
+echo "Using ucode symbols from $MUCODE_TAR"
+MUCODE_SYM="$(dirname "$MUCODE_TAR")/$MUCODE_SYM_FILE"
+
+# Pull out the mucode symbol file and move to root
+tar xf "$MUCODE_TAR_FILE" "$MUCODE_SYM" || exit_error "Failed to extract mucode sym"
+mucode_file="$LIB64_DIR/$(basename "$MUCODE_SYM" .sym)"
+mv "$MUCODE_SYM" "$mucode_file"
+rmdir "$(dirname "$MUCODE_SYM")"
+
+# Copy in core
+if [[ -e $(basename "$CORE_FILE" .gz) ]]; then
+    echo "Core already present in staging"
+    CORE_FILE="$(basename "$CORE_FILE" .gz)"
+elif [[ $CORE_FILE != *.gz  ]] && [[ $CORE_FILE == $WORKSPACE/* ]]; then
+    echo "Core file is extracted and local, skipping copying to staging dir"
+else
+    if [[ $SKIP_COPY == 1 ]]; then
+        echo "Skipping copying core to staging"
+    else
+        echo "Copying core to staging"
+        cp "$CORE_FILE" ./ || exit_error "Failed to copy core"
+        CORE_FILE="$(basename "$CORE_FILE")"
+    fi
+
+    if [[ $CORE_FILE == *.gz ]]; then
+        echo "Extracting core"
+        gunzip "$CORE_FILE" || exit_error "Failed to extract core"
+        CORE_FILE="${CORE_FILE%.gz}"
+    fi
+fi
+
+#
+# Helper function for adding substitute paths to the gdb commands
+#
+add_substitute_path() {
+    local sym_file="$1"
+    local src_file="$2"
+    local substitute_path="$3"
+    local src_path=""
+
+    # Find instance of the src path in the file
+    src_path=$(objdump -g "$sym_file" | grep "$src_file" | head -n1 | awk '{print $NF}')
+    if [[ ! $src_path ]]; then
+        exit_error "Failed to determine substitute path for $sym_file source"
+    fi
+    src_path=${src_path%"$src_file"}
+    echo "set substitute-path $src_path $substitute_path" >> "$GDB_CMDS_FILE"
+}
+
+# Create file of GDB commands to execute
+if [[ -e $GDB_CMDS_FILE ]]; then
+    rm "$GDB_CMDS_FILE"
+fi
+echo "set solib-search-path lib64" >> "$GDB_CMDS_FILE"
+
+# Add substitute path for the sandbox paths for mucode sources
+add_substitute_path "$mucode_file" "platforms/common/gdplane" "$WORKSPACE"
+
+# Add substitute path for VPP sources
+if [[ $VPP_SRC ]]; then
+    # Determine what the path is we need to substitute by looking at the path
+    # for vpp's main.c
+    add_substitute_path "$(basename "$VPE_SYM")" "vpp/vnet/main.c" "$VPP_SRC"
+fi
+
+# Launch GDB loading core with vpp symbols and executing the command file to
+# setup GDB correctly
+/router/bin/gdb -c "$CORE_FILE" --symbols "$(basename "$VPE_SYM")" -x "$GDB_CMDS_FILE"

@@ -1,0 +1,361 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+# launch-xrd-dev - Wrapper around launch-xrd for developers
+#
+# April 2021, Lewis Gaul
+#
+# Copyright (c) 2021-2022 by cisco Systems, Inc.
+# All rights reserved.
+#------------------------------------------------------------------------------
+
+# Developer script to automate XRd container actions:
+#  - launch a container
+#  - attach to an existing container
+#  - clean up containers
+
+
+THIS_DIR=$(dirname "$(readlink -f "$0")")
+source "$THIS_DIR/utils.sh"
+if WS_ROOT=$(find_ws_root); then
+    TOOLS_DIR="$WS_ROOT/platforms/espresso/tools"
+fi
+
+
+#
+# Functions
+# -----------------------------------------------------------------------------
+
+_usage_short () {
+    echo -n "\
+Usage: $(basename "$0") [-h|--help] [-n|--dry-run]
+              [<launch-opts>]
+              | {--attach CTR | --attach-new-shell CTR} [<attach-opts>]
+              | --cleanup CTR [<cleanup-opts>]
+"
+}
+
+_usage_opts () {
+    echo -n "\
+1. Launch a container (default):
+Optional arguments:
+  -i, --image IMG               Specify loaded docker image to boot. Defaults
+                                to picking up the container tarball in the
+                                img-* directory.
+  -f, --first-boot-config FILE  Path to startup config file for first boot
+  -e, --every-boot-config FILE  Path to startup config file for every boot
+  -m, --mount-ws                Mount workspace into the container
+  -v, --xrd-volume VOL          Name of volume used for persistency (created if
+                                doesn't already exist)
+  -k, --keep                    Keep the container around after it has stopped
+  -p, --platform PLATFORM       Platform to load image for. Only necessary if
+                                more than one platform image has been built in
+                                the workspace.
+                                Supported platforms: $(get_supported_platforms)
+  --container-manager {docker|podman}
+                                Container manager (defaults to 'docker')
+  --name NAME                   Specify container name
+  --privileged                  Run the container with extended privileges
+  --interfaces IF_TYPE:IF_NAME[,IF_FLAG[,...]][;IF_TYPE:IF_NAME[...]...]
+                                XR interfaces to create and their mapping to
+                                underlying linux/pci interfaces
+  --mgmt-interfaces linux:IF_NAME[,MG_FLAG[,...]][;linux:IF_NAME[...]...]
+                                XR management interfaces to create and their
+                                mapping to underlying linux interfaces (defaults
+                                to a single interface mapped to eth0, pass \"\"
+                                to prevent this)
+  --first-boot-script FILE      Path to script to be run after all config has
+                                been applied on the first boot
+  --every-boot-script FILE      Path to script to be run after all config has
+                                been applied on every boot
+  --disk-limit LIMIT            Disk usage limit to impose (defaults to '6G')
+  --ztp-enable                  Enable Zero Touch Provisioning (ZTP) to start
+                                up after boot, by default ZTP is disabled
+                                (cannot be used with IP snooping)
+  --ztp-config FILE             Enable ZTP with custom ZTP ini configuration
+  --boot-log-level LEVEL        Control the level at which boot logging starts
+                                being printed to the console, one of: ERROR,
+                                WARNING (default), INFO, DEBUG
+  --dp-hugepage-mb SIZE         Size of hugepage in MB (for xrd-vrouter only)
+  --args '<arg1> <arg2> ...'    Extra arguments to pass to 'docker run'
+
+
+2. Attach to a running container:
+  -a, --attach CTR              Attach to running container with existing prompt
+  -A, --attach-new-shell CTR    Attach to running container with new prompt
+
+3. Clean up running containers:
+  -c, --cleanup                 Stop and remove containers with matching name
+Optional arguments:
+  --name CTR                    Specify the name of the container to clean up
+  -v, --xrd-volume VOL          Name of volume to clean up
+"
+}
+
+bad_usage () {
+    _usage_short >&2
+    exit 1
+}
+
+usage () {
+    echo -n "\
+$(_usage_short)
+
+$(_usage_opts)
+"
+    exit 0
+}
+
+
+#
+# Parse args
+# -----------------------------------------------------------------------------
+
+DRY_RUN=0
+LAUNCH_MODE=0
+ATTACH_MODE=0
+CLEANUP_MODE=0
+IMAGE_NAME=""
+FILES_TO_COPY=()
+PLATFORM=""
+CONTAINER_NAME=""
+CONTAINER_ID=""
+MOUNT_WS=0
+DOCKER_RUN_ARGS=()
+GOT_LAUNCH_ARGS=0
+LAUNCH_XRD_ARGS=()
+ATTACH_NEW_SHELL=0
+# Default hugepage is larger than we need for internal use, and is
+# too much for being able to run multiple instances, so default to
+# 1GB.
+DP_HUGEPAGE_MB="1024"
+
+OPTS=$(getopt -o hnki:f:e:mv:p:ca:A: \
+    --long help,dry-run,keep,image:,first-boot-config:,every-boot-config:,\
+first-boot-script:,every-boot-script:,mount-ws,xrd-volume:,name:,\
+interfaces:,mgmt-interfaces:,disk-limit:,args:,cleanup,\
+attach:,attach-new-shell:,platform:,plat:,dp-hugepage-mb:,privileged,\
+container-manager:,ztp-enable,ztp-config:,boot-log-level: \
+    -n 'parse-options' -- "$@") || bad_usage
+
+eval set -- "$OPTS"
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h | --help )
+            usage
+            ;;
+        -n | --dry-run )
+            DRY_RUN=1
+            LAUNCH_XRD_ARGS+=("$1")
+            shift
+            ;;
+        -i | --image )
+            GOT_LAUNCH_ARGS=1
+            IMAGE_NAME=$2
+            shift 2
+            ;;
+        -f | --first-boot-config )
+            GOT_LAUNCH_ARGS=1
+            LAUNCH_XRD_ARGS+=("$1" "$2")
+            FILES_TO_COPY+=("$2")
+            shift 2
+            ;;
+        -e | --every-boot-config )
+            GOT_LAUNCH_ARGS=1
+            LAUNCH_XRD_ARGS+=("$1" "$2")
+            FILES_TO_COPY+=("$2")
+            shift 2
+            ;;
+        --first-boot-script )
+            GOT_LAUNCH_ARGS=1
+            LAUNCH_XRD_ARGS+=("$1" "$2")
+            FILES_TO_COPY+=("$2")
+            shift 2
+            ;;
+        --every-boot-script )
+            GOT_LAUNCH_ARGS=1
+            LAUNCH_XRD_ARGS+=("$1" "$2")
+            FILES_TO_COPY+=("$2")
+            shift 2
+            ;;
+        --ztp-config )
+            GOT_LAUNCH_ARGS=1
+            LAUNCH_XRD_ARGS+=("$1" "$2")
+            FILES_TO_COPY+=("$2")
+            shift 2
+            ;;
+        -m | --mount-ws )
+            GOT_LAUNCH_ARGS=1
+            MOUNT_WS=1
+            shift
+            ;;
+        -c | --cleanup )
+            CLEANUP_MODE=1
+            shift
+            ;;
+        --dp-hugepage-mb )
+            DP_HUGEPAGE_MB=$2
+            shift 2
+            ;;
+        --name )
+            CONTAINER_NAME=$2
+            LAUNCH_XRD_ARGS+=("$1" "$2")
+            shift 2
+            ;;
+        -p | --plat | --platform )
+            PLATFORM=$2
+            shift 2
+            ;;
+        -a | --attach )
+            if [[ $ATTACH_MODE == 1 ]]; then
+                echo "Cannot specify multiple attach options" >&2
+                bad_usage
+            fi
+            ATTACH_MODE=1
+            CONTAINER_ID=$2
+            shift 2
+            ;;
+        -A | --attach-new-shell )
+            if [[ $ATTACH_MODE == 1 ]]; then
+                echo "Cannot specify multiple attach options" >&2
+                bad_usage
+            fi
+            ATTACH_MODE=1
+            ATTACH_NEW_SHELL=1
+            CONTAINER_ID=$2
+            shift 2
+            ;;
+        --args )
+            GOT_LAUNCH_ARGS=1
+            IFS=" " read -r -a DOCKER_RUN_ARGS <<< "$2"
+            shift 2
+            ;;
+        -- )
+            shift
+            ;;
+        *)
+            GOT_LAUNCH_ARGS=1
+            LAUNCH_XRD_ARGS+=("$1")
+            shift
+            ;;
+    esac
+done
+
+export DRY_RUN
+
+if [[ $ATTACH_MODE == 1 && $CLEANUP_MODE == 1 ]]; then
+    echo "Cannot specify attach and cleanup mode simultaneously" >&2
+    bad_usage
+fi
+
+if [[ $ATTACH_MODE == 1 && ($GOT_LAUNCH_ARGS == 1 || $CONTAINER_NAME) ]]; then
+    echo "Got unexpected arguments for attach mode" >&2
+    bad_usage
+fi
+
+if [[ $CLEANUP_MODE == 1 && $GOT_LAUNCH_ARGS == 1 ]]; then
+    echo "Got unexpected arguments in cleanup mode" >&2
+    bad_usage
+fi
+
+if [[ $ATTACH_MODE == 0 && $CLEANUP_MODE == 0 ]]; then
+    LAUNCH_MODE=1
+fi
+
+# Error if image to launch is not specified outside a workspace.
+if [[ $LAUNCH_MODE == 1 && ! $IMAGE_NAME && ! $WS_ROOT ]]; then
+    echo "Must specify image outside of an XR workspace" >&2
+    bad_usage
+fi
+
+# Error if container to clean up is not specified outside a workspace.
+if [[ $CLEANUP_MODE == 1 && ! $CONTAINER_NAME && ! $WS_ROOT ]]; then
+    echo "Must specify container name to clean up outside of an XR workspace" >&2
+    bad_usage
+fi
+
+
+#
+# Construct and run the Docker command
+# -----------------------------------------------------------------------------
+
+# Set the container name from the workspace, user and (optional) git branch.
+if [[ ! $CONTAINER_NAME && $WS_ROOT ]]; then
+    # If not in a git repo, BRANCH will be empty
+    BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null  | tr / _)
+    USERN=$(whoami)
+    BNAME=$(basename "$WS_ROOT")
+    TSTAMP=$(date +%s)
+
+    if [[ $BRANCH ]]; then
+        CONTAINER_NAME_BASE="xrd_$USERN-$BNAME-${BRANCH,,}"
+    else
+        CONTAINER_NAME_BASE="xrd_$USERN-$BNAME"
+    fi
+    CONTAINER_NAME="$CONTAINER_NAME_BASE--$TSTAMP"
+fi
+
+if [[ $LAUNCH_MODE == 1 ]]; then
+    # Copy any files that are expected to be local to the docker daemon.
+    # Also involves checking the docker host is reachable and giving a friendly
+    # error message if not!
+    copy_files_to_docker_host "${FILES_TO_COPY[@]}" || exit 1
+
+    if [[ ! $PLATFORM ]]; then
+        # Work out platform if it was not passed.
+        if ! PLATFORM="$(_find_platform "$IMAGE_NAME")"; then
+            exit 1
+        fi
+    fi
+
+    # Load latest image if no image specified.
+    if [[ ! $IMAGE_NAME ]]; then
+        _runcmd "$TOOLS_DIR/load-image" -p "$PLATFORM" || exit 1
+        IMAGE_NAME=$("$TOOLS_DIR/image-name" "$PLATFORM")
+    fi
+    # Explictly specify image name and platform to launch-xrd.
+    LAUNCH_XRD_ARGS+=("$IMAGE_NAME" --platform "$PLATFORM")
+
+    if [[ $PLATFORM == "xrd-vrouter" ]]; then
+        LAUNCH_XRD_ARGS+=(--dp-hugepage-mb "$DP_HUGEPAGE_MB")
+    fi
+
+    if [[ $CONTAINER_NAME ]]; then
+        LAUNCH_XRD_ARGS+=("--name" "$CONTAINER_NAME")
+    fi
+
+    if [[ $MOUNT_WS == 1 ]]; then
+        DOCKER_RUN_ARGS+=("--mount" "type=bind,source=$WS_ROOT,target=/workspace")
+    fi
+
+    if [[ ${#DOCKER_RUN_ARGS[@]} -gt 0 ]]; then
+        LAUNCH_XRD_ARGS+=("--args" "${DOCKER_RUN_ARGS[*]}")
+    fi
+
+    "$THIS_DIR"/launch-xrd "${LAUNCH_XRD_ARGS[@]}"
+
+elif [[ $ATTACH_MODE == 1 ]]; then
+    if [[ $ATTACH_NEW_SHELL == 1 ]]; then
+        _runcmd docker exec -it "$CONTAINER_ID" /pkg/bin/xr_cli.sh || exit $?
+    else
+        _runcmd docker attach "$CONTAINER_ID" || exit $?
+    fi
+
+elif [[ $CLEANUP_MODE == 1 ]]; then
+    echo "Cleaning up running containers"
+    if [[ $CONTAINER_NAME_BASE ]]; then
+        for ctr in $(docker ps | sed 's#.* ##' | grep "$CONTAINER_NAME_BASE"); do
+            _runcmd docker rm -f "$ctr"
+        done
+    else
+        _runcmd docker rm -f "$CONTAINER_NAME"
+    fi
+    if [[ $PERSIST_VOL ]]; then
+        echo "Cleaning up unused volumes"
+        _runcmd docker volume rm "$PERSIST_VOL"
+    fi
+
+else
+    echo "CRITICAL: Failed to detect mode of operation" >&2
+    exit 1
+fi

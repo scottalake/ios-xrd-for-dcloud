@@ -1,0 +1,2 @@
+#!/bin/bash
+kafka-console-consumer.sh --bootstrap-server telemetry_kafka_1:9092 --topic telemetry_xrd-1-ifcounters --from-beginning & kafka-console-consumer.sh --bootstrap-server telemetry_kafka_1:9092 --topic telemetry_xrd-2-ifcounters --from-beginning

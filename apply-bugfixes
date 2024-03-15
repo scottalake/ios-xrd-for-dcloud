@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+#-----------------------------------------------------------------------------
+#  Copyright (c) 2020-2022 by cisco Systems, Inc.
+#  All rights reserved.
+#-----------------------------------------------------------------------------
+
+set -e
+
+usage () {
+    echo "Usage: $(basename "$0") [-h|--help] [--new-packages] IMAGE SOURCE ..."
+    exit "$1"
+}
+
+# ---------------------
+# Parse args
+# ---------------------
+
+XR_CONTAINER_INSTALL_ARGS=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h | --help )
+            usage 0
+            ;;
+        --new-packages )
+            XR_CONTAINER_INSTALL_ARGS="--all"
+            shift
+            ;;
+        *)
+            # Positional args
+            if [[ -z "$IMAGE" ]]; then
+                IMAGE="$1"
+            elif [[ -z "$SOURCE" ]]; then
+                SOURCE="$1"
+            else
+                break
+            fi
+            shift
+            ;;
+    esac
+done
+
+
+if [[ -z "$IMAGE" || -z "$SOURCE" ]]; then
+    echo "Expected 'image' and 'source' arguments." >&2
+    usage 1 >&2
+fi
+
+
+# ---------------------
+# Main logic
+# ---------------------
+
+TMPDIR=$(mktemp -d)
+DOCKERFILE="$TMPDIR/Dockerfile"
+
+trap '{ rm -r "$TMPDIR"; exit 1; }' EXIT
+
+cp -r "$SOURCE" "$TMPDIR/source"
+
+cat << EOF > "$DOCKERFILE"
+FROM $IMAGE as stage1
+LABEL stage=unwanted-multistage-artefact
+COPY source /tmp/packages/
+RUN xr_container_install /tmp/packages/ $XR_CONTAINER_INSTALL_ARGS
+RUN rm -rf /tmp/packages/
+FROM scratch
+COPY --from=stage1 / /
+ENTRYPOINT /sbin/xrd_init
+EOF
+
+echo "Using Dockerfile:"
+cat "$DOCKERFILE"
+echo
+
+# The default Dockerfile used is "Dockerfile" in the build dir
+docker build "$TMPDIR" "$@"
+
+# Remove any intermediate images from the first stage
+docker image prune -f --filter label=stage=unwanted-multistage-artefact

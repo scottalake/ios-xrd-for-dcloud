@@ -1,0 +1,20 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+# launch-container - DEPRECATED wrapper around launch-xrd for developers
+#
+# April 2021, Lewis Gaul
+#
+# Copyright (c) 2021-2022 by cisco Systems, Inc.
+# All rights reserved.
+#------------------------------------------------------------------------------
+
+THIS_DIR=$(dirname "$(readlink -f "$0")")
+source "$THIS_DIR/utils.sh"
+
+printf '\033[33;1mWARNING:\033[0m ' >&2
+echo "The tool named 'launch-container' has been deprecated and removed.
+         Please use 'launch-xrd-dev' instead. Your command becomes:" >&2
+
+_quote_cmd "$THIS_DIR"/launch-xrd-dev "$@" >&2
+
+exit 1
