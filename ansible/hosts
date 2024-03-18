@@ -1,0 +1,9 @@
+[core]
+xrd-1    ansible_host=172.20.0.2
+xrd-2    ansible_host=172.20.0.3
+
+[iosxr:children]
+core
+
+
+

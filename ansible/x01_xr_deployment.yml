@@ -1,0 +1,8 @@
+---
+- name: get facts
+  hosts: all
+  tasks:
+    - name: Collect Facts Using Built-in Fact
+      iosxr_facts:
+        gather_subset:
+          - interfaces
