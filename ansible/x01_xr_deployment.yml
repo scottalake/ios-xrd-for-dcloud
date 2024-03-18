@@ -1,8 +1,19 @@
 ---
 - name: get facts
   hosts: all
+  gather_facts: false
   tasks:
-    - name: Collect Facts Using Built-in Fact
+    - name: Collect Facts Using Built-in Facts Module
       iosxr_facts:
         gather_subset:
+          - config
           - interfaces
+      register: result
+    - name: Debug output>  Collect Facts Using Built-in Facts Module
+      debug:
+        msg: "{{result}}"
+
+
+    - name: configure top level configuration
+      iosxr_config:
+        lines: hostname {{ inventory_hostname }}
