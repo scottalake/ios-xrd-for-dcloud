@@ -87,13 +87,13 @@ while True:
 
     elif ch == 10:
         # os.system("sudo tcpdump -i ens5-mgbl-local -nn src 172.31.73.230 and port 8088 -vvv")
-        os.system("sudo tcpdump -i ens5-mgbl-local -nn port 8088 -vvv")
+        os.system("sudo tcpdump -i br-3c8cca003c5d -nn port 8088 -vvv")
     #https://opensource.com/article/18/10/introduction-tcpdump
     # Unattended:  nohup tcpdump -i -s 2000 -w /var/tmp/mydumpfile -C "filter" &
 
     elif ch == 11:
         # os.system("sudo tcpdump -i ens5-mgbl-local -nn src 172.31.73.230 and port 8088 -w telegraf.pcap -vvv")
-        os.system("sudo tcpdump -i ens5-mgbl-local -nn port 8088 -w telegraf.pcap -vvv")
+        os.system("sudo tcpdump -i br-3c8cca003c5d -nn port 8088 -w telegraf.pcap -vvv")
 
     elif ch == 12:
         os.system("sudo tcpdump -nn -r telegraf.pcap")

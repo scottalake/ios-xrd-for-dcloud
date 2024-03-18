@@ -3,70 +3,90 @@
 
 # /bin/bash build_docker_compose_file.sh simple-bgp  /home/dcloud 160 
 
-    
+LAB_SCENARIO="${1:-simple-bgp}"
+HOME_DIR="${2:-/home/dcloud}"
+LAB_ARCHITECTURE="${3:-dcloud}"
 
-echo "scenario: $1";
+echo "Scenario: $LAB_SCENARIO";
+echo "Home directory on target system: $HOME_DIR";
+echo "Target node architecture: $LAB_ARCHITECTURE";
 
 ###############################################################################################################
 # SET VARS USED HERE AND IN TELEMETRY DOCKER COMPOSE
 ###############################################################################################################
 export COMPOSE_HTTP_TIMEOUT=120
-HOME_DIR=$2
-echo $HOME_DIR
 REPO_DIRECTORY=$HOME_DIR/ios-xr-streaming-telemetry-demo
-echo $REPO_DIRECTORY
 TIG_DIRECTORY=$REPO_DIRECTORY/telemetry
-echo $TIG_DIRECTORY
 TAR_FILES_DIRECTORY=$HOME_DIR/tar_files
-echo $TAR_FILES_DIRECTORY
 
-
-# echo " "
-# echo " "
-# echo BASE_DIRECTORY is $BASE_DIRECTORY
-# echo TAR_FILES_DIRECTORY is $TAR_FILES_DIRECTORY
-# echo " "
-# sleep 1
-# echo TIG_DIRECTORY is $TIG_DIRECTORY
-# echo " "
-# echo " "
-sleep 2
+echo " "
+echo " "
+echo REPO_DIRECTORY is $REPO_DIRECTORY
+echo TAR_FILES_DIRECTORY is $TAR_FILES_DIRECTORY
+echo TIG_DIRECTORY is $TIG_DIRECTORY
 ###############################################################################################################
-
 #sudo sysctl -w fs.inotify.max_user_instances=64000
-
 ###############################################################################################################
-# CLEAN ALL DOCKER CONTAINERS, IMAGES, VOLUMES, ETC
+#echo CLEAN ALL DOCKER CONTAINERS, IMAGES, VOLUMES, ETC
 ###############################################################################################################
-docker kill $(docker container ls -q) 
-docker system prune -af 
-docker volume rm $(docker volume ls -q)
 
-###############################################################################################################
-echo PREPARE FOR XR CONTAINER DEPLOYMENT
-###############################################################################################################
-chmod u+x $REPO_DIRECTORY/xr-compose
-chmod u+x $REPO_DIRECTORY/host-check
+CONTAINERS_PRESENT=$(docker container ls -q)
+echo $CONTAINERS_PRESENT
+# if [ $CONTAINERS_PRESENT == *"kill"* ]; then
+#   echo "No containers present!"
+# else
+#   docker kill $(docker container ls -q)
+# fi
 
-echo Execute python3 get_ec2_vm_ips2_$1.py
-
-PYTHON38="/usr/bin/python3.8"
-PYTHON310="/usr/bin/python3.10"
-SCRIPT_NAME=$REPO_DIRECTORY/get_ec2_vm_ips2_$1.py 
-
-
-# Check if Python 3.10 exists and use it if it does
-if [ -x "$PYTHON310" ]; then
-    $PYTHON310 $SCRIPT_NAME
-# Otherwise, check if Python 3.8 exists and use it if it does
-elif [ -x "$PYTHON38" ]; then
-    $PYTHON38 $SCRIPT_NAME
+if [[ $CONTAINERS_PRESENT == '' ]]; then
+  echo "No containers present, skipping docker kill containers..."
 else
-    echo "Neither Python 3.10 nor Python 3.8 could be found. Exiting."
-    exit 1
+  docker kill $(docker container ls -q)
 fi
 
-echo Finished with python execution
+echo "docker system prune operation..."
+docker system prune -af 
+
+VOLUMES_PRESENT=$(docker volume ls -q)
+echo $VOLUMES_PRESENT
+
+if [[ $VOLUMES_PRESENT == '' ]]; then
+  echo "No volumes present, skipping volume cleanup..."
+else
+  docker volume rm $(docker volume ls -q)
+fi
+
+echo !###############################################################################################################
+echo PREPARE FOR XR CONTAINER DEPLOYMENT
+echo !###############################################################################################################
+echo ""
+echo Modify file permissions...
+chmod u+x $REPO_DIRECTORY/xr-compose
+chmod u+x $REPO_DIRECTORY/host-check
+echo ...complete.
+
+
+
+# echo Execute python3 get_ec2_vm_ips2_$LAB_SCENARIO.py
+
+# PYTHON38="/usr/bin/python3.8"
+# PYTHON310="/usr/bin/python3.10"
+# SCRIPT_NAME=$REPO_DIRECTORY/get_ec2_vm_ips2_$LAB_SCENARIO.py 
+
+
+# # Check if Python 3.10 exists and use it if it does
+# if [ -x "$PYTHON310" ]; then
+#     $PYTHON310 $SCRIPT_NAME
+# # Otherwise, check if Python 3.8 exists and use it if it does
+# elif [ -x "$PYTHON38" ]; then
+#     $PYTHON38 $SCRIPT_NAME
+# else
+#     echo "Neither Python 3.10 nor Python 3.8 could be found. Exiting."
+#     exit 1
+# fi
+
+# echo Finished with python execution
+
 
 
 ###############################################################################################################
@@ -80,42 +100,36 @@ sudo sysctl -w fs.inotify.max_user_instances=128000
 
 docker load -i $TAR_FILES_DIRECTORY/xrd-control-plane-container-x64.dockerv1.tgz && cd $REPO_DIRECTORY && 
 ###############################################################################################################
-./xr-compose -f samples/$1/docker-compose.xr.yml  -i ios-xr/xrd-control-plane:7.9.1 
+./xr-compose -f samples/$LAB_SCENARIO/docker-compose.xr.yml  -i ios-xr/xrd-control-plane:7.9.1 
 
 
-echo Execute python3 replace_macvlan_intf_in_dc_file.py
+# echo Execute python3 replace_macvlan_intf_in_dc_file.py
 
-#/usr/bin/python3.8 $REPO_DIRECTORY/replace_macvlan_intf_in_dc_file.py
-#/usr/bin/python3.10 $REPO_DIRECTORY/replace_macvlan_intf_in_dc_file.py
+# #/usr/bin/python3.8 $REPO_DIRECTORY/replace_macvlan_intf_in_dc_file.py
+# #/usr/bin/python3.10 $REPO_DIRECTORY/replace_macvlan_intf_in_dc_file.py
 
-PYTHON38="/usr/bin/python3.8"
-PYTHON310="/usr/bin/python3.10"
-SCRIPT_NAME=$REPO_DIRECTORY/replace_macvlan_intf_in_dc_file.py
+# PYTHON38="/usr/bin/python3.8"
+# PYTHON310="/usr/bin/python3.10"
+# SCRIPT_NAME=$REPO_DIRECTORY/replace_macvlan_intf_in_dc_file.py
 
-# Check if Python 3.10 exists and use it if it does
-if [ -x "$PYTHON310" ]; then
-    $PYTHON310 $SCRIPT_NAME
-# Otherwise, check if Python 3.8 exists and use it if it does
-elif [ -x "$PYTHON38" ]; then
-    $PYTHON38 $SCRIPT_NAME
-else
-    echo "Neither Python 3.10 nor Python 3.8 could be found. Exiting."
-    exit 1
-fi
-
-
-# if [ ! -e /usr/bin/python3.8 ]; then
-#   /usr/bin/python3.8 
-# fi
-#  [ ! -e /usr/bin/python3.10 ]; then
-#   /usr/bin/python3.10 $REPO_DIRECTORY/replace_macvlan_intf_in_dc_file.py
+# # Check if Python 3.10 exists and use it if it does
+# if [ -x "$PYTHON310" ]; then
+#     $PYTHON310 $SCRIPT_NAME
+# # Otherwise, check if Python 3.8 exists and use it if it does
+# elif [ -x "$PYTHON38" ]; then
+#     $PYTHON38 $SCRIPT_NAME
+# else
+#     echo "Neither Python 3.10 nor Python 3.8 could be found. Exiting."
+#     exit 1
 # fi
 
-echo Finished executing python3 replace_macvlan_intf_in_dc_file.py
 
-echo Finished generating updating the docker-compose.yml file with macvlan interfaces
 
-cat $REPO_DIRECTORY/docker-compose.yml | grep 'xrd-1:\|xrd-2:\|eth'
+# echo Finished executing python3 replace_macvlan_intf_in_dc_file.py
+
+# echo Finished generating updating the docker-compose.yml file with macvlan interfaces
+
+# cat $REPO_DIRECTORY/docker-compose.yml | grep 'xrd-1:\|xrd-2:\|eth'
 
 # chmod +x change_ens_in_docker_compose_file.sh
 # ./change_ens_in_docker_compose_file.sh $3

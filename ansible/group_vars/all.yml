@@ -1,0 +1,3 @@
+---
+ansible_user: dcloud
+ansible_ssh_pass: cisco123
