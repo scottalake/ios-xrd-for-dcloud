@@ -1,0 +1,84 @@
+version: '3'
+services:
+  telegraf:
+    image: telegraf
+    ports:
+      - 9273:9273
+      - 57500:57500
+    restart: always
+    volumes:
+      # - $TIG_DIRECTORY/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      # - $TIG_DIRECTORY/telegraf/telegraf.d:/etc/telegraf/telegraf.d:ro
+      - /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/telegraf/telegraf.d:/etc/telegraf/telegraf.d:ro
+    networks:
+      - ios-xr-streaming-telemetry-demo_mgmt
+    entrypoint: /entrypoint.sh -config /etc/telegraf/telegraf.conf -config-directory /etc/telegraf/telegraf.d --debug
+  yangsuite:
+    image: yangsuite:latest
+    build:
+      context: ./yangsuite
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./yangsuite/setup.env
+    command: /yangsuite/migrate_and_start.sh
+    ports:
+      # gNMI insecure port (IOS-XE)
+      - "50052:50052"
+      # gNMI insecure port (NX-OS)
+      - "50051:50051"
+      # gNMI secure port (IOS-XE, NX-OS)
+      - "9339:9339"
+      # gRPC MDT telemetry insecure port (IOS-XE)
+      - "57344:57344"
+      # gRPC MDT telemetry secure port (IOS-XE)
+      - "57345:57345"
+      # RESTCONF
+      - "443:443"
+    volumes:
+      - static-content:/ys-static
+      - uwsgi:/yangsuite/uwsgi
+      - ./ys-data:/ys-data
+    networks:
+      - ios-xr-streaming-telemetry-demo_mgmt
+  nginx:
+    image: nginx:latest
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    depends_on:
+      - yangsuite
+    ports:
+      - "80:80"
+      - "8443:8443"
+    volumes:
+      - static-content:/etc/nginx/html
+      - uwsgi:/var/run/uwsgi
+    networks:
+      - ios-xr-streaming-telemetry-demo_mgmt
+  backup:
+    image: backup:latest
+    build:
+      context: ./backup
+      dockerfile: ./Dockerfile
+    command: ['/code/run_cron.sh']
+    depends_on:
+      - yangsuite
+    environment:
+      - DATA_DIR=/ysdata
+      - CRON_EXP=${YS_BACKUP_CRON:-*/30 * * * *}
+      - NO_BACKUP=${YS_NO_BACKUP:-false}
+      - MAX_BACKUP=${YS_MAX_BACKUP:-2}
+    volumes:
+      - ./ys-data:/ysdata
+      - ./ys-backup:/backup
+    networks:
+      - ios-xr-streaming-telemetry-demo_mgmt
+  
+networks:
+  ios-xr-streaming-telemetry-demo_mgmt:
+    external: true
+
+volumes:
+    static-content:
+    uwsgi:

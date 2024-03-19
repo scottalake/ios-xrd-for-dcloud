@@ -103,6 +103,12 @@ docker load -i $TAR_FILES_DIRECTORY/xrd-control-plane-container-x64.dockerv1.tgz
 ./xr-compose -f samples/$LAB_SCENARIO/docker-compose.xr.yml  -i ios-xr/xrd-control-plane:7.9.1 
 
 
+source /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/start_yang_suite.sh
+
+sudo cp /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/yangsuite/persistent/devices/* \
+/home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/ys-data/devices
+
+
 # echo Execute python3 replace_macvlan_intf_in_dc_file.py
 
 # #/usr/bin/python3.8 $REPO_DIRECTORY/replace_macvlan_intf_in_dc_file.py
