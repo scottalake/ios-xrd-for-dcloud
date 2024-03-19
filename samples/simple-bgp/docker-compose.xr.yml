@@ -18,6 +18,35 @@
 # dest:              10.3.1.3
 
 services:
+  yangsuite:
+    non_xr: true
+    image: yangsuite:latest
+    build:
+      context: ./yangsuite
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./yangsuite/setup.env
+    command: /yangsuite/migrate_and_start.sh
+    ports:
+      # gNMI insecure port (IOS-XE)
+      - "50052:50052"
+      # gNMI insecure port (NX-OS)
+      - "50051:50051"
+      # gNMI secure port (IOS-XE, NX-OS)
+      - "9339:9339"
+      # gRPC MDT telemetry insecure port (IOS-XE)
+      - "57344:57344"
+      # gRPC MDT telemetry secure port (IOS-XE)
+      - "57345:57345"
+      # RESTCONF
+      - "443:443"
+    volumes:
+      - static-content:/ys-static
+      - uwsgi:/yangsuite/uwsgi
+      - ./ys-data:/ys-data
+    networks:
+      mgmt:
+        ipv4_address: 172.30.0.11
   telegraf:
     non_xr: true
     build:
