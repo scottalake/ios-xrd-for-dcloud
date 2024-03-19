@@ -100,13 +100,10 @@ sudo sysctl -w fs.inotify.max_user_instances=128000
 
 docker load -i $TAR_FILES_DIRECTORY/xrd-control-plane-container-x64.dockerv1.tgz && cd $REPO_DIRECTORY && 
 ###############################################################################################################
-./xr-compose -f samples/$LAB_SCENARIO/docker-compose.xr.yml  -i ios-xr/xrd-control-plane:7.9.1 
+./xr-compose -f samples/$LAB_SCENARIO/docker-compose.xr.yml  -i ios-xr/xrd-control-plane:7.9.1
 
 
-source /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/start_yang_suite.sh
 
-sudo cp /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/yangsuite/persistent/devices/* \
-/home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/ys-data/devices
 
 
 # echo Execute python3 replace_macvlan_intf_in_dc_file.py
@@ -140,16 +137,28 @@ sudo cp /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/yangsuite/persist
 # chmod +x change_ens_in_docker_compose_file.sh
 # ./change_ens_in_docker_compose_file.sh $3
 
+echo " #########################################################################"
+echo " Execute docker-compose up command"
+echo " #########################################################################"
+
+
 #---------------------------------------------------------------------------
 docker-compose up --build -d
-echo " "
-echo " "
-docker ps --format "table {{.ID}}\t{{.Status}}\t{{.Names}}"
-echo " "
-echo " "
 #---------------------------------------------------------------------------
 
-ip route show
+# ip route show
+
+# source /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/start_yang_suite.sh
+
+# sudo cp /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/yangsuite/persistent/devices/* \
+# /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/ys-data/devices
+
+# echo " "
+# echo " "
+# docker ps --format "table {{.ID}}\t{{.Status}}\t{{.Names}}"
+# echo " "
+# echo " "
+
 
 ##############################################################################################################
 ## FILES BELOW NEED TO BE REMOVED BEFORE BUILDING
