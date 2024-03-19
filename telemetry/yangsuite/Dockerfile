@@ -29,7 +29,7 @@ COPY uwsgi.ini /yangsuite/
 COPY migrate_and_start.sh /yangsuite/
 RUN chmod +x /yangsuite/migrate_and_start.sh
 RUN pip3 install --upgrade pip
-RUN pip3 install --upgrade setuptools wheel uwsgi
+RUN pip3 install --upgrade setuptools wheel uwsgi psycopg2
 
 # Installing YANG Suite
 RUN pip3 install --upgrade --no-cache yangsuite[core]
