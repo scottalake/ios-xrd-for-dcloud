@@ -11,12 +11,12 @@
     "clientkey": "",
     "servercert": "",
     "serverkey": "",
-    "encrypted_password": "8nh7WTIeIDJUrN2odMhdsw==$gAAAAABl-dZcgysQGZi9b_KWzwdswQMCRHLbopIKP72dMYFCS1IzLh4sVaeoqwP5QtipVTRk-iXRLbnuOIJkPbiC0alHyXXEeg=="
+    "encrypted_password": "QWBtXLGCeUrZgoElHE3Xew==$gAAAAABl-hnqprtC9voztnGfVo6cZaqYXWf9i0PhqQrftAf95sQm68ZJQXpnD3nlEXmUtqnIt9LQGPoaohPLSYPuEW1uF2zsjQ=="
   },
   "gnmi": {
     "enabled": true,
     "platform": "iosxe",
-    "port": 57500,
+    "port": 57777,
     "secure_port": 9339,
     "secure": false,
     "secure_override": ""
