@@ -1,3 +1,5 @@
 /ignore
 telemetry/ys-data
 telemetry/ys-backup
+telemetry/metrics.out
+metrics.out
