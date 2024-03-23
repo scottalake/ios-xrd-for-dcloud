@@ -6,7 +6,7 @@
 
 
 # importing the module
-import os
+import os, re, subprocess
   
 # sets the text colour to green 
 os.system("tput setaf 2")
@@ -48,9 +48,9 @@ while True:
        14. Display inputs.conf for splunk_httpinput default
        15. Back up current test_app
        16. Restart splunk
-       17.
-       18.
-       19.
+       17. Connect to source via docker exec
+       18. Connect to dest via docker exec
+       19. Convert pcap to readable txt file
        20.
        21.
 
@@ -74,26 +74,42 @@ while True:
         os.system("sudo docker inspect xrd-2 | grep IPv4Address")
 
     elif ch == 6:
-        os.system("sudo docker exec -it telegraf cat /tmp/metrics.out ")
+        os.system("sudo docker exec -it telemetry_telegraf_1 cat /tmp/metrics.out ")
 
     elif ch == 7:
-        os.system("sudo docker exec -it telegraf bash")
+        os.system("sudo docker exec -it telemetry_telegraf_1 bash")
 
     elif ch == 8:
-        os.system("sudo docker exec -it telegraf telegraf --test")
+        os.system("sudo docker exec -it telemetry_telegraf_1 telegraf --test")
 
     elif ch == 9:
-        os.system("docker-compose restart telegraf")
+        os.system("docker-compose -f /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/docker-compose.yml restart telegraf")
 
     elif ch == 10:
-        # os.system("sudo tcpdump -i ens5-mgbl-local -nn src 172.31.73.230 and port 8088 -vvv")
-        os.system("sudo tcpdump -i br-3c8cca003c5d -nn port 8088 -vvv")
-    #https://opensource.com/article/18/10/introduction-tcpdump
-    # Unattended:  nohup tcpdump -i -s 2000 -w /var/tmp/mydumpfile -C "filter" &
+        ip_cmd_output = subprocess.check_output("ip add | grep 172.30", shell=True, text=True)
+        # Use a regular expression to find the interface name
+        match = re.search(r'\s+inet\s+172\.30\.\d+\.\d+/\d+\s+brd\s+\d+\.\d+\.\d+\.\d+\s+scope\s+global\s+(br-\w+)', ip_cmd_output)
+        if match:
+            interface_name = match.group(1)
+            # Construct the tcpdump command with the correct interface
+            tcpdump_cmd = f"sudo tcpdump -i {interface_name} -nn port 8088 -vvv"
+            # Execute the tcpdump command
+            os.system(tcpdump_cmd)
+        else:
+            print("Interface with IP 172.30.*.* not found")
 
     elif ch == 11:
-        # os.system("sudo tcpdump -i ens5-mgbl-local -nn src 172.31.73.230 and port 8088 -w telegraf.pcap -vvv")
-        os.system("sudo tcpdump -i br-3c8cca003c5d -nn port 8088 -w telegraf.pcap -vvv")
+        ip_cmd_output = subprocess.check_output("ip add | grep 172.30", shell=True, text=True)
+        # Use a regular expression to find the interface name
+        match = re.search(r'\s+inet\s+172\.30\.\d+\.\d+/\d+\s+brd\s+\d+\.\d+\.\d+\.\d+\s+scope\s+global\s+(br-\w+)', ip_cmd_output)
+        if match:
+            interface_name = match.group(1)
+            # Construct the tcpdump command with the correct interface
+            tcpdump_cmd = f"sudo tcpdump -i {interface_name} -nn port 8088 -w telegraf.pcap -vvv"
+            # Execute the tcpdump command
+            os.system(tcpdump_cmd)
+        else:
+            print("Interface with IP 172.30.*.* not found")
 
     elif ch == 12:
         os.system("sudo tcpdump -nn -r telegraf.pcap")
@@ -115,6 +131,20 @@ while True:
 
     elif ch == 16:
         os.system("sudo -u root /opt/splunk/bin/splunk restart")
+
+    elif ch == 17:
+        os.system("sudo docker exec -it source bash")
+
+    elif ch == 18:
+        os.system("sudo docker exec -it dest bash")
+
+    elif ch == 19:
+        os.system("sudo touch ./telegraf_packets.txt")
+        os.system("sudo tshark -r ./telegraf.pcap -Y tcp -w telegraf_packets.txt")
+
+
+
+
 
     elif ch == 99:
         print("Exiting application")

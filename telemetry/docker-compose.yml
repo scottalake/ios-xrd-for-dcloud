@@ -3,7 +3,10 @@
 version: '3'
 services:
     telegraf:
-      image: telegraf
+      #image: telegraf
+      build:
+        context: ./telegraf
+        dockerfile: ./Dockerfile
       ports:
         - 9273:9273
         - 57500:57500
