@@ -48,9 +48,9 @@ while True:
        14. Display inputs.conf for splunk_httpinput default
        15. Back up current test_app
        16. Restart splunk
-       17.
-       18.
-       19.
+       17. Connect to source via docker exec
+       18. Connect to dest via docker exec
+       19. Convert pcap to readable txt file
        20.
        21.
 
@@ -83,7 +83,7 @@ while True:
         os.system("sudo docker exec -it telemetry_telegraf_1 telegraf --test")
 
     elif ch == 9:
-        os.system("docker-compose restart telemetry_telegraf_1")
+        os.system("docker-compose -f /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/docker-compose.yml restart telegraf")
 
     elif ch == 10:
         ip_cmd_output = subprocess.check_output("ip add | grep 172.30", shell=True, text=True)
@@ -131,6 +131,20 @@ while True:
 
     elif ch == 16:
         os.system("sudo -u root /opt/splunk/bin/splunk restart")
+
+    elif ch == 17:
+        os.system("sudo docker exec -it source bash")
+
+    elif ch == 18:
+        os.system("sudo docker exec -it dest bash")
+
+    elif ch == 19:
+        os.system("sudo touch ./telegraf_packets.txt")
+        os.system("sudo tshark -r ./telegraf.pcap -Y tcp -w telegraf_packets.txt")
+
+
+
+
 
     elif ch == 99:
         print("Exiting application")
