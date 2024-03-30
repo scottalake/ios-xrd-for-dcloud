@@ -1,8 +1,8 @@
 {
   "base": {
-    "profile_name": "xrd-2",
+    "profile_name": "xr-2",
     "description": "",
-    "address": "172.30.0.3",
+    "address": "198.18.133.2",
     "username": "cisco",
     "timeout": 30,
     "variables": {},
@@ -11,11 +11,11 @@
     "clientkey": "",
     "servercert": "",
     "serverkey": "",
-    "encrypted_password": "yf6MeC-hqtA2vJhqsusKpQ==$gAAAAABl-hn4HS_8UYw5H0I-gv4oS9xPM5oqMG2ATXNLvNl7RwaL9DqyEulFiNSMwV2ztGe7fpMA0uA6zwbF1eF3aiTr5kdj6g=="
+    "encrypted_password": "U77CHUWGYMCaxp5zofBW3Q==$gAAAAABmCDyhav_C97H09YrVu2MdFCOU-aWcvxvAaLLVHPvfCMku8RMiO73bvA5OQvq3mU390uxhTy_W5D1W0Xl_9_pBd_nuFg=="
   },
   "gnmi": {
     "enabled": true,
-    "platform": "iosxe",
+    "platform": "iosxr",
     "port": 57777,
     "secure_port": 9339,
     "secure": false,

@@ -1,12 +1,17 @@
 #! /bin/bash
 
-ADMIN_USER=dcloud
 
-PASS_ONE=cisco123
-PASS_TWO=cisco123
+ADMIN_USER=${1:-dcloud}
+PASS_ONE=${2:-'cisco123'}
+ALLOWED_HOSTS=${3:-'198.18.133.100'1}
+ADMIN_EMAIL=${4:-dcloud@cisco.com}
 
-ALLOWED_HOSTS="198.18.133.23"
-ADMIN_EMAIL=dcloud@cisco.com
+
+# ADMIN_USER=dcloud
+# PASS_ONE=cisco123
+# PASS_TWO=cisco123
+# ALLOWED_HOSTS="198.18.133.23"
+# ADMIN_EMAIL=dcloud@cisco.com
 
 if [ -f nginx/nginx-self-signed.cert ] && [ -f nginx/nginx-self-signed.key ]
 then
