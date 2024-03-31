@@ -106,6 +106,9 @@ YS_ADMIN_PASS=$PASS_ONE
 YS_ADMIN_EMAIL=$ADMIN_EMAIL
 %%
 
+cat yangsuite/setup.env
+sleep 3
+
 # Check for docker-compose CLI, redirect stdout & stderr
 if docker-compose -v >/dev/null 2>&1; then
     docker-compose up --build

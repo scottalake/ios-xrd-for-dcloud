@@ -1,0 +1,57 @@
+{
+  "base": {
+    "profile_name": "xr-5",
+    "description": "",
+    "address": "198.18.133.5",
+    "username": "cisco",
+    "timeout": 30,
+    "variables": {},
+    "certificate": "",
+    "clientcert": "",
+    "clientkey": "",
+    "servercert": "",
+    "serverkey": "",
+    "encrypted_password": "xOIzxi81ko9tCNrM7xixRg==$gAAAAABmCDzzYF4qTJWrf0JMDpmVLZd-3Ri2KHp9uFpxPVzkdwFmhxqUVAGXWewdJIxUv3rDVMQ8y3ZeW5xs2oalHKYmQBeYYA=="
+  },
+  "gnmi": {
+    "enabled": true,
+    "platform": "iosxr",
+    "port": 57777,
+    "secure_port": 9339,
+    "secure": false,
+    "secure_override": ""
+  },
+  "netconf": {
+    "enabled": true,
+    "device_variant": "default",
+    "port": 830,
+    "ignore_keys": true,
+    "address": "",
+    "username": "",
+    "timeout": "",
+    "encrypted_password": ""
+  },
+  "restconf": {
+    "enabled": false,
+    "encoding": "https",
+    "base_url": "/restconf",
+    "port": 443,
+    "address": "",
+    "username": "",
+    "encrypted_password": ""
+  },
+  "ssh": {
+    "enabled": true,
+    "device_variant": "generic_termserver",
+    "address": "",
+    "port": 22,
+    "delay_factor": 1.0,
+    "username": "",
+    "timeout": "",
+    "secure": false,
+    "encrypted_password": ""
+  },
+  "yangsuite": {
+    "user": "dcloud"
+  }
+}
