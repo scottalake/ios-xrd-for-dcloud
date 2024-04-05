@@ -6,7 +6,7 @@
 
 
 # importing the module
-import os, re, subprocess
+import os, re, subprocess, time
   
 # sets the text colour to green 
 os.system("tput setaf 2")
@@ -32,9 +32,7 @@ print("")
 print("Entering local device")
 while True:
     print("""
-        1. Back up test_app to iosxr_streaming_telemetry_demo repo
-        2. Back up network-diagram-viz to iosxr_streaming_telemetry_demo repo
-        3. Back up Splunk_ML_Toolkit to iosxr_streaming_telemetry_demo repo
+        1. Back up custom splunk apps to iosxr_streaming_telemetry_demo repo
        10. Start tcpdump to view Splunk HEC traffic coming from telegraf
        11. Same as 10, but save to telegraf.pcap file
        12. View telegraf.pcap from Menu Option 11
@@ -45,14 +43,36 @@ while True:
 
     ch=int(input("Enter your choice: "))
  
+
+
     if ch == 1:
-        os.system("cd /opt/splunk/etc/apps/ && tar -czvf test_app_latest.tar.gz -C /opt/splunk/etc/apps/test_app  . && mv /opt/splunk/etc/apps/test_app_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf test_app_latest.tar.gz            -C /opt/splunk/etc/apps/test_app             . ")
+        # os.system("sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz            /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf test_app_latest.tar.gz            -C /opt/splunk/etc/apps/test_app             . && sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz            /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        os.system("time.sleep(2)")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf network-diagram-viz_latest.tar.gz -C /opt/splunk/etc/apps/network-diagram-viz  . && sudo mv /opt/splunk/etc/apps/network-diagram-viz_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        os.system("time.sleep(2)")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_ML_Toolkit_latest.tar.gz   -C /opt/splunk/etc/apps/Splunk_ML_Toolkit    . && sudo mv /opt/splunk/etc/apps/Splunk_ML_Toolkit_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        os.system("time.sleep(2)")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf search_latest.tar.gz              -C /opt/splunk/etc/apps/search               . && sudo mv /opt/splunk/etc/apps/search_latest.tar.gz              /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
 
     elif ch == 2:
-        os.system("cd /opt/splunk/etc/apps/ && tar -czvf test_app_latest.tar.gz -C /opt/splunk/etc/apps/test_app  . && mv /opt/splunk/etc/apps/network-diagram-viz_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        print('')
 
     elif ch == 3:
-        os.system("cd /opt/splunk/etc/apps/ && tar -czvf test_app_latest.tar.gz -C /opt/splunk/etc/apps/test_app  . && mv /opt/splunk/etc/apps/Splunk_ML_Toolkit_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        print('')
+
+    elif ch == 4:
+        print('')
+
+    elif ch == 10:
+        os.system("sudo tcpdump -i ens160 -nn port 8088 -vvv")
+
+    elif ch == 11:
+        os.system("sudo tcpdump -i ens160 -nn port 8088 -vvv -w telegraf.pcap -vvv")
+
+    elif ch == 12:
+        os.system("sudo tcpdump -nn -r telegraf.pcap")
 
     elif ch == 99:
         print("Exiting application")
