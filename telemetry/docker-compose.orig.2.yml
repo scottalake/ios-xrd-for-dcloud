@@ -2,21 +2,6 @@
 
 version: '3'
 services:
-    telegraf:
-      #image: telegraf
-      build:
-        context: ./telegraf
-        dockerfile: ./Dockerfile
-      ports:
-        - 9273:9273
-        - 57500:57500
-      restart: always
-      volumes:
-        - /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-        - /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/telegraf/telegraf.d:/etc/telegraf/telegraf.d:ro
-      networks:
-        - ios-xr-streaming-telemetry-demo_mgmt
-      entrypoint: /entrypoint.sh -config /etc/telegraf/telegraf.conf -config-directory /etc/telegraf/telegraf.d --debug
     yangsuite:
       image: yangsuite:latest
       build:
