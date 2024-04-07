@@ -5,7 +5,9 @@ services:
     telegraf:
       #image: telegraf
       build:
-        context: ./telegraf
+        context: ./
+        dockerfile: ./Dockerfile
+        context: ./
         dockerfile: ./Dockerfile
       ports:
         - 9273:9273

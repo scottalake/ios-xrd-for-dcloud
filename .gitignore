@@ -3,3 +3,4 @@ telemetry/ys-data
 telemetry/ys-backup
 telemetry/metrics.out
 metrics.out
+telemetry/telegraf/my-telegraf-1.0.0.tar
