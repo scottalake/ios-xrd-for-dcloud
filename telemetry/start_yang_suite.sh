@@ -3,7 +3,7 @@
 
 ADMIN_USER=${1:-dcloud}
 PASS_ONE=${2:-'cisco123'}
-ALLOWED_HOSTS=${3:-'198.18.133.100'}
+ALLOWED_HOSTS=${3:-'198.18.133.20'}
 ADMIN_EMAIL=${4:-dcloud@cisco.com}
 
 if [ -f nginx/nginx-self-signed.cert ] && [ -f nginx/nginx-self-signed.key ]

@@ -1,0 +1,74 @@
+
+
+
+RP/0/RP0/CPU0:xr-8#terminal width 511
+
+Mon Apr  8 19:05:09.568 UTC
+RP/0/RP0/CPU0:xr-8#terminal length 0
+
+Mon Apr  8 19:05:09.622 UTC
+RP/0/RP0/CPU0:xr-8#
+
+RP/0/RP0/CPU0:xr-8#
+
+RP/0/RP0/CPU0:xr-8#configure terminal
+
+Mon Apr  8 19:05:09.722 UTC
+RP/0/RP0/CPU0:xr-8(config)#
+
+RP/0/RP0/CPU0:xr-8(config)#
+
+RP/0/RP0/CPU0:xr-8(config)#grpc
+
+RP/0/RP0/CPU0:xr-8(config-grpc)# vrf mgmt
+
+RP/0/RP0/CPU0:xr-8(config-grpc)# port 57400
+
+RP/0/RP0/CPU0:xr-8(config-grpc)# no-tls
+
+RP/0/RP0/CPU0:xr-8(config-grpc)# address-family ipv4
+
+RP/0/RP0/CPU0:xr-8(config-grpc)# service-layer
+
+RP/0/RP0/CPU0:xr-8(config-grpc-sl)# !
+
+RP/0/RP0/CPU0:xr-8(config-grpc-sl)# local-connection
+
+RP/0/RP0/CPU0:xr-8(config-grpc)#
+
+RP/0/RP0/CPU0:xr-8(config-grpc)#tpa
+
+RP/0/RP0/CPU0:xr-8(config-tpa)# vrf mgmt
+
+RP/0/RP0/CPU0:xr-8(config-tpa-vrf)#  address-family ipv4
+
+RP/0/RP0/CPU0:xr-8(config-tpa-vrf-afi)#   default-route mgmt
+
+RP/0/RP0/CPU0:xr-8(config-tpa-vrf-afi)#   update-source dataports MgmtEth0/RP0/CPU0/0
+
+RP/0/RP0/CPU0:xr-8(config-tpa-vrf-afi)#  !
+
+RP/0/RP0/CPU0:xr-8(config-tpa-vrf-afi)#
+
+RP/0/RP0/CPU0:xr-8(config-tpa-vrf-afi)#netconf-yang agent
+
+RP/0/RP0/CPU0:xr-8(config-ncy-agent)# ssh
+
+RP/0/RP0/CPU0:xr-8(config-ncy-agent)#
+
+RP/0/RP0/CPU0:xr-8(config-ncy-agent)#ssh server netconf vrf mgmt
+
+RP/0/RP0/CPU0:xr-8(config)#
+
+RP/0/RP0/CPU0:xr-8(config)#commit
+
+Mon Apr  8 19:05:11.259 UTC
+RP/0/RP0/CPU0:xr-8(config)#
+
+RP/0/RP0/CPU0:xr-8(config)#
+
+RP/0/RP0/CPU0:xr-8(config)#end
+
+RP/0/RP0/CPU0:xr-8#
+
+RP/0/RP0/CPU0:xr-8#exit
