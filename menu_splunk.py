@@ -6,7 +6,7 @@
 
 
 # importing the module
-import os, re, subprocess, time
+import os, re, subprocess, time, datetime, pytz
   
 # sets the text colour to green 
 os.system("tput setaf 2")
@@ -46,15 +46,20 @@ while True:
 
 
     if ch == 1:
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf test_app_latest.tar.gz            -C /opt/splunk/etc/apps/test_app             . ")
-        # os.system("sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz            /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        local_timezone = pytz.timezone('US/Pacific')
+        now = datetime.datetime.now(tz=local_timezone)
+        date_time_string = now.strftime("%Y-%m-%d_%H-%M")
         os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf test_app_latest.tar.gz            -C /opt/splunk/etc/apps/test_app             . && sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz            /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_test_app_latest.tar.gz")
         os.system("time.sleep(2)")
         os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf network-diagram-viz_latest.tar.gz -C /opt/splunk/etc/apps/network-diagram-viz  . && sudo mv /opt/splunk/etc/apps/network-diagram-viz_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/network-diagram-viz_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_network-diagram-viz_latest.tar.gz")
         os.system("time.sleep(2)")
         os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_ML_Toolkit_latest.tar.gz   -C /opt/splunk/etc/apps/Splunk_ML_Toolkit    . && sudo mv /opt/splunk/etc/apps/Splunk_ML_Toolkit_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_ML_Toolkit_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_ML_Toolkit_latest.tar.gz")
         os.system("time.sleep(2)")
         os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf search_latest.tar.gz              -C /opt/splunk/etc/apps/search               . && sudo mv /opt/splunk/etc/apps/search_latest.tar.gz              /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/search_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_search_latest.tar.gz")
 
     elif ch == 2:
         print('')
