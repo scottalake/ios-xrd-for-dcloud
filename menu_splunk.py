@@ -33,11 +33,8 @@ print("Entering local device")
 while True:
     print("""
         1. Back up custom splunk apps to iosxr_streaming_telemetry_demo repo
-       10. Start tcpdump to view Splunk HEC traffic coming from telegraf
-       11. Same as 10, but save to telegraf.pcap file
-       12. View telegraf.pcap from Menu Option 11
-       20.
-       21.
+            NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
+                   THIS TASK.  LOG INTO 198.18.133.23
 
        99. Exit""")
 
@@ -49,17 +46,20 @@ while True:
         local_timezone = pytz.timezone('US/Pacific')
         now = datetime.datetime.now(tz=local_timezone)
         date_time_string = now.strftime("%Y-%m-%d_%H-%M")
-        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf test_app_latest.tar.gz            -C /opt/splunk/etc/apps/test_app             . && sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz            /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
-        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_test_app_latest.tar.gz")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf test_app_latest.tar.gz                                                                -C /opt/splunk/etc/apps/test_app             .                                   && sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz                                 /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_latest.tar.gz                                   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_test_app_latest.tar.gz")
         os.system("time.sleep(2)")
-        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf network-diagram-viz_latest.tar.gz -C /opt/splunk/etc/apps/network-diagram-viz  . && sudo mv /opt/splunk/etc/apps/network-diagram-viz_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
-        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/network-diagram-viz_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_network-diagram-viz_latest.tar.gz")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf network-diagram-viz_latest.tar.gz                                                     -C /opt/splunk/etc/apps/network-diagram-viz  .                                   && sudo mv /opt/splunk/etc/apps/network-diagram-viz_latest.tar.gz                      /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/network-diagram-viz_latest.tar.gz                        /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_network-diagram-viz_latest.tar.gz")
         os.system("time.sleep(2)")
-        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_ML_Toolkit_latest.tar.gz   -C /opt/splunk/etc/apps/Splunk_ML_Toolkit    . && sudo mv /opt/splunk/etc/apps/Splunk_ML_Toolkit_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_ML_Toolkit_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_ML_Toolkit_latest.tar.gz")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_ML_Toolkit_latest.tar.gz                                                       -C /opt/splunk/etc/apps/Splunk_ML_Toolkit    .                                   && sudo mv /opt/splunk/etc/apps/Splunk_ML_Toolkit_latest.tar.gz                        /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_ML_Toolkit_latest.tar.gz                          /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_ML_Toolkit_latest.tar.gz")
         os.system("time.sleep(2)")
-        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf search_latest.tar.gz              -C /opt/splunk/etc/apps/search               . && sudo mv /opt/splunk/etc/apps/search_latest.tar.gz              /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/search_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_search_latest.tar.gz")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf search_latest.tar.gz                                                                  -C /opt/splunk/etc/apps/search               .                                   && sudo mv /opt/splunk/etc/apps/search_latest.tar.gz                                   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/search_latest.tar.gz                                     /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_search_latest.tar.gz")
+        os.system("time.sleep(2)")
+        os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz                                -C /opt/splunk/etc/apps/Splunk_SA_Scientific_Python_linux_x86_64               . && sudo mv /opt/splunk/etc/apps/Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz")
 
     elif ch == 2:
         print('')
@@ -69,15 +69,6 @@ while True:
 
     elif ch == 4:
         print('')
-
-    elif ch == 10:
-        os.system("sudo tcpdump -i ens160 -nn port 8088 -vvv")
-
-    elif ch == 11:
-        os.system("sudo tcpdump -i ens160 -nn port 8088 -vvv -w telegraf.pcap -vvv")
-
-    elif ch == 12:
-        os.system("sudo tcpdump -nn -r telegraf.pcap")
 
     elif ch == 99:
         print("Exiting application")
