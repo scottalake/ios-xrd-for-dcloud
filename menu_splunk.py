@@ -35,6 +35,7 @@ while True:
         1. Back up custom splunk apps to iosxr_streaming_telemetry_demo repo
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
+        2. Restart splunk
 
        99. Exit""")
 
@@ -65,7 +66,7 @@ while True:
         # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_AI_Assistant_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_AI_Assistant_latest.tar.gz")
 
     elif ch == 2:
-        print('')
+        os.system("sudo -u root /opt/splunk/bin/splunk restart")
 
     elif ch == 3:
         print('')
