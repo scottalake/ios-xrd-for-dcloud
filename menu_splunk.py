@@ -16,22 +16,29 @@ os.system("tput setaf 1")
   
 print("")
 print("\t\tWELCOME TO Terminal User Interface\t\t\t")
-  
 # sets the text color to white
 os.system("tput setaf 7")
 print("\t-------------------------------------------------")
-print("")
-print("")
-print("Entering local device")
 while True:
     print("""
+        NEW Instantiation Steps:
+        If bringing up dCloud with fresh Splunk ubuntu system (includes 
+        pre-installed apps):
+            a) Clone streaming telemetry.
+            b) Perform menu step 2 below.
+            c) Restart splunk.
+        -------------------------------------------------
+
         1. **BACKUP** custom splunk apps to iosxr_streaming_telemetry_demo repo
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
+
         2. **RESTORE** custom splunk apps iosxr_streaming_telemetry_demo repo
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
+
        10. Restart splunk
+
        99. Exit""")
 
 
