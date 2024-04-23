@@ -43,6 +43,7 @@ while True:
  
 
 
+<<<<<<< Updated upstream
     if ch == 1:
         local_timezone = pytz.timezone('US/Pacific')
         now = datetime.datetime.now(tz=local_timezone)
@@ -50,6 +51,44 @@ while True:
         os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/test_app/")
         os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf test_app_latest.tar.gz                                                                -C /opt/splunk/etc/apps/test_app             .                                   && sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz                                 /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
         os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_latest.tar.gz                                   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_test_app_latest.tar.gz")
+=======
+    elif ch == 2:
+        print("Restoring test_app and other persistent files...")
+        print("")
+        local_timezone = pytz.timezone('US/Pacific')
+        now = datetime.datetime.now(tz=local_timezone)
+        date_time_string = now.strftime("%Y-%m-%d_%H-%M")
+        os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/apps/test_app/")
+        print("Making back up copy of current test app before restoring updated test_app from repo...")
+        print("")
+        os.system(f"sudo mkdir -p /home/dcloud/{date_time_string}_test_app_backup/")
+        os.system(f"sudo mv /opt/splunk/etc/apps/test_app/ /home/dcloud/{date_time_string}_test_app_backup/")
+        print("Deleting old test_app...")
+        print("")
+        os.system("sudo rm -rf /opt/splunk/etc/test_app/")
+        os.system("sudo mkdir -p /opt/splunk/etc/apps/test_app/")
+        print("Unziping test_app gz file from repo to /opt/splunk/etc/apps/test_app...")
+        print("")
+        os.system("sudo tar -xvzf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_latest.tar.gz -C /opt/splunk/etc/apps/test_app/")
+        os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/users/admin")
+        print("Restoring app-related files stored under admin user...")
+        print("")
+        os.system("sudo cp -rf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/splunk_admin_user_files/admin /opt/splunk/etc/users/")
+        os.system("sudo chown -R splunk:splunk  /opt/splunk/etc/users/admin/")
+        print("")
+        print("")
+        print("Restoring test_app and related files... COMPLETE")
+        print("")
+
+    elif ch == 3:
+        print("Backing up and restoring test_app...")
+        os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/apps/test_app/")
+        time.sleep(2)
+        os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf test_app_backup.tar.gz -C /opt/splunk/etc/apps/test_app . && sudo mv /opt/splunk/etc/apps/test_app_backup.tar.gz  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        time.sleep(2)
+        os.system("sudo mkdir -p /opt/splunk/etc/apps/test_app/")
+        os.system("sudo tar -xvzf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_backup.tar.gz -C /opt/splunk/etc/apps/test_app2/")
+>>>>>>> Stashed changes
         #os.system("time.sleep(2)")
         # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf network-diagram-viz_latest.tar.gz                                                     -C /opt/splunk/etc/apps/network-diagram-viz  .                                   && sudo mv /opt/splunk/etc/apps/network-diagram-viz_latest.tar.gz                      /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
         # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/network-diagram-viz_latest.tar.gz                        /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_network-diagram-viz_latest.tar.gz")
