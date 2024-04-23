@@ -25,6 +25,13 @@ print("")
 print("Entering local device")
 while True:
     print("""
+        NEW Instantiation Steps;
+        If bringing up dCloud with fresh Splunk ubuntu system (includes pre-installed apps)
+        a) Clone streaming telemetry
+        b) Perform menu step 2 below
+        c) Restart splunk.
+
+
         1. **BACKUP** custom splunk apps to iosxr_streaming_telemetry_demo repo
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
