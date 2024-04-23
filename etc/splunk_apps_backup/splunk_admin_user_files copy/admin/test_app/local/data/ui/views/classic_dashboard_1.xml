@@ -1,0 +1,54 @@
+<dashboard version="1.1" theme="light">
+  <label>Classic Dashboard 1</label>
+  <row>
+    <panel>
+      <chart>
+        <title>ifcounters.in_pkts, ifcounters.out_pkts</title>
+        <search>
+          <query>| mstats rate_avg("ifcounters.in_pkts") as "ifcounters.in_pkts /s" chart=true WHERE "index"="mertics_data" AND "telegraf_tag"="gnmi" span=10s
+| fields - _span*
+| append [
+| mstats rate_avg("ifcounters.out_pkts") as "ifcounters.out_pkts /s" chart=true WHERE "index"="mertics_data" AND "telegraf_tag"="gnmi" span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time</query>
+          <earliest>-1h</earliest>
+          <latest></latest>
+        </search>
+        <option name="charting.axisY.abbreviation">auto</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.fieldColors">{"Avg":"#1e93c6","ifcounters.in_pkts":"#1e93c6","ifcounters.out_pkts":"#f2b827","Rate (Avg) ifcounters.in_pkts /s":"#d6563c","Avg ifcounters.out_pkts":"#f2b827","ifcounters.in_pkts /s":"#d6563c","ifcounters.out_pkts /s":"#6a5c9e"}</option>
+        <option name="charting.fieldDashStyles">{"Avg":"solid","ifcounters.in_pkts":"solid","ifcounters.out_pkts":"solid","Rate (Avg) ifcounters.in_pkts /s":"solid","Avg ifcounters.out_pkts":"solid","ifcounters.in_pkts /s":"solid","ifcounters.out_pkts /s":"solid"}</option>
+        <option name="charting.gridLinesX.showMajorLines">1</option>
+        <option name="charting.legend.mode">seriesCompare</option>
+        <option name="displayview">analytics_workspace</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <event>
+        <search>
+          <query>| mpreview index=mertics_data | search source="xr-1" "metric_name:ifcounters.in_pkts"="*" "metric_name:ifcounters.in_pkts"="*" name="GigabitEthernet0/0/0/0"</query>
+          <earliest>1711929600</earliest>
+          <latest>1714521600</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">50</option>
+        <option name="list.drilldown">none</option>
+        <option name="list.wrap">1</option>
+        <option name="maxLines">5</option>
+        <option name="raw.drilldown">full</option>
+        <option name="rowNumbers">0</option>
+        <option name="table.drilldown">all</option>
+        <option name="table.sortDirection">asc</option>
+        <option name="table.wrap">1</option>
+        <option name="type">list</option>
+      </event>
+    </panel>
+  </row>
+</dashboard>

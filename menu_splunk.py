@@ -35,15 +35,19 @@ while True:
         1. Back up custom splunk apps to iosxr_streaming_telemetry_demo repo
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
-        2. Restart splunk
+
+
+        2. **RESTORE** test_app iosxr_streaming_telemetry_demo repo
+            NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
+                   THIS TASK.  LOG INTO 198.18.133.23
+
+       10. Restart splunk
 
        99. Exit""")
 
+
     ch=int(input("Enter your choice: "))
- 
 
-
-<<<<<<< Updated upstream
     if ch == 1:
         local_timezone = pytz.timezone('US/Pacific')
         now = datetime.datetime.now(tz=local_timezone)
@@ -51,7 +55,7 @@ while True:
         os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/test_app/")
         os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf test_app_latest.tar.gz                                                                -C /opt/splunk/etc/apps/test_app             .                                   && sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz                                 /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
         os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_latest.tar.gz                                   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_test_app_latest.tar.gz")
-=======
+
     elif ch == 2:
         print("Restoring test_app and other persistent files...")
         print("")
@@ -80,43 +84,13 @@ while True:
         print("Restoring test_app and related files... COMPLETE")
         print("")
 
-    elif ch == 3:
-        print("Backing up and restoring test_app...")
-        os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/apps/test_app/")
-        time.sleep(2)
-        os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf test_app_backup.tar.gz -C /opt/splunk/etc/apps/test_app . && sudo mv /opt/splunk/etc/apps/test_app_backup.tar.gz  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
-        time.sleep(2)
-        os.system("sudo mkdir -p /opt/splunk/etc/apps/test_app/")
-        os.system("sudo tar -xvzf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_backup.tar.gz -C /opt/splunk/etc/apps/test_app2/")
->>>>>>> Stashed changes
-        #os.system("time.sleep(2)")
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf network-diagram-viz_latest.tar.gz                                                     -C /opt/splunk/etc/apps/network-diagram-viz  .                                   && sudo mv /opt/splunk/etc/apps/network-diagram-viz_latest.tar.gz                      /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/network-diagram-viz_latest.tar.gz                        /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_network-diagram-viz_latest.tar.gz")
-        # os.system("time.sleep(2)")
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_ML_Toolkit_latest.tar.gz                                                       -C /opt/splunk/etc/apps/Splunk_ML_Toolkit    .                                   && sudo mv /opt/splunk/etc/apps/Splunk_ML_Toolkit_latest.tar.gz                        /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_ML_Toolkit_latest.tar.gz                          /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_ML_Toolkit_latest.tar.gz")
-        # os.system("time.sleep(2)")
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf search_latest.tar.gz                                                                  -C /opt/splunk/etc/apps/search               .                                   && sudo mv /opt/splunk/etc/apps/search_latest.tar.gz                                   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/search_latest.tar.gz                                     /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_search_latest.tar.gz")
-        # os.system("time.sleep(2)")
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz                                -C /opt/splunk/etc/apps/Splunk_SA_Scientific_Python_linux_x86_64               . && sudo mv /opt/splunk/etc/apps/Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz")
-        # os.system("time.sleep(2)")
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_AI_Assistant_latest.tar.gz                                -C /opt/splunk/etc/apps/Splunk_AI_Assistant               . && sudo mv /opt/splunk/etc/apps/Splunk_AI_Assistant_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_AI_Assistant_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_AI_Assistant_latest.tar.gz")
-
-    elif ch == 2:
+    elif ch == 10:
         os.system("sudo -u root /opt/splunk/bin/splunk restart")
-
-    elif ch == 3:
-        print('')
-
-    elif ch == 4:
-        print('')
-
+        
     elif ch == 99:
         print("Exiting application")
         exit()
+
     else:
         print("Invalid entry")
   
