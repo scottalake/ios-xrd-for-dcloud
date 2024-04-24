@@ -1,0 +1,68 @@
+
+# Dockerfile
+FROM ubuntu:latest
+
+# A little bit about using this Dockerfile...
+# First, make sure snmpd.conf (in the current directory) is correct
+# Run this image as follows: 
+#	docker build -t net_snmp_image .
+#	docker run -dit --name net_snmp_container -p 161:161/udp --mount type=bind,source="$(pwd)",target=/snmpdconf net_snmp_image
+# If you want to get to the command prompt
+#	docker exec -it net_snmp_container /bin/bash
+# Where you can test the service by walking
+#	/netsnmp/5.9/linux-gcc3/bin/snmpwalk -v3 -On -l authPriv -u md5aes128 -a MD5 -A "<auth>" -x AES256C -X "<privacy>" 127.0.0.1
+# You can also test cisco devices using this approach
+# When you're done, shut it down and remove it
+#	docker stop net_snmp_container && docker rm net_snmp_container
+#
+# Now to set everything up so we can do all this
+#
+
+# Install the necessary components
+RUN apt update > /dev/null && \
+    apt install -y apt-utils > /dev/null && \
+    apt install -y wget file gcc make openssl libssl-dev libperl-dev snmp-mibs-downloader > /dev/null 
+
+RUN apt-get update && \
+apt-get -y install --no-install-recommends \
+    apt-utils curl tcpdump mc wget iproute2 openssh-client \
+    file gcc make openssl libssl-dev libperl-dev snmp-mibs-downloader \
+    snmp snmpd nano make
+
+# Get the source code and extract it
+RUN wget https://github.com/net-snmp/net-snmp/archive/v5.9.tar.gz && tar -xzvf v5.9.tar.gz && \
+    mkdir -p /netsnmp/5.9/linux-gcc3 && mv v5.9.tar.gz /netsnmp/5.9/v5.9.tar.gz && \
+    cd /netsnmp/5.9 && \
+    tar -xzvf v5.9.tar.gz && cd net-snmp-5.9
+
+# Compile netsmp and link output to the local commands
+RUN  cd /netsnmp/5.9/net-snmp-5.9 && \
+        ./configure  --prefix="/netsnmp/5.9/linux-gcc3" \
+            # --with-mib-modules=agentx \
+            # --with-transports="UDP UDPIPv6 TCP DTLSUDP" \
+            # --with-security-modules="tsm" \
+            # --disable-embedded-perl \
+            # --enable-mini-agent \
+            # --with-default-snmp-version="3" \
+            # --enable-ipv6 \
+            # --disable-debugging \
+            # --with-sys-contact="gmail@crwirz.com" \
+            # --with-sys-location="The cloud" \
+            # --with-persistent-directory="/var/net-snmp" \
+            # --with-logfile="/var/log/snmpd.log" \
+            # --without-perl-modules \
+            # --without-python-modules \
+            # --disable-shared \
+            # --enable-static \
+            # --with-pic \
+            # --with-cc="gcc" CC="gcc" CFLAGS="-m64" \
+            # --enable-blumenthal-aes && \
+    make 2>&1 | tee make.log && \
+    make install && \
+    ln -s /netsnmp/5.9/linux-gcc3/sbin/* /usr/local/sbin/ 
+
+# Expose the snmp port
+EXPOSE 161/udp
+
+# Run snmpd
+CMD [ "/usr/local/sbin/snmpd", "-Dmib_init", "-f", "-Lo", "-c", "/snmpdconf/snmpd.conf" ]   

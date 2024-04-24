@@ -1,0 +1,90 @@
+
+
+
+RP/0/RP0/CPU0:xr-7#terminal width 511
+
+Wed Apr 24 15:40:11.522 UTC
+RP/0/RP0/CPU0:xr-7#terminal length 0
+
+Wed Apr 24 15:40:11.571 UTC
+RP/0/RP0/CPU0:xr-7#
+
+RP/0/RP0/CPU0:xr-7#
+
+RP/0/RP0/CPU0:xr-7#configure terminal
+
+Wed Apr 24 15:40:11.665 UTC
+RP/0/RP0/CPU0:xr-7(config)#
+
+RP/0/RP0/CPU0:xr-7(config)#
+
+RP/0/RP0/CPU0:xr-7(config)#interface loopback 1
+
+RP/0/RP0/CPU0:xr-7(config-if)#  ip address 10.10.10.7/32
+
+RP/0/RP0/CPU0:xr-7(config-if)#
+
+RP/0/RP0/CPU0:xr-7(config-if)#route-policy PASS
+
+RP/0/RP0/CPU0:xr-7(config-rpl)#  pass
+
+RP/0/RP0/CPU0:xr-7(config-rpl)#exit
+
+RP/0/RP0/CPU0:xr-7(config)#!
+
+RP/0/RP0/CPU0:xr-7(config)#no router bgp 65500
+
+RP/0/RP0/CPU0:xr-7(config)#router bgp 65500
+
+RP/0/RP0/CPU0:xr-7(config-bgp)# bgp router-id 172.16.0.7
+
+RP/0/RP0/CPU0:xr-7(config-bgp)# address-family ipv4 unicast
+
+RP/0/RP0/CPU0:xr-7(config-bgp-af)# network 10.10.10.7/32
+
+RP/0/RP0/CPU0:xr-7(config-bgp-af)#
+
+RP/0/RP0/CPU0:xr-7(config-bgp-af)# !
+
+RP/0/RP0/CPU0:xr-7(config-bgp-af)# neighbor 10.0.0.1
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr)#  remote-as 65500
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr)#  update-source Loopback0
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr)#  address-family ipv4 unicast
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#   route-policy PASS in
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#   route-policy PASS out
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#  !
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)# !
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)# neighbor 10.0.0.2
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr)#  remote-as 65500
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr)#  update-source Loopback0
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr)#  address-family ipv4 unicast
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#   route-policy PASS in
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#   route-policy PASS out
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#  !
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#commit
+
+Wed Apr 24 15:40:13.448 UTC
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#
+
+RP/0/RP0/CPU0:xr-7(config-bgp-nbr-af)#end
+
+RP/0/RP0/CPU0:xr-7#
+
+RP/0/RP0/CPU0:xr-7#
+
+RP/0/RP0/CPU0:xr-7#exit
