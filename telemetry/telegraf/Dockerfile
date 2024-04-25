@@ -6,7 +6,7 @@ RUN apt-get update && \
         apt-utils curl tcpdump mc wget iproute2 openssh-client \
         snmp snmpd nano make
 
-COPY ./mibs/*.txt /usr/share/snmp/mibs/
+COPY ./mibs/*.my /usr/share/snmp/mibs/
 COPY ./iana/  /var/lib/mibs/iana
 COPY ./ietf/  /var/lib/mibs/ietf
 RUN ln -s /var/lib/mibs/iana /usr/share/snmp/mibs/iana

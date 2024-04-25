@@ -1,0 +1,1188 @@
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3447029760,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 3447029760,
+        "cempMemPoolHCUsed": 2995421184,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 2995421184,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 1804754944,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 1804754944,
+        "cempMemPoolHCUsed": 342728704,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 342728704,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3938889728,
+        "cempMemPoolFreeOvrflw": 1,
+        "cempMemPoolHCFree": 8233857024,
+        "cempMemPoolHCUsed": 3577303040,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 3577303040,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975720
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3447029760,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 3447029760,
+        "cempMemPoolHCUsed": 2995421184,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 2995421184,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3938885632,
+        "cempMemPoolFreeOvrflw": 1,
+        "cempMemPoolHCFree": 8233852928,
+        "cempMemPoolHCUsed": 3577307136,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 3577307136,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 1804754944,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 1804754944,
+        "cempMemPoolHCUsed": 342728704,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 342728704,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975730
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 1804709888,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 1804750848,
+        "cempMemPoolHCUsed": 342773760,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 342732800,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3938885632,
+        "cempMemPoolFreeOvrflw": 1,
+        "cempMemPoolHCFree": 8233852928,
+        "cempMemPoolHCUsed": 3577307136,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 3577307136,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3447029760,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 3447029760,
+        "cempMemPoolHCUsed": 2995421184,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 2995421184,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975740
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3447029760,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 3447029760,
+        "cempMemPoolHCUsed": 2995421184,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 2995421184,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 1804750848,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 1804750848,
+        "cempMemPoolHCUsed": 342732800,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 342732800,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3938885632,
+        "cempMemPoolFreeOvrflw": 1,
+        "cempMemPoolHCFree": 8233852928,
+        "cempMemPoolHCUsed": 3577307136,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 3577307136,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975750
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3938885632,
+        "cempMemPoolFreeOvrflw": 1,
+        "cempMemPoolHCFree": 8233852928,
+        "cempMemPoolHCUsed": 3577307136,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 3577307136,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3447029760,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 3447029760,
+        "cempMemPoolHCUsed": 2995421184,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 2995421184,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 1804709888,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 1804750848,
+        "cempMemPoolHCUsed": 342732800,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 342773760,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975760
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3938885632,
+        "cempMemPoolFreeOvrflw": 1,
+        "cempMemPoolHCFree": 8233852928,
+        "cempMemPoolHCUsed": 3577307136,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 3577307136,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 3447029760,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 3447029760,
+        "cempMemPoolHCUsed": 2995421184,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 2995421184,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 4194304,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 4194304,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 1804750848,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 1804750848,
+        "cempMemPoolHCUsed": 342732800,
+        "cempMemPoolName": "processor",
+        "cempMemPoolType": 2,
+        "cempMemPoolUsed": 342773760,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "reserved",
+        "cempMemPoolType": 11,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+
+{
+    "fields": {
+        "cempMemPoolAlternate": 0,
+        "cempMemPoolFree": 0,
+        "cempMemPoolFreeOvrflw": 0,
+        "cempMemPoolHCFree": 0,
+        "cempMemPoolHCUsed": 0,
+        "cempMemPoolName": "image",
+        "cempMemPoolType": 12,
+        "cempMemPoolUsed": 0,
+        "cempMemPoolUsedOvrflw": 0,
+        "cempMemPoolValid": 1
+    },
+    "name": "cempMemPoolTable",
+    "tags": {
+        "agent_host": "198.18.133.1",
+        "source": "xr-1",
+        "telegraf_tag": "snmp"
+    },
+    "timestamp": 1713975770
+}
+

@@ -1,0 +1,17 @@
+version: '3'
+services:
+    netsnmp:
+      build:
+        context: ./
+        dockerfile: ./Dockerfile
+      ports:
+        - 161:161/udp
+      restart: always
+      networks:
+        - ios-xr-streaming-telemetry-demo_mgmt
+  
+networks:
+  ios-xr-streaming-telemetry-demo_mgmt:
+    external: true
+
+
