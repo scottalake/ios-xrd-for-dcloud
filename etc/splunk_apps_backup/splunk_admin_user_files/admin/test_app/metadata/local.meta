@@ -1,27 +1,7 @@
 [history/.dummy_history]
-version = 9.2.1
-modtime = 1713220625.666680000
+version = 9.1.2
+modtime = 1714412217.245167000
 
-[views/classic_dashboard_1]
-version = 9.2.1
-modtime = 1713239848.098335000
-
-[views/classic_to_studio]
-version = 9.2.1
-modtime = 1713289821.327021000
-
-[views/classic_dashboard_1_copy_copy]
-version = 9.2.1
-modtime = 1713278359.281837000
-
-[views/ml_guy_dashboard]
-version = 9.2.1
-modtime = 1713829307.934157000
-
-[views/scotts_backup_test_dashboard]
-version = 9.2.1
-modtime = 1713412243.999301000
-
-[views/test_dashboard_clone]
-version = 9.2.1
-modtime = 1713832433.735243000
+[views/interface_statistics]
+version = 9.1.2
+modtime = 1714431414.548048000

@@ -1,0 +1,146 @@
+
+<dashboard version="2" theme="light">
+    <label>Interface Statistics Orig</label>
+    <description>Interface Statistics from gNMI</description>
+    <definition><![CDATA[
+{
+	"visualizations": {
+		"viz_CcrVG9vo": {
+			"type": "splunk.line",
+			"title": "In / Out Packets",
+			"description": "chart description",
+			"dataSources": {
+				"primary": "ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		}
+	},
+	"dataSources": {
+		"ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"if-statistics.packets_received\") as \"if-statistics.packets_received /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" AND interface_name=\"$nameToken$\" span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"if-statistics.packets_sent\") as \"if-statistics.packets_sent /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" AND interface_name=\"$ms_multi_interfaces$\" span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "packets"
+		},
+		"ds_sourceDropDown": {
+			"name": "populate_source_dropdown",
+			"type": "ds.search",
+			"options": {
+				"query": "| mcatalog values(source) WHERE index=\"mertics_data\" by source ",
+				"earliest": "-24h@h",
+				"latest": "now",
+				"enableSmartSources": true
+			}
+		},
+		"ds_nameDropDown": {
+			"name": "populate_name_dropdown",
+			"type": "ds.search",
+			"options": {
+				"query": "| mcatalog values(interface_name) WHERE index=\"mertics_data\" by interface_name",
+				"earliest": "-24h@h",
+				"latest": "now",
+				"enableSmartSources": true
+			}
+		},
+		"defaults": {
+			"dataSources": {
+				"ds.search": {
+					"options": {
+						"queryParameters": {
+							"latest": "$global_time.latest$",
+							"earliest": "$global_time.earliest$"
+						}
+					}
+				}
+			}
+		}
+	},
+	"inputs": {
+		"input_global_trp": {
+			"type": "input.timerange",
+			"options": {
+				"token": "global_time",
+				"defaultValue": "-24h@h,now"
+			},
+			"title": "Global Time Range"
+		},
+		"input_5nnzTp0g": {
+			"options": {
+				"defaultValue": "*",
+				"token": "sourceToken"
+			},
+			"title": "Switch",
+			"type": "input.dropdown",
+			"dataSources": {
+				"primary": "ds_sourceDropDown"
+			}
+		},
+		"input_e7Wnjg53": {
+			"options": {
+				"defaultValue": "*",
+				"token": "nameToken"
+			},
+			"title": "Interface",
+			"type": "input.dropdown",
+			"dataSources": {
+				"primary": "ds_nameDropDown"
+			}
+		},
+		"input_IFWp5hzO": {
+			"options": {
+				"items": [],
+				"token": "ms_multi_interfaces"
+			},
+			"title": "Multiple Interfaces",
+			"type": "input.multiselect",
+			"dataSources": {
+				"primary": "ds_nameDropDown"
+			}
+		}
+	},
+	"layout": {
+		"type": "absolute",
+		"options": {
+			"width": 1440,
+			"height": 960,
+			"display": "auto"
+		},
+		"structure": [
+			{
+				"item": "viz_CcrVG9vo",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 0,
+					"w": 730,
+					"h": 300
+				}
+			}
+		],
+		"globalInputs": [
+			"input_global_trp",
+			"input_5nnzTp0g",
+			"input_e7Wnjg53",
+			"input_IFWp5hzO"
+		]
+	},
+	"description": "Interface Statistics from gNMI",
+	"title": "Interface Statistics Orig"
+}
+    ]]></definition>
+    <meta type="hiddenElements"><![CDATA[
+{
+	"hideEdit": false,
+	"hideOpenInSearch": false,
+	"hideExport": false
+}
+    ]]></meta>
+</dashboard>
