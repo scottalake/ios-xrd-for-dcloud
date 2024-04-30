@@ -91,7 +91,7 @@
 			"type": "input.timerange",
 			"options": {
 				"token": "global_time",
-				"defaultValue": "-24h@h,now"
+				"defaultValue": "-60m@m,now"
 			},
 			"title": "Global Time Range"
 		},
@@ -109,7 +109,8 @@
 		"input_IFWp5hzO": {
 			"options": {
 				"items": [],
-				"token": "ms_multi_interfaces"
+				"token": "ms_multi_interfaces",
+				"selectFirstSearchResult": true
 			},
 			"title": "Choose Interface(s)",
 			"type": "input.multiselect",

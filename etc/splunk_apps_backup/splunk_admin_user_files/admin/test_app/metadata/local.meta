@@ -4,11 +4,11 @@ modtime = 1714412217.245167000
 
 [views/interface_statistics]
 version = 9.1.2
-modtime = 1714449114.014566000
+modtime = 1714495890.114183000
 
 [views/bgp_metrics_gnmi__snmp]
 version = 9.1.2
-modtime = 1714449081.398254000
+modtime = 1714512550.101993000
 
 [views/copied_over_from_analytics]
 version = 9.1.2
