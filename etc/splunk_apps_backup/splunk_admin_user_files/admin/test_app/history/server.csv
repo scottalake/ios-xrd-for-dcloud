@@ -1048,12 +1048,12 @@ sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level"
 | fields - _span*
 ]
 | selfjoin keepsingle=true _time","",147,1714434748,91,147,completed,"0.076","1714433848.000000000",0,0,"1714434748.000000000","ds_in_out","1714433848.000000000","1714434748.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714435269.465",server,"1714435269.855217",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714435269.466",server,"1714435269.858941",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714435269.465",server,"1714435269.855217",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",191652,1714435269,9,191652,canceled,"0.039",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714435269.466",server,"1714435269.858941",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",191670,1714435269,7,191670,canceled,"0.047",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
 "admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714435270.467",server,"1714435270.007285",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-5"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
 | fields - _span*
 | append [
 | mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-5"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
 | fields - _span*
 ]
-| selfjoin keepsingle=true _time",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+| selfjoin keepsingle=true _time","",60,1714435270,90,60,canceled,"0.078","1714434370.000000000",0,0,"1714435270.000000000","ds_in_out","1714434370.000000000","1714435270.000000000",,,,,,,,,,,,,,,,,,,,
