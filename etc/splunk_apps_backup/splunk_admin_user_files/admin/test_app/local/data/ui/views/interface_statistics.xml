@@ -22,7 +22,7 @@
 		"ds_in_out": {
 			"type": "ds.search",
 			"options": {
-				"query": "| mstats rate_avg(\"if-statistics.packets_received\") as \"if-statistics.packets_received /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" AND interface_name=\"$nameToken$\" span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"if-statistics.packets_sent\") as \"if-statistics.packets_sent /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" AND interface_name=\"$ms_multi_interfaces$\" span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time\r\n",
+				"query": "| mstats rate_avg(\"if-statistics.packets_received\") as \"if-statistics.packets_received /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" interface_name IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"if-statistics.packets_sent\") as \"if-statistics.packets_sent /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" interface_name IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
@@ -118,7 +118,7 @@
 				"item": "viz_CcrVG9vo",
 				"type": "block",
 				"position": {
-					"x": 0,
+					"x": -10,
 					"y": 0,
 					"w": 730,
 					"h": 300
