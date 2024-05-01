@@ -1,464 +1,4 @@
 sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level","event_count","exec_time","result_count","scan_count",status,"total_run_time","api_et","api_index_et","api_index_lt","api_lt","savedsearch_name","search_et","search_lt","__mv_sid","__mv_splunk_server","__mv__time","__mv_is_realtime","__mv_provenance","__mv_search","__mv_adhoc_search_level","__mv_event_count","__mv_exec_time","__mv_result_count","__mv_scan_count","__mv_status","__mv_total_run_time","__mv_api_et","__mv_api_index_et","__mv_api_index_lt","__mv_api_lt","__mv_savedsearch_name","__mv_search_et","__mv_search_lt"
-"1714424955.224",server,"1714424955.280094",0,,"| mstats avg(""if-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" earliest=1714421073.267 latest=1714424673.267 span=10s
-| timechart avg(""if-statistics.packets_received"") AS ""0 / 21bbe37e-e200-420c-8cd0-deb309019405 / SERIES / Avg"" span=10s
-| fields - _span*","",5394,1714424955,361,5394,canceled,"0.034",,,,,,"1714421073.267000000","1714424673.267000000",,,,,,,,,,,,,,,,,,,,
-"1714425004.227",server,"1714425004.813721",0,,"| mstats rate_avg(""if-statistics.packets_received"") as ""0 / 21bbe37e-e200-420c-8cd0-deb309019405 / SERIES / Rate (Avg)"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" earliest=1714421073.267 latest=1714424673.267 span=10s
-| fields - _span*","",5394,1714425004,361,5394,canceled,"0.095",,,,,,"1714421073.267000000","1714424673.267000000",,,,,,,,,,,,,,,,,,,,
-"1714425097.228",server,"1714425097.260679",0,,"| mstats avg(""if-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" earliest=1714421269.965 latest=1714424869.965 span=10s
-| timechart avg(""if-statistics.packets_received"") AS ""0 / e37d8061-ee1b-42ee-89cb-7663086956f3 / SERIES / Avg"" span=10s
-| fields - _span*","",5386,1714425097,361,5386,canceled,"0.038",,,,,,"1714421269.965000000","1714424869.965000000",,,,,,,,,,,,,,,,,,,,
-"1714425101.229",server,"1714425101.057904",0,,"| mstats rate_avg(""if-statistics.packets_received"") as ""0 / e37d8061-ee1b-42ee-89cb-7663086956f3 / SERIES / Rate (Avg)"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" earliest=1714421269.965 latest=1714424869.965 span=10s
-| fields - _span*","",5386,1714425101,361,5386,canceled,"0.14200000000000002",,,,,,"1714421269.965000000","1714424869.965000000",,,,,,,,,,,,,,,,,,,,
-"1714425105.230",server,"1714425105.359420",0,,"| mcatalog values(metric_name) WHERE metric_name=""if-statistics.packets_sent"" AND (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index | fields index","",138,1714425105,1,138,canceled,"0.039","1714421269.965000000",,,"1714424869.965000000",,"1714421269.965000000","1714424869.965000000",,,,,,,,,,,,,,,,,,,,
-"1714425105.231",server,"1714425105.881783",0,,"| mstats rate_avg(""if-statistics.packets_received"") as ""0 / e37d8061-ee1b-42ee-89cb-7663086956f3 / SERIES / Rate (Avg)"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" earliest=1714421269.965 latest=1714424869.965 span=10s
-| fields - _span*
-| append [
-| mstats avg(""if-statistics.packets_sent"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" earliest=1714421269.965 latest=1714424869.965 span=10s
-| timechart avg(""if-statistics.packets_sent"") AS ""1 / 991f56dd-16c7-4bfc-abe0-bfd29f37e505 / SERIES / Avg"" span=10s
-| fields - _span*
-]","",5386,1714425105,722,5386,canceled,"0.149",,,,,,"1714421269.965000000","1714424869.965000000",,,,,,,,,,,,,,,,,,,,
-"1714425151.232",server,"1714425151.810568",0,,"| mstats rate_avg(""if-statistics.packets_received"") as ""0 / e37d8061-ee1b-42ee-89cb-7663086956f3 / SERIES / Rate (Avg)"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" earliest=1714421269.965 latest=1714424869.965 span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""1 / 991f56dd-16c7-4bfc-abe0-bfd29f37e505 / SERIES / Rate (Avg)"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" earliest=1714421269.965 latest=1714424869.965 span=10s
-| fields - _span*
-]","",5386,1714425151,722,5386,canceled,"0.18",,,,,,"1714421269.965000000","1714424869.965000000",,,,,,,,,,,,,,,,,,,,
-"1714425181.233",server,"1714425181.893560",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time",smart,5418,1714425181,361,5418,completed,"0.192","1714421581.000000000",,,"1714425181.000000000",,"1714421581.000000000","1714425181.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD52ccb086794723aa6_1714425359.234",server,"1714425359.451880",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",28211,1714425359,8736,28211,completed,"0.6940000000000001","1714338000.000000000",0,0,"1714425359.000000000","ds_QRopkAfc","1714338000.000000000","1714425359.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD52ccb086794723aa6_1714425375.235",server,"1714425375.519714",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",1361,1714425375,91,1361,completed,"0.094","1714424475.000000000",0,0,"1714425375.000000000","ds_QRopkAfc","1714424475.000000000","1714425375.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD52ccb086794723aa6_1714425424.237",server,"1714425424.430526",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",5557,1714425424,361,5557,completed,"0.20400000000000001","1714421820.000000000",0,0,"1714425424.000000000","ds_QRopkAfc","1714421820.000000000","1714425424.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD52ccb086794723aa6_1714425434.238",server,"1714425434.647702",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",1371,1714425434,91,1371,completed,"0.091","1714424534.000000000",0,0,"1714425434.000000000","ds_QRopkAfc","1714424534.000000000","1714425434.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD52ccb086794723aa6_1714425821.241",server,"1714425821.760657",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",28938,1714425821,8783,28938,canceled,"0.8130000000000001","1714338000.000000000",0,0,"1714425821.000000000","ds_QRopkAfc","1714338000.000000000","1714425821.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD52ccb086794723aa6_1714425835.242",server,"1714425835.081229",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",1362,1714425835,91,1362,completed,"0.133","1714424935.000000000",0,0,"1714425835.000000000","ds_QRopkAfc","1714424935.000000000","1714425835.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714425943.243",server,"1714425943.214257",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",1362,1714425943,91,1362,completed,"0.112","1714425043.000000000",0,0,"1714425943.000000000","ds_in_out","1714425043.000000000","1714425943.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714425986.244",server,"1714425986.517926",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",29163,1714425986,8799,29163,canceled,"0.973","1714338000.000000000",0,0,"1714425986.000000000","ds_in_out","1714338000.000000000","1714425986.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714426014.245",server,"1714426014.936712",0,"UI:dashboard:new_test","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",29204,1714426014,8802,29204,completed,"0.687","1714338000.000000000",0,0,"1714426014.000000000","ds_in_out","1714338000.000000000","1714426014.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714426965.252",server,"1714426965.530991",0,"UI:dashboard:new_test","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",30695,1714426965,8897,30695,completed,"0.747","1714338000.000000000",0,0,"1714426965.000000000","ds_in_out","1714338000.000000000","1714426965.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714427147.253",server,"1714427147.017243",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",30962,1714427147,8915,30962,completed,"0.731","1714338000.000000000",0,0,"1714427147.000000000","ds_in_out","1714338000.000000000","1714427147.000000000",,,,,,,,,,,,,,,,,,,,
-"1714427188.254",server,"1714427188.950896",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","",8550,1714427189,427,8550,canceled,"0.094","1714426288.000000000",,,,,"1714426288.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714427198.255",server,"1714427198.261176",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","",11951,1714427198,427,11951,canceled,"0.088","1714426298.000000000",,,,,"1714426298.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714427201.256",server,"1714427201.153289",0,,"| mcatalog values(_dims) WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | mvexpand values(_dims)","",11951,1714427201,1155,11951,canceled,"0.048","1714426301.000000000",,,,,"1714426301.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714427211.257",server,"1714427211.426590",0,,"| mcatalog values(""telegraf_tag"") as dimVals WHERE ""index""=""mertics_data"" AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | eval dim=""telegraf_tag"" | mvexpand dimVals | fields index, metric_name, dim, dimVals
-| sort - ""telegraf_tag""","",11444,1714427211,118,11444,completed,"0.037","1714426311.000000000",,,,,"1714426311.000000000",,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714427252.258",server,"1714427252.974740",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",31109,1714427252,8926,31109,completed,"0.759","1714338000.000000000",0,0,"1714427252.000000000","ds_in_out","1714338000.000000000","1714427252.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714427325.259",server,"1714427325.765992",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",31247,1714427325,8933,31247,completed,"0.761","1714338000.000000000",0,0,"1714427325.000000000","ds_in_out","1714338000.000000000","1714427325.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714427428.262",server,"1714427428.011776",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",31385,1714427428,8943,31385,completed,"0.716","1714338000.000000000",0,0,"1714427428.000000000","ds_in_out","1714338000.000000000","1714427428.000000000",,,,,,,,,,,,,,,,,,,,
-"rt_md_1714427629.263",server,"1714427629.333152",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714427629,0,0,failed,"68.024",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714427636.264",server,"1714427636.478477",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","",4515,1714427636,421,4515,canceled,"0.20800000000000002","1714426736.000000000",,,,,"1714426736.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714427648.265",server,"1714427648.401425",0,,"| mcatalog values(_dims) WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | mvexpand values(_dims)","",8588,1714427648,1232,8588,canceled,"0.05","1714426748.000000000",,,,,"1714426748.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714427657.266",server,"1714427657.501731",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND ""index""=""mertics_data"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","",7902,1714427657,127,7902,canceled,"0.036000000000000004","1714426757.000000000",,,,,"1714426757.000000000",,,,,,,,,,,,,,,,,,,,,
-"rt_md_1714427677.267",server,"1714427677.973455",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714427677,0,0,canceled,"69.025",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714427690.268",server,"1714427690.565798",0,"UI:Search","| history | search NOT search=""| history*"" AND NOT search=""*metadata*"" AND NOT search=""*loadjob*"" AND NOT savedsearch_name=""*"" AND NOT search=""search"" AND NOT search=""*from sid*"" AND NOT search=""| eventcount summarize=false index=* index=_**"" AND NOT provenance=""UI:LocateData"" AND NOT provenance=""UI:TableEditor"" AND NOT provenance=""UI:DataModel"" AND NOT provenance=""UI:Pivot"" AND NOT provenance=""UI:Dataset"" | dedup search | head 100000","",0,1714427690,89,0,completed,"0.05",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714427746.275",server,"1714427746.347316",0,"UI:Search","| mpreview where index=mertics_data",smart,0,1714427746,0,0,failed,"0.003","1714338000.000000000",,,"1714427746.000000000",,"1714338000.000000000","1714427746.000000000",,,,,,,,,,,,,,,,,,,,
-"1714427752.276",server,"1714427752.599480",0,"UI:Search","| mpreview index=mertics_data",smart,672581,1714427752,1000,190909,completed,"32.041000000000004","1714338000.000000000",,,"1714427752.000000000",,"1714338000.000000000","1714427752.000000000",,,,,,,,,,,,,,,,,,,,
-"rt_md_1714427813.277",server,"1714427813.701101",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714427813,0,0,canceled,"5.013",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714427818.281",server,"1714427818.072978",0,"UI:Search","search source",smart,0,1714427818,0,0,completed,"0.09","1714338000.000000000",,,"1714427818.000000000",,"1714338000.000000000","1714427818.000000000",,,,,,,,,,,,,,,,,,,,
-"1714427830.282",server,"1714427830.460101",0,"UI:Search","search source",smart,0,1714427830,0,0,completed,"0.076","1714338000.000000000",,,"1714427830.000000000",,"1714338000.000000000","1714427830.000000000",,,,,,,,,,,,,,,,,,,,
-"rt_md_1714427839.283",server,"1714427839.473318",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714427839,0,0,canceled,"50.019",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714427841.284",server,"1714427841.302816",0,"UI:Search","| history | search NOT search=""| history*"" AND NOT search=""*metadata*"" AND NOT search=""*loadjob*"" AND NOT savedsearch_name=""*"" AND NOT search=""search"" AND NOT search=""*from sid*"" AND NOT search=""| eventcount summarize=false index=* index=_**"" AND NOT provenance=""UI:LocateData"" AND NOT provenance=""UI:TableEditor"" AND NOT provenance=""UI:DataModel"" AND NOT provenance=""UI:Pivot"" AND NOT provenance=""UI:Dataset"" | dedup search | head 100000","",0,1714427841,92,0,completed,"0.016",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714427889.287",server,"1714427889.131410",0,"UI:Search","| mcatalog values(source) WHERE index=\""mertics_data\"" by source",smart,0,1714427889,0,0,completed,"0.025","1714338000.000000000",,,"1714427889.000000000",,"1714338000.000000000","1714427889.000000000",,,,,,,,,,,,,,,,,,,,
-"1714427897.288",server,"1714427897.514283",0,"UI:Search","| mcatalog values(source) WHERE index=""mertics_data"" by source",smart,178836,1714427897,7,178836,completed,"0.054","1714338000.000000000",,,"1714427897.000000000",,"1714338000.000000000","1714427897.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714429200.299",server,"1714429200.486480",0,"UI:dashboard:interface_statistics","| mcatalog values(name) WHERE index=""mertics_data"" by name","",0,1714429200,0,0,completed,"0.044",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429200.300",server,"1714429200.517971",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",34099,1714429200,1843,34099,completed,"0.8130000000000001",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714429231.301",server,"1714429231.550836",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",186145,1714429231,7,186145,completed,"0.062",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714429231.302",server,"1714429231.553911",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by name","",0,1714429231,0,0,completed,"0.047",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429231.303",server,"1714429231.578530",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",34127,1714429231,1846,34127,completed,"0.803",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"rt_md_1714429250.304",server,"1714429250.004965",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714429250,0,0,canceled,"32.021",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714429253.305",server,"1714429253.296816",0,"UI:Search","| history | search NOT search=""| history*"" AND NOT search=""*metadata*"" AND NOT search=""*loadjob*"" AND NOT savedsearch_name=""*"" AND NOT search=""search"" AND NOT search=""*from sid*"" AND NOT search=""| eventcount summarize=false index=* index=_**"" AND NOT provenance=""UI:LocateData"" AND NOT provenance=""UI:TableEditor"" AND NOT provenance=""UI:DataModel"" AND NOT provenance=""UI:Pivot"" AND NOT provenance=""UI:Dataset"" | dedup search | head 100000","",0,1714429253,94,0,completed,"0.018000000000000002",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714429282.307",server,"1714429282.156536",0,"UI:Search","| mcatalog values(interface_name) WHERE index=\""mertics_data\"" by interface_name",smart,0,1714429282,0,0,completed,"0.039","1714341600.000000000",,,"1714429282.000000000",,"1714341600.000000000","1714429282.000000000",,,,,,,,,,,,,,,,,,,,
-"1714429288.308",server,"1714429288.103480",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","",23676,1714429288,418,23676,canceled,"0.101","1714428388.000000000",,,,,"1714428388.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714429312.309",server,"1714429312.352129",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","",27298,1714429312,418,27298,canceled,"0.10400000000000001","1714428412.000000000",,,,,"1714428412.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714429315.310",server,"1714429315.223709",0,,"| mcatalog values(_dims) WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | mvexpand values(_dims)","",27470,1714429315,1224,27470,canceled,"0.064","1714428415.000000000",,,,,"1714428415.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714429325.311",server,"1714429325.516287",0,,"| mcatalog values(""interface_name"") as dimVals WHERE ""index""=""mertics_data"" AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | eval dim=""interface_name"" | mvexpand dimVals | fields index, metric_name, dim, dimVals
-| sort - ""interface_name""","",30109,1714429325,666,30109,completed,"0.04","1714428425.000000000",,,,,"1714428425.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714429329.312",server,"1714429329.127021",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND ""index""=""mertics_data"" AND (""interface_name""=""GigabitEthernet0/0/0/0"" OR ""interface_name""=""GigabitEthernet0/0/0/1"") AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","",6808,1714429329,74,6808,completed,"0.048","1714428429.000000000",,,,,"1714428429.000000000",,,,,,,,,,,,,,,,,,,,,
-"1714429350.313",server,"1714429350.659669",0,,"| mcatalog values(metric_name) WHERE metric_name=""if-statistics.packets_received"" AND (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index | fields index","",92,1714429350,1,92,canceled,"0.036000000000000004","1714425523.207000000",,,"1714429123.207000000",,"1714425523.207000000","1714429123.207000000",,,,,,,,,,,,,,,,,,,,
-"1714429351.314",server,"1714429351.200972",0,,"| mstats avg(""if-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND (""interface_name""=""GigabitEthernet0/0/0/0"" OR ""interface_name""=""GigabitEthernet0/0/0/1"") earliest=1714425523.207 latest=1714429123.207 span=10s
-| timechart avg(""if-statistics.packets_received"") AS ""0 / 04849255-89b4-4f4f-ac92-aa12590c18f1 / SERIES / Avg"" span=10s
-| fields - _span*","",1440,1714429351,361,1440,canceled,"0.035",,,,,,"1714425523.207000000","1714429123.207000000",,,,,,,,,,,,,,,,,,,,
-"1714429351.315",server,"1714429351.251516",0,,"| mcatalog values(metric_name) WHERE metric_name=""if-statistics.packets_sent"" AND (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index | fields index","",92,1714429351,1,92,canceled,"0.069","1714425523.207000000",,,"1714429123.207000000",,"1714425523.207000000","1714429123.207000000",,,,,,,,,,,,,,,,,,,,
-"1714429351.316",server,"1714429351.804762",0,,"| mstats avg(""if-statistics.packets_sent"") prestats=true WHERE ""index""=""mertics_data"" AND (""interface_name""=""GigabitEthernet0/0/0/0"" OR ""interface_name""=""GigabitEthernet0/0/0/1"") earliest=1714425523.207 latest=1714429123.207 span=10s
-| timechart avg(""if-statistics.packets_sent"") AS ""0 / 0d6bd044-7ac8-4c66-a9be-854cd13f0190 / SERIES / Avg"" span=10s
-| fields - _span*","",1440,1714429351,361,1440,canceled,"0.041",,,,,,"1714425523.207000000","1714429123.207000000",,,,,,,,,,,,,,,,,,,,
-"1714429358.317",server,"1714429358.058957",0,,"| mstats rate_avg(""if-statistics.packets_sent"") as ""0 / 0d6bd044-7ac8-4c66-a9be-854cd13f0190 / SERIES / Rate (Avg)"" chart=true WHERE ""index""=""mertics_data"" AND (""interface_name""=""GigabitEthernet0/0/0/0"" OR ""interface_name""=""GigabitEthernet0/0/0/1"") earliest=1714425523.207 latest=1714429123.207 span=10s
-| fields - _span*","",1440,1714429358,361,1440,canceled,"0.052000000000000005",,,,,,"1714425523.207000000","1714429123.207000000",,,,,,,,,,,,,,,,,,,,
-"1714429364.318",server,"1714429364.995948",0,,"| mstats rate_avg(""if-statistics.packets_received"") as ""0 / 04849255-89b4-4f4f-ac92-aa12590c18f1 / SERIES / Rate (Avg)"" chart=true WHERE ""index""=""mertics_data"" AND (""interface_name""=""GigabitEthernet0/0/0/0"" OR ""interface_name""=""GigabitEthernet0/0/0/1"") earliest=1714425523.207 latest=1714429123.207 span=10s
-| fields - _span*","",1440,1714429365,361,1440,canceled,"0.05",,,,,,"1714425523.207000000","1714429123.207000000",,,,,,,,,,,,,,,,,,,,
-"1714429373.319",server,"1714429373.525011",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_sent"") as ""Rate (Avg) /s"" chart=true WHERE ""index""=""mertics_data"" AND (""interface_name""=""GigabitEthernet0/0/0/0"" OR ""interface_name""=""GigabitEthernet0/0/0/1"") span=10s
-| fields - _span*",smart,1440,1714429373,361,1440,completed,"0.055","1714425773.000000000",,,"1714429373.000000000",,"1714425773.000000000","1714429373.000000000",,,,,,,,,,,,,,,,,,,,
-"rt_md_1714429413.320",server,"1714429413.387456",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714429413,0,0,failed,"65.027",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714429416.321",server,"1714429416.522803",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","",15737,1714429416,418,15737,canceled,"0.089","1714428516.000000000",,,,,"1714428516.000000000",,,,,,,,,,,,,,,,,,,,,
-"rt_md_1714429419.322",server,"1714429419.920497",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714429419,0,0,canceled,"44.025",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714429469.323",server,"1714429469.928497",0,"UI:Search","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name",smart,189884,1714429469,9,189884,completed,"0.037","1714341600.000000000",,,"1714429469.000000000",,"1714341600.000000000","1714429469.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714429518.324",server,"1714429518.221945",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",197453,1714429518,7,197453,completed,"0.049",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714429518.325",server,"1714429518.225973",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",197435,1714429518,9,197435,completed,"0.067",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429518.326",server,"1714429518.283422",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",34605,1714429518,1876,34605,completed,"0.8240000000000001",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714429680.327",server,"1714429680.828685",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",190532,1714429680,9,190532,completed,"0.055",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714429680.328",server,"1714429680.832160",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",190550,1714429680,7,190550,completed,"0.045",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429680.329",server,"1714429680.888362",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",34835,1714429680,1891,34835,completed,"0.865",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429759.330",server,"1714429759.850049",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/6\"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/6\"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714429759,0,0,canceled,"0.066",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429771.331",server,"1714429771.588909",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/0\"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/0\"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714429771,0,0,canceled,"0.062",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429774.332",server,"1714429774.042017",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/1\"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/1\"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714429774,0,0,completed,"0.062",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714429865.335",server,"1714429865.444619",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",190191,1714429865,7,190191,completed,"0.056",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714429865.336",server,"1714429865.448486",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",190173,1714429865,9,190173,completed,"0.047",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429865.337",server,"1714429865.493494",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/1\"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/1\"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714429865,0,0,completed,"0.07200000000000001",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714429937.339",server,"1714429937.977594",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",197750,1714429937,9,197750,canceled,"0.062",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429937.340",server,"1714429937.999047",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/1\"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=\""xr-1\"" AND name=\""GigabitEthernet0/0/0/1\"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714429938,0,0,canceled,"0.081",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429949.341",server,"1714429949.137879",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND name=""GigabitEthernet0/0/0/1"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND name=""GigabitEthernet0/0/0/1"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714429949,0,0,canceled,"0.068",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714429990.343",server,"1714429990.298381",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",175099,1714429990,9,175099,completed,"0.046",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714429990.344",server,"1714429990.332545",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND name=""GigabitEthernet0/0/0/1"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND name=""GigabitEthernet0/0/0/1"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714429990,0,0,completed,"0.068",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"rt_md_1714430005.345",server,"1714430005.054716",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714430005,0,0,canceled,"4.018",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714430008.346",server,"1714430008.735974",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""$sourceToken$"" AND name=""$nameToken$"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""$sourceToken$"" AND name=""$nameToken$"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time",smart,0,1714430008,0,0,completed,"0.062","1714341600.000000000",,,"1714430008.000000000",,"1714341600.000000000","1714430008.000000000",,,,,,,,,,,,,,,,,,,,
-"1714430019.347",server,"1714430019.268274",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""$sourceToken$"" AND name=""$nameToken$"" span=10s
-| fields - _span*",smart,0,1714430019,0,0,completed,"0.03","1714341600.000000000",,,"1714430019.000000000",,"1714341600.000000000","1714430019.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430261.350",server,"1714430261.543726",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-5"" AND name=""GigabitEthernet0/0/0/1"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-5"" AND name=""GigabitEthernet0/0/0/1"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714430261,0,0,canceled,"0.20800000000000002",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430267.351",server,"1714430267.792353",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-5"" AND name=""GigabitEthernet0/0/0/2"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-5"" AND name=""GigabitEthernet0/0/0/2"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714430267,0,0,completed,"0.061",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"rt_md_1714430343.352",server,"1714430343.465019",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714430343,0,0,canceled,"26.037",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714430347.353",server,"1714430347.989029",0,"UI:Search","| history | search NOT search=""| history*"" AND NOT search=""*metadata*"" AND NOT search=""*loadjob*"" AND NOT savedsearch_name=""*"" AND NOT search=""search"" AND NOT search=""*from sid*"" AND NOT search=""| eventcount summarize=false index=* index=_**"" AND NOT provenance=""UI:LocateData"" AND NOT provenance=""UI:TableEditor"" AND NOT provenance=""UI:DataModel"" AND NOT provenance=""UI:Pivot"" AND NOT provenance=""UI:Dataset"" | dedup search | head 100000","",0,1714430348,105,0,completed,"0.017",,,,,,,,,,,,,,,,,,,,,,,,,,,
-"1714430369.355",server,"1714430369.212526",0,"UI:Search","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name",smart,193729,1714430369,9,193729,completed,"0.058","1714341600.000000000",,,"1714430369.000000000",,"1714341600.000000000","1714430369.000000000",,,,,,,,,,,,,,,,,,,,
-"1714430395.356",server,"1714430395.583557",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr1"" AND name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*",smart,0,1714430395,0,0,completed,"0.034","1714341600.000000000",,,"1714430395.000000000",,"1714341600.000000000","1714430395.000000000",,,,,,,,,,,,,,,,,,,,
-"1714430427.359",server,"1714430427.483303",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr1"" AND name=""GigabitEthernet0/0/0/0""",smart,0,1714430427,0,0,failed,"0.003","1714341600.000000000",,,"1714430427.000000000",,,,,,,,,,,,,,,,,,,,,,,
-"1714430437.360",server,"1714430437.391931",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr1"" AND name=""GigabitEthernet0/0/0/0"" span=10s",smart,0,1714430437,0,0,completed,"0.031","1714341600.000000000",,,"1714430437.000000000",,"1714341600.000000000","1714430437.000000000",,,,,,,,,,,,,,,,,,,,
-"1714430449.361",server,"1714430449.690173",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi""",smart,0,1714430449,0,0,failed,"0.003","1714341600.000000000",,,"1714430449.000000000",,,,,,,,,,,,,,,,,,,,,,,
-"1714430460.362",server,"1714430460.942083",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s",smart,36031,1714430460,8886,36031,completed,"0.385","1714341600.000000000",,,"1714430460.000000000",,"1714341600.000000000","1714430460.000000000",,,,,,,,,,,,,,,,,,,,
-"1714430482.363",server,"1714430482.174218",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr1"" span=10s",smart,0,1714430482,0,0,completed,"0.032","1714341600.000000000",,,"1714430482.000000000",,"1714341600.000000000","1714430482.000000000",,,,,,,,,,,,,,,,,,,,
-"1714430491.364",server,"1714430491.482033",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" span=10s",smart,3930,1714430491,8890,3930,completed,"0.07200000000000001","1714341600.000000000",,,"1714430491.000000000",,"1714341600.000000000","1714430491.000000000",,,,,,,,,,,,,,,,,,,,
-"1714430512.365",server,"1714430512.114127",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND name=""GigabitEthernet0/0/0/0"" span=10s",smart,0,1714430512,0,0,completed,"0.037","1714341600.000000000",,,"1714430512.000000000",,"1714341600.000000000","1714430512.000000000",,,,,,,,,,,,,,,,,,,,
-"1714430525.366",server,"1714430525.314497",0,"UI:Search","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s",smart,788,1714430525,8893,788,completed,"0.053","1714341600.000000000",,,"1714430525.000000000",,"1714341600.000000000","1714430525.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430540.367",server,"1714430540.787224",0,"UI:dashboard:new_test","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",36169,1714430540,8894,36169,canceled,"0.8260000000000001","1714341600.000000000",0,0,"1714430540.000000000","ds_in_out","1714341600.000000000","1714430540.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714430552.368",server,"1714430552.404988",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",186557,1714430552,7,186557,completed,"0.049",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714430552.369",server,"1714430552.414301",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",186539,1714430552,9,186539,completed,"0.038",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430552.370",server,"1714430552.558972",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" AND name=""*"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" AND name=""*"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714430552,0,0,completed,"0.083",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714430596.371",server,"1714430596.954016",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",194080,1714430596,7,194080,completed,"0.063",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430596.373",server,"1714430596.985539",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" AND name=""*"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" AND name=""*"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time","",0,1714430597,0,0,canceled,"0.073",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430607.374",server,"1714430607.380210",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" AND interface_name=""*"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" AND interface_name=""*"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",36261,1714430607,1984,36261,canceled,"0.811",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430616.375",server,"1714430616.046126",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""*"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""*"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",3955,1714430616,1987,3955,completed,"0.215",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430620.376",server,"1714430620.674078",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",791,1714430620,1987,791,completed,"0.106",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714430870.377",server,"1714430870.950155",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",201629,1714430870,7,201629,completed,"0.07200000000000001",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714430870.378",server,"1714430870.955620",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",201611,1714430870,9,201611,completed,"0.075",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430870.379",server,"1714430870.985392",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",799,1714430871,2011,799,completed,"0.132",,0,0,,"ds_in_out",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430961.380",server,"1714430961.641852",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",30,1714430961,91,30,canceled,"0.073","1714430061.000000000",0,0,"1714430961.000000000","ds_in_out","1714430061.000000000","1714430961.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714430968.381",server,"1714430968.092633",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",121,1714430968,363,121,completed,"0.084","1714427340.000000000",0,0,"1714430968.000000000","ds_in_out","1714427340.000000000","1714430968.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714431083.384",server,"1714431083.908807",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",202058,1714431083,7,202058,completed,"0.055",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714431083.385",server,"1714431083.912657",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",202040,1714431083,9,202040,completed,"0.038",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431083.386",server,"1714431083.950377",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",121,1714431083,363,121,completed,"0.108","1714427460.000000000",0,0,"1714431083.000000000","ds_in_out","1714427460.000000000","1714431083.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714431246.388",server,"1714431246.222346",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",197957,1714431246,9,197957,completed,"0.049",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431246.389",server,"1714431246.254900",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",121,1714431246,361,121,completed,"0.096","1714427640.000000000",0,0,"1714431246.000000000","ds_in_out","1714427640.000000000","1714431246.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714431340.390",server,"1714431340.136981",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",182957,1714431340,7,182957,completed,"0.048",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714431340.391",server,"1714431340.144738",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",182939,1714431340,9,182939,completed,"0.054",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431340.392",server,"1714431340.164747",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",122,1714431340,364,122,canceled,"0.08","1714427700.000000000",0,0,"1714431340.000000000","ds_in_out","1714427700.000000000","1714431340.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431346.393",server,"1714431346.989568",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/2"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",122,1714431347,365,122,canceled,"0.07200000000000001","1714427700.000000000",0,0,"1714431346.000000000","ds_in_out","1714427700.000000000","1714431346.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431353.394",server,"1714431353.875582",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/1"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",122,1714431353,366,122,canceled,"0.069","1714427700.000000000",0,0,"1714431353.000000000","ds_in_out","1714427700.000000000","1714431353.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431355.395",server,"1714431355.956917",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/3"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",122,1714431355,366,122,canceled,"0.081","1714427700.000000000",0,0,"1714431355.000000000","ds_in_out","1714427700.000000000","1714431355.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431359.396",server,"1714431359.129455",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/3,GigabitEthernet0/0/0/4"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",122,1714431359,366,122,canceled,"0.137","1714427700.000000000",0,0,"1714431359.000000000","ds_in_out","1714427700.000000000","1714431359.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431361.397",server,"1714431361.661613",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/3,GigabitEthernet0/0/0/4,GigabitEthernet0/0/0/2"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",120,1714431361,361,120,canceled,"0.069","1714427760.000000000",0,0,"1714431361.000000000","ds_in_out","1714427760.000000000","1714431361.000000000",,,,,,,,,,,,,,,,,,,,
-"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431363.398",server,"1714431363.282600",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
-| fields - _span*
-| append [
-| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/3,GigabitEthernet0/0/0/4,GigabitEthernet0/0/0/2"" span=10s
-| fields - _span*
-]
-| selfjoin keepsingle=true _time
-","",120,1714431363,361,120,canceled,"0.066","1714427760.000000000",0,0,"1714431363.000000000","ds_in_out","1714427760.000000000","1714431363.000000000",,,,,,,,,,,,,,,,,,,,
 "admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714431365.399",server,"1714431365.704688",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=10s
 | fields - _span*
 | append [
@@ -1537,3 +1077,282 @@ sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level"
 "admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714512017.1344",server,"1714512017.890167",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",4856,1714512017,1,4856,completed,"0.035","1714424400.000000000",0,0,"1714512017.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714424400.000000000","1714512017.000000000",,,,,,,,,,,,,,,,,,,,
 "admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714512167.1345",server,"1714512167.593410",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714512167,0,0,completed,"0.033","1714424400.000000000",0,0,"1714512167.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714424400.000000000","1714512167.000000000",,,,,,,,,,,,,,,,,,,,
 "admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714512371.1346",server,"1714512371.967018",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1""","",1259,1714512371,1,1259,completed,"0.038","1714424400.000000000",0,0,"1714512371.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714424400.000000000","1714512371.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714514931.1359",server,"1714514931.037515",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",103222,1714514931,9,103222,completed,"0.044",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527999d2ebe1a05fc_1714514931.1362",server,"1714514931.083321",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.6"" AND source=""xr-2""","",4888,1714514931,1,4888,completed,"0.188","1714428000.000000000",0,0,"1714514931.000000000","ds_SackbTAm_ds_5fzRRfLw","1714428000.000000000","1714514931.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714514931.1363",server,"1714514931.142681",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1""","",1421,1714514931,1,1421,completed,"0.15","1714428000.000000000",0,0,"1714514931.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714428000.000000000","1714514931.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714514931.1364",server,"1714514931.149913",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2""","",194,1714514931,1,194,completed,"0.158","1714428000.000000000",0,0,"1714514931.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714428000.000000000","1714514931.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714514931.1365",server,"1714514931.166546",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",4891,1714514931,1,4891,completed,"0.135","1714428000.000000000",0,0,"1714514931.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714428000.000000000","1714514931.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714514931.1366",server,"1714514931.171534",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",4878,1714514931,1,4878,completed,"0.163","1714428000.000000000",0,0,"1714514931.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714428000.000000000","1714514931.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714514931.1367",server,"1714514931.204119",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714514931,0,0,completed,"0.125","1714428000.000000000",0,0,"1714514931.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714428000.000000000","1714514931.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714523796.1420",server,"1714523796.099636",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",109397,1714523796,7,109397,completed,"0.051000000000000004",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD599d482bfe54e3cd6_1714523796.1421",server,"1714523796.190884",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.5"" AND source=""xr-1""","",5212,1714523796,1,5212,completed,"0.132","1714435200.000000000",0,0,"1714523796.000000000","ds_5fzRRfLw","1714435200.000000000","1714523796.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527999d2ebe1a05fc_1714523796.1422",server,"1714523796.194693",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.6"" AND source=""xr-2""","",5208,1714523796,1,5208,completed,"0.11","1714435200.000000000",0,0,"1714523796.000000000","ds_SackbTAm_ds_5fzRRfLw","1714435200.000000000","1714523796.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714523796.1423",server,"1714523796.217086",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1""","",2013,1714523796,1,2013,completed,"0.081","1714435200.000000000",0,0,"1714523796.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714435200.000000000","1714523796.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714523796.1424",server,"1714523796.226952",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2""","",786,1714523796,1,786,completed,"0.153","1714435200.000000000",0,0,"1714523796.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714435200.000000000","1714523796.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714523796.1425",server,"1714523796.245884",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",5212,1714523796,1,5212,completed,"0.105","1714435200.000000000",0,0,"1714523796.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714435200.000000000","1714523796.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714523796.1426",server,"1714523796.279169",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",5202,1714523796,1,5202,completed,"0.077","1714435200.000000000",0,0,"1714523796.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714435200.000000000","1714523796.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714523796.1427",server,"1714523796.339073",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714523796,0,0,completed,"0.117","1714435200.000000000",0,0,"1714523796.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714435200.000000000","1714523796.000000000",,,,,,,,,,,,,,,,,,,,
+"rt_md_1714523918.1428",server,"1714523918.121018",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714523918,0,0,canceled,"18.026",,,,,,,,,,,,,,,,,,,,,,,,,,,
+"1714523921.1429",server,"1714523921.457813",0,"UI:Search","| history | search NOT search=""| history*"" AND NOT search=""*metadata*"" AND NOT search=""*loadjob*"" AND NOT savedsearch_name=""*"" AND NOT search=""search"" AND NOT search=""*from sid*"" AND NOT search=""| eventcount summarize=false index=* index=_**"" AND NOT provenance=""UI:LocateData"" AND NOT provenance=""UI:TableEditor"" AND NOT provenance=""UI:DataModel"" AND NOT provenance=""UI:Pivot"" AND NOT provenance=""UI:Dataset"" | dedup search | head 100000","",0,1714523921,143,0,completed,"0.026000000000000002",,,,,,,,,,,,,,,,,,,,,,,,,,,
+"1714523935.1431",server,"1714523935.561147",0,"UI:Search","| mpreview index=mertics_data | search telegraf_tag=gnmi",smart,86983,1714523935,1000,108703,completed,"4.466","1714435200.000000000",,,"1714523935.000000000",,"1714435200.000000000","1714523935.000000000",,,,,,,,,,,,,,,,,,,,
+"1714523945.1432",server,"1714523945.184555",0,"UI:Search","| mpreview index=mertics_data | search telegraf_tag=gnmi",smart,94450,1714523945,1000,115173,completed,"5.235","1714435200.000000000",,,"1714523945.000000000",,"1714435200.000000000","1714523945.000000000",,,,,,,,,,,,,,,,,,,,
+"1714524015.1435",server,"1714524015.065171",0,"UI:Search","| loadjob 1714523945.1432 events=true require_finished=false | cluster t=0.8 labelonly=true labelfield=_patterns match=termset | findkeywords labelfield=_patterns dedup=true","",1000,1714524015,2,0,completed,"0.027","1714435200.000000000",,,"1714524015.000000000",,"1714435200.000000000","1714524015.000000000",,,,,,,,,,,,,,,,,,,,
+"1714524017.1437",server,"1714524017.671039",0,"UI:Search","| loadjob 1714523945.1432 events=true require_finished=false | cluster t=0.8 labelonly=true labelfield=_patterns match=termset | findkeywords labelfield=_patterns dedup=true","",1000,1714524017,2,0,completed,"0.028","1714435200.000000000",,,"1714524017.000000000",,"1714435200.000000000","1714524017.000000000",,,,,,,,,,,,,,,,,,,,
+"1714524108.1439",server,"1714524108.948408",0,"UI:Search","| mpreview index=mertics_data | search telegraf_tag=gnmi path=""Cisco-IOS-XR-ipv4-bgp-oper:/bgp/instances/instance/instance-active/default-vrf/afs/af/neighbor-af-table/neighbor""",smart,2185,1714524108,1000,120262,completed,"5.708","1714435200.000000000",,,"1714524108.000000000",,"1714435200.000000000","1714524108.000000000",,,,,,,,,,,,,,,,,,,,
+"1714528275.1465",server,"1714528275.838648",0,"UI:Search","| mpreview index=mertics_data | search telegraf_tag=snmp",smart,36497,1714528275,1000,124894,completed,"6.312","1714438800.000000000",,,"1714528275.000000000",,"1714438800.000000000","1714528275.000000000",,,,,,,,,,,,,,,,,,,,
+"1714528434.1466",server,"1714528434.664922",0,"UI:FieldExtractor","| loadjob 1714528275.1465 events=t ignore_running=f require_finished=f | search index=* OR index=_* sourcetype=telegraf | head 1000",verbose,0,1714528434,0,0,completed,"0.021","1706745600.000000000",,,"1714528434.000000000",,"1706745600.000000000","1714528434.000000000",,,,,,,,,,,,,,,,,,,,
+"1714528479.1467",server,"1714528479.417243",0,"UI:Search","| mpreview index=mertics_data",smart,52456,1714528479,0,105661,failed,"64.70700000000001","1714438800.000000000",,,"1714528479.000000000",,"1714438800.000000000","1714528479.000000000",,,,,,,,,,,,,,,,,,,,
+"1714528482.1468",server,"1714528482.389853",0,"UI:Search","| mpreview index=mertics_data",smart,72956,1714528482,1000,105661,completed,"4.282","1714438800.000000000",,,"1714528482.000000000",,"1714438800.000000000","1714528482.000000000",,,,,,,,,,,,,,,,,,,,
+"1714528713.1469",server,"1714528713.646589",0,"UI:Search","| mpreview index=mertics_data",smart,75042,1714528713,1000,98471,completed,"4.265","1714438800.000000000",,,"1714528713.000000000",,"1714438800.000000000","1714528713.000000000",,,,,,,,,,,,,,,,,,,,
+"1714528768.1470",server,"1714528768.628287",0,"UI:Search","| mpreview index=mertics_data | search ""metric_name:cisco_bgp_route_table.cbgpRoutePeer""=""*""",smart,132,1714528768,132,109691,completed,"4.529","1714438800.000000000",,,"1714528768.000000000",,"1714438800.000000000","1714528768.000000000",,,,,,,,,,,,,,,,,,,,
+"1714528833.1473",server,"1714528833.008124",0,"UI:Search","| mpreview index=mertics_data | search ""metric_name:cisco_bgp_route_table.cbgpRoutePeer""=""*""",smart,169,1714528833,169,115485,completed,"5.461","1714442400.000000000",,,"1714528833.000000000",,"1714442400.000000000","1714528833.000000000",,,,,,,,,,,,,,,,,,,,
+"1714533711.1548",server,"1714533711.338415",0,"UI:Search","| mpreview index=mertics_data | search ""metric_name:cisco_bgp_route_table.cbgpRoutePeer""=""*""",smart,95,1714533711,95,108681,completed,"4.381","1714446000.000000000",,,"1714533711.000000000",,"1714446000.000000000","1714533711.000000000",,,,,,,,,,,,,,,,,,,,
+"1714533726.1549",server,"1714533726.841094",0,"UI:Search","| mpreview index=mertics_data",smart,124256,1714533726,1000,116939,completed,"4.979","1714446000.000000000",,,"1714533726.000000000",,"1714446000.000000000","1714533726.000000000",,,,,,,,,,,,,,,,,,,,
+"1714543651.1613",server,"1714543651.120518",0,"UI:Search","| mpreview index=mertics_data",smart,155187,1714543651,1000,127718,completed,"6.6160000000000005","1714456800.000000000",,,"1714543651.000000000",,"1714456800.000000000","1714543651.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714543665.1615",server,"1714543665.377588",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",109193,1714543665,9,109193,completed,"0.04",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD599d482bfe54e3cd6_1714543665.1616",server,"1714543665.564706",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.5"" AND source=""xr-1""","",5094,1714543665,1,5094,completed,"0.14100000000000001","1714456800.000000000",0,0,"1714543665.000000000","ds_5fzRRfLw","1714456800.000000000","1714543665.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527999d2ebe1a05fc_1714543665.1617",server,"1714543665.573766",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.6"" AND source=""xr-2""","",5090,1714543665,1,5090,completed,"0.212","1714456800.000000000",0,0,"1714543665.000000000","ds_SackbTAm_ds_5fzRRfLw","1714456800.000000000","1714543665.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714543665.1619",server,"1714543665.581519",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2""","",2110,1714543665,1,2110,completed,"0.185","1714456800.000000000",0,0,"1714543665.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714456800.000000000","1714543665.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714543665.1620",server,"1714543665.585280",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",5098,1714543665,1,5098,completed,"0.155","1714456800.000000000",0,0,"1714543665.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714456800.000000000","1714543665.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714543665.1621",server,"1714543665.599152",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",5090,1714543665,1,5090,completed,"0.166","1714456800.000000000",0,0,"1714543665.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714456800.000000000","1714543665.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714543665.1622",server,"1714543665.688110",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714543665,0,0,completed,"0.129","1714456800.000000000",0,0,"1714543665.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714456800.000000000","1714543665.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714543992.1625",server,"1714543992.398013",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",115702,1714543992,7,115702,canceled,"0.045",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714543992.1626",server,"1714543992.402121",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",115684,1714543992,9,115684,canceled,"0.031",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD599d482bfe54e3cd6_1714543992.1627",server,"1714543992.517325",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.5"" AND source=""xr-1""","",5116,1714543992,1,5116,canceled,"0.038","1714456800.000000000",0,0,"1714543992.000000000","ds_5fzRRfLw","1714456800.000000000","1714543992.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714543992.1629",server,"1714543992.574420",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1""","",3359,1714543992,1,3359,canceled,"0.14","1714456800.000000000",0,0,"1714543992.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714456800.000000000","1714543992.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714543992.1630",server,"1714543992.609988",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2""","",2132,1714543992,1,2132,canceled,"0.122","1714456800.000000000",0,0,"1714543992.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714456800.000000000","1714543992.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714543992.1631",server,"1714543992.614453",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",5120,1714543992,1,5120,canceled,"0.121","1714456800.000000000",0,0,"1714543992.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714456800.000000000","1714543992.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714543992.1632",server,"1714543992.661810",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",5112,1714543992,1,5112,canceled,"0.074","1714456800.000000000",0,0,"1714543992.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714456800.000000000","1714543992.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714543992.1633",server,"1714543992.698053",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714543992,0,0,canceled,"0.038","1714456800.000000000",0,0,"1714543992.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714456800.000000000","1714543992.000000000",,,,,,,,,,,,,,,,,,,,
+"rt_md_1714544062.1634",server,"1714544062.817702",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714544062,0,0,failed,"64.031",,,,,,,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714544070.1635",server,"1714544070.653147",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",118912,1714544070,7,118912,completed,"0.055",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714544070.1636",server,"1714544070.656166",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",118894,1714544070,9,118894,completed,"0.05",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714544071.1637",server,"1714544071.207498",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",1451,1714544071,364,1451,completed,"0.095","1714540440.000000000",0,0,"1714544071.000000000","ds_in_out","1714540440.000000000","1714544071.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714544071.1638",server,"1714544071.212531",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",1452,1714544071,364,1452,completed,"0.101","1714540440.000000000",0,0,"1714544071.000000000","ds_9qTUXhKu_ds_in_out","1714540440.000000000","1714544071.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714544184.1639",server,"1714544184.992638",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",126840,1714544185,7,126840,completed,"0.058",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714544184.1640",server,"1714544185.002873",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",126822,1714544185,9,126822,completed,"0.033",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD599d482bfe54e3cd6_1714544185.1641",server,"1714544185.272074",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.5"" AND source=""xr-1""","",5128,1714544185,1,5128,completed,"0.131","1714456800.000000000",0,0,"1714544185.000000000","ds_5fzRRfLw","1714456800.000000000","1714544185.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527999d2ebe1a05fc_1714544185.1642",server,"1714544185.280552",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.6"" AND source=""xr-2""","",5124,1714544185,1,5124,completed,"0.15","1714456800.000000000",0,0,"1714544185.000000000","ds_SackbTAm_ds_5fzRRfLw","1714456800.000000000","1714544185.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714544185.1643",server,"1714544185.285721",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1""","",3371,1714544185,1,3371,completed,"0.112","1714456800.000000000",0,0,"1714544185.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714456800.000000000","1714544185.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714544185.1644",server,"1714544185.292894",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2""","",2144,1714544185,1,2144,completed,"0.114","1714456800.000000000",0,0,"1714544185.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714456800.000000000","1714544185.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714544185.1645",server,"1714544185.298457",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",5132,1714544185,1,5132,completed,"0.098","1714456800.000000000",0,0,"1714544185.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714456800.000000000","1714544185.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714544185.1646",server,"1714544185.462366",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",5124,1714544185,1,5124,completed,"0.038","1714456800.000000000",0,0,"1714544185.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714456800.000000000","1714544185.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714544185.1647",server,"1714544185.496203",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714544185,0,0,completed,"0.039","1714456800.000000000",0,0,"1714544185.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714456800.000000000","1714544185.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714575010.1821",server,"1714575010.177685",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",101045,1714575010,7,101045,canceled,"0.105",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD599d482bfe54e3cd6_1714575010.1823",server,"1714575010.238368",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.5"" AND source=""xr-1""","",4247,1714575010,1,4247,canceled,"0.222","1714485600.000000000",0,0,"1714575010.000000000","ds_5fzRRfLw","1714485600.000000000","1714575010.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714575010.1825",server,"1714575010.266886",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1""","",3389,1714575010,1,3389,canceled,"0.267","1714485600.000000000",0,0,"1714575010.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714485600.000000000","1714575010.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714575010.1826",server,"1714575010.283996",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2""","",2162,1714575010,1,2162,canceled,"0.203","1714485600.000000000",0,0,"1714575010.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714485600.000000000","1714575010.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714575010.1828",server,"1714575010.316490",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",4241,1714575010,1,4241,canceled,"0.197","1714485600.000000000",0,0,"1714575010.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714485600.000000000","1714575010.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714575010.1829",server,"1714575010.362828",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714575010,0,0,canceled,"0.218","1714485600.000000000",0,0,"1714575010.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714485600.000000000","1714575010.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714575029.1830",server,"1714575029.238286",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",104666,1714575029,7,104666,completed,"0.045",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714575029.1831",server,"1714575029.260037",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",104648,1714575029,9,104648,completed,"0.041",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD599d482bfe54e3cd6_1714575029.1832",server,"1714575029.293710",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.5"" AND source=""xr-1""","",4247,1714575029,1,4247,completed,"0.04","1714485600.000000000",0,0,"1714575029.000000000","ds_5fzRRfLw","1714485600.000000000","1714575029.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527999d2ebe1a05fc_1714575029.1833",server,"1714575029.332450",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.6"" AND source=""xr-2""","",4243,1714575029,1,4243,completed,"0.10200000000000001","1714485600.000000000",0,0,"1714575029.000000000","ds_SackbTAm_ds_5fzRRfLw","1714485600.000000000","1714575029.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714575029.1834",server,"1714575029.363233",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1""","",3389,1714575029,1,3389,completed,"0.088","1714485600.000000000",0,0,"1714575029.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714485600.000000000","1714575029.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714575029.1835",server,"1714575029.371818",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2""","",2162,1714575029,1,2162,completed,"0.111","1714485600.000000000",0,0,"1714575029.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714485600.000000000","1714575029.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714575029.1836",server,"1714575029.380455",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",4251,1714575029,1,4251,completed,"0.097","1714485600.000000000",0,0,"1714575029.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714485600.000000000","1714575029.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714575029.1837",server,"1714575029.383529",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",4241,1714575029,1,4241,completed,"0.10200000000000001","1714485600.000000000",0,0,"1714575029.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714485600.000000000","1714575029.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714575029.1838",server,"1714575029.393863",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714575029,0,0,completed,"0.075","1714485600.000000000",0,0,"1714575029.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714485600.000000000","1714575029.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714575054.1839",server,"1714575054.157881",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1""","",3389,1714575054,1,3389,completed,"0.036000000000000004","1714485600.000000000",0,0,"1714575054.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714485600.000000000","1714575054.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714575057.1840",server,"1714575057.071930",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2""","",2162,1714575057,1,2162,completed,"0.055","1714485600.000000000",0,0,"1714575057.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714485600.000000000","1714575057.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714575316.1841",server,"1714575316.842343",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",107834,1714575316,7,107834,completed,"0.038",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD599d482bfe54e3cd6_1714575316.1843",server,"1714575316.938583",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.5"" AND source=""xr-1""","",4257,1714575316,1,4257,completed,"0.133","1714485600.000000000",0,0,"1714575316.000000000","ds_5fzRRfLw","1714485600.000000000","1714575316.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527999d2ebe1a05fc_1714575316.1844",server,"1714575316.943166",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.6"" AND source=""xr-2""","",4253,1714575316,1,4253,completed,"0.109","1714485600.000000000",0,0,"1714575316.000000000","ds_SackbTAm_ds_5fzRRfLw","1714485600.000000000","1714575316.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714575316.1847",server,"1714575316.964047",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",4261,1714575317,1,4261,completed,"0.135","1714485600.000000000",0,0,"1714575316.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714485600.000000000","1714575316.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714575316.1848",server,"1714575316.993050",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",4251,1714575317,1,4251,completed,"0.064","1714485600.000000000",0,0,"1714575316.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714485600.000000000","1714575316.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714575317.1849",server,"1714575317.037704",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714575317,0,0,completed,"0.07","1714485600.000000000",0,0,"1714575317.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714485600.000000000","1714575317.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714578357.1865",server,"1714578357.535674",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""metrics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1"" BY ""neighbor_address"" 
+| eval now=now() 
+| where latest_value_time > (now - 65)
+| fields - now
+","",0,1714578357,0,0,completed,"0.031","1714489200.000000000",0,0,"1714578357.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714489200.000000000","1714578357.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714578412.1866",server,"1714578412.581381",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""metrics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2"" BY ""neighbor_address"" 
+| eval now=now() 
+| where latest_value_time > (now - 65)
+| fields - now
+
+","",0,1714578412,0,0,completed,"0.028","1714489200.000000000",0,0,"1714578412.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714489200.000000000","1714578412.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714578646.1869",server,"1714578646.779720",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",123137,1714578646,7,123137,completed,"0.04",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714578646.1870",server,"1714578646.784472",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",123119,1714578646,9,123119,completed,"0.044",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714578647.1871",server,"1714578647.356681",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",729,1714578647,365,729,completed,"0.107","1714575000.000000000",0,0,"1714578647.000000000","ds_in_out","1714575000.000000000","1714578647.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714578647.1872",server,"1714578647.366427",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",0,1714578647,0,0,completed,"0.076","1714575000.000000000",0,0,"1714578647.000000000","ds_9qTUXhKu_ds_in_out","1714575000.000000000","1714578647.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714578694.1873",server,"1714578694.895360",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",1462,1714578694,364,1462,canceled,"0.115","1714575060.000000000",0,0,"1714578694.000000000","ds_in_out","1714575060.000000000","1714578694.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714578694.1874",server,"1714578694.904746",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",0,1714578694,0,0,canceled,"0.07100000000000001","1714575060.000000000",0,0,"1714578694.000000000","ds_9qTUXhKu_ds_in_out","1714575060.000000000","1714578694.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714578696.1875",server,"1714578696.113445",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",2193,1714578696,364,2193,completed,"0.193","1714575060.000000000",0,0,"1714578696.000000000","ds_in_out","1714575060.000000000","1714578696.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714578696.1876",server,"1714578696.132014",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",0,1714578696,0,0,completed,"0.076","1714575060.000000000",0,0,"1714578696.000000000","ds_9qTUXhKu_ds_in_out","1714575060.000000000","1714578696.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714581489.1901",server,"1714581489.173632",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",108632,1714581489,7,108632,completed,"0.042",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714581489.1902",server,"1714581489.178449",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",108614,1714581489,9,108614,completed,"0.049",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527999d2ebe1a05fc_1714581489.1904",server,"1714581489.333838",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.6"" AND source=""xr-2""","",3979,1714581489,1,3979,completed,"0.097","1714492800.000000000",0,0,"1714581489.000000000","ds_SackbTAm_ds_5fzRRfLw","1714492800.000000000","1714581489.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714581489.1905",server,"1714581489.340351",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""metrics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1"" BY ""neighbor_address"" 
+| eval now=now() 
+| where latest_value_time > (now - 65)
+| fields - now
+","",0,1714581489,0,0,completed,"0.113","1714492800.000000000",0,0,"1714581489.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714492800.000000000","1714581489.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714581489.1906",server,"1714581489.346601",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""metrics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2"" BY ""neighbor_address"" 
+| eval now=now() 
+| where latest_value_time > (now - 65)
+| fields - now
+
+","",0,1714581489,0,0,completed,"0.13","1714492800.000000000",0,0,"1714581489.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714492800.000000000","1714581489.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51793e530d72b3150_1714581489.1907",server,"1714581489.364948",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-5""","",3987,1714581489,1,3987,completed,"0.117","1714492800.000000000",0,0,"1714581489.000000000","ds_MmGFSzNS_ds_5fzRRfLw","1714492800.000000000","1714581489.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714581489.1908",server,"1714581489.414465",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",3977,1714581489,1,3977,completed,"0.074","1714492800.000000000",0,0,"1714581489.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714492800.000000000","1714581489.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD533be169ca65ffe31_1714581489.1909",server,"1714581489.424896",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.2.2.1"" AND source=""xr-8""","",0,1714581489,0,0,completed,"0.07200000000000001","1714492800.000000000",0,0,"1714581489.000000000","ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw","1714492800.000000000","1714581489.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714581764.1914",server,"1714581764.481368",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",116517,1714581764,7,116517,completed,"0.053",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714581764.1915",server,"1714581764.484671",0,"UI:dashboard:interface_statistics","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",116499,1714581764,9,116499,completed,"0.037",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714581765.1916",server,"1714581765.054873",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",732,1714581765,365,732,completed,"0.099","1714578120.000000000",0,0,"1714581765.000000000","ds_in_out","1714578120.000000000","1714581765.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714581765.1917",server,"1714581765.070208",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",0,1714581765,0,0,completed,"0.114","1714578120.000000000",0,0,"1714581765.000000000","ds_9qTUXhKu_ds_in_out","1714578120.000000000","1714581765.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714581814.1918",server,"1714581814.434916",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",124110,1714581814,7,124110,completed,"0.041",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1714581814.1919",server,"1714581814.447710",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","",124092,1714581814,9,124092,completed,"0.038",,0,0,,"ds_nameDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD599d482bfe54e3cd6_1714581814.1920",server,"1714581814.602007",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.5"" AND source=""xr-1""","",3994,1714581814,1,3994,completed,"0.116","1714492800.000000000",0,0,"1714581814.000000000","ds_5fzRRfLw","1714492800.000000000","1714581814.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527999d2ebe1a05fc_1714581814.1921",server,"1714581814.607224",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.6"" AND source=""xr-2""","",3990,1714581814,1,3990,completed,"0.16","1714492800.000000000",0,0,"1714581814.000000000","ds_SackbTAm_ds_5fzRRfLw","1714492800.000000000","1714581814.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD53a1fa15757a8fc3d_1714581814.1922",server,"1714581814.612289",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""metrics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.5.1.1"" AND source=""xr-1"" BY ""neighbor_address"" 
+| eval now=now() 
+| where latest_value_time > (now - 65)
+| fields - now
+","",0,1714581814,0,0,completed,"0.134","1714492800.000000000",0,0,"1714581814.000000000","ds_7nk8YO6H_ds_5fzRRfLw","1714492800.000000000","1714581814.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50091016285861444_1714581814.1924",server,"1714581814.630985",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes"") as latest_value WHERE ""index""=""metrics_data"" AND ""telegraf_tag""=""snmp"" AND ""neighbor_address""=""1.4.10.0.0.6.1.1"" AND source=""xr-2"" BY ""neighbor_address"" 
+| eval now=now() 
+| where latest_value_time > (now - 65)
+| fields - now
+
+","",0,1714581814,0,0,completed,"0.084","1714492800.000000000",0,0,"1714581814.000000000","ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw","1714492800.000000000","1714581814.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD598446dbc6ff2250d_1714581814.1925",server,"1714581814.706685",0,"UI:dashboard:bgp_metrics_gnmi__snmp","| mstats latest(""instanceSpecificBGPData-prefixes-accepted.prefixes_accepted"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""neighbor_address""=""10.0.0.8"" AND source=""xr-6""","",3988,1714581814,1,3988,completed,"0.045","1714492800.000000000",0,0,"1714581814.000000000","ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw","1714492800.000000000","1714581814.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714581876.1927",server,"1714581876.075910",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-2"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-2"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",122,1714581876,364,122,completed,"0.078","1714578240.000000000",0,0,"1714581876.000000000","ds_in_out","1714578240.000000000","1714581876.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714581876.1928",server,"1714581876.088379",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-2"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-2"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",0,1714581876,0,0,completed,"0.077","1714578240.000000000",0,0,"1714581876.000000000","ds_9qTUXhKu_ds_in_out","1714578240.000000000","1714581876.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714581880.1929",server,"1714581880.245294",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-2"" interface_name IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-2"" interface_name IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",244,1714581880,364,244,canceled,"0.105","1714578240.000000000",0,0,"1714581880.000000000","ds_in_out","1714578240.000000000","1714581880.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714581880.1930",server,"1714581880.262563",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-2"" ifDescr IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-2"" ifDescr IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",0,1714581880,0,0,canceled,"0.077","1714578240.000000000",0,0,"1714581880.000000000","ds_9qTUXhKu_ds_in_out","1714578240.000000000","1714581880.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714581880.1931",server,"1714581880.691278",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-2"" interface_name IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-2"" interface_name IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",366,1714581880,364,366,completed,"0.091","1714578240.000000000",0,0,"1714581880.000000000","ds_in_out","1714578240.000000000","1714581880.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714581880.1932",server,"1714581880.710613",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-2"" ifDescr IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-2"" ifDescr IN (GigabitEthernet0/0/0/0,GigabitEthernet0/0/0/1,GigabitEthernet0/0/0/2) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",0,1714581880,0,0,completed,"0.074","1714578240.000000000",0,0,"1714581880.000000000","ds_9qTUXhKu_ds_in_out","1714578240.000000000","1714581880.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1714582203.1935",server,"1714582203.266795",0,"UI:dashboard:interface_statistics","| mcatalog values(source) WHERE index=""mertics_data"" by source ","",118481,1714582203,7,118481,completed,"0.053",,0,0,,"ds_sourceDropDown",,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1714582204.1937",server,"1714582204.012628",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""*"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","",723,1714582204,361,723,completed,"0.107","1714578600.000000000",0,0,"1714582204.000000000","ds_in_out","1714578600.000000000","1714582204.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1714582204.1938",server,"1714582204.020210",0,"UI:dashboard:interface_statistics","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""*"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time
+","",0,1714582204,0,0,completed,"0.081","1714578600.000000000",0,0,"1714582204.000000000","ds_9qTUXhKu_ds_in_out","1714578600.000000000","1714582204.000000000",,,,,,,,,,,,,,,,,,,,
+"rt_md_1714584246.1948",server,"1714584246.270204",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1714584246,0,0,failed,"66.028",,,,,,,,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__search2_1714595364.2010",server,"1714595364.253365",0,"UI:Dashboard:test_keval","| mstats avg(""spl.intr.resource_usage.IOStats.data.cpu_pct"") prestats=true WHERE ""index""=""_metrics"" span=10s
+| timechart avg(""spl.intr.resource_usage.IOStats.data.cpu_pct"") AS Avg span=10s
+| fields - _span*","",360,1714595364,360,360,completed,"0.046","1714591764.000000000",0,0,,search2,"1714591764.000000000",,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__search3_1714595364.2011",server,"1714595364.257733",0,"UI:Dashboard:test_keval","| mstats avg(""ping.average_response_ms"") prestats=true WHERE ""index""=""mertics_data"" span=10s
+| timechart avg(""ping.average_response_ms"") AS Avg span=10s
+| fields - _span*","",119,1714595364,356,119,completed,"0.04","1714591764.000000000",0,0,,search3,"1714591764.000000000",,,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__search1_1714595364.2012",server,"1714595364.851958",0,"UI:Dashboard:test_keval","| mstats avg(""spl.intr.disk_objects.Fishbucket.data.key_count"") prestats=true WHERE ""index""=""_metrics"" span=auto
+| timechart avg(""spl.intr.disk_objects.Fishbucket.data.key_count"") AS Avg 
+| fields - _span*","",6,1714595364,61,6,completed,"0.043000000000000003","1714591764.000000000",0,0,"1714595364.000000000",search1,"1714591764.000000000","1714595364.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__search2_1714595399.2014",server,"1714595399.907035",0,"UI:Dashboard:demo","| mstats avg(""ping.average_response_ms"") prestats=true WHERE ""index""=""mertics_data"" span=auto
+| timechart avg(""ping.average_response_ms"") AS Avg 
+| fields - _span*","",120,1714595399,61,120,completed,"0.04","1714591799.000000000",0,0,"1714595399.000000000",search2,"1714591799.000000000","1714595399.000000000",,,,,,,,,,,,,,,,,,,,

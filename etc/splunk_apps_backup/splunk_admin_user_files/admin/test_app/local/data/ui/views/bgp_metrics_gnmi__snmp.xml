@@ -146,7 +146,7 @@
 					"earliest": "-24h@h",
 					"latest": "now"
 				},
-				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.5.1.1\" AND source=\"xr-1\""
+				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"metrics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.5.1.1\" AND source=\"xr-1\" BY \"neighbor_address\" \r\n| eval now=now() \r\n| where latest_value_time > (now - 65)\r\n| fields - now\r\n"
 			},
 			"name": "xr-1 from xr-5 SNMP"
 		},
@@ -157,7 +157,7 @@
 					"earliest": "-24h@h",
 					"latest": "now"
 				},
-				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.6.1.1\" AND source=\"xr-2\""
+				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"metrics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.6.1.1\" AND source=\"xr-2\" BY \"neighbor_address\" \r\n| eval now=now() \r\n| where latest_value_time > (now - 65)\r\n| fields - now\r\n\r\n"
 			},
 			"name": "xr-2 from xr-6 SNMP"
 		},
