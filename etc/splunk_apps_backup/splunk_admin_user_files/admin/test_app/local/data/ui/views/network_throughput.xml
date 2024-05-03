@@ -79,15 +79,6 @@
 				"primary": "ds_jBWLeYV3_ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U"
 			}
 		},
-		"viz_qZcGR9yy": {
-			"type": "splunk.line",
-			"options": {
-				"legendDisplay": "bottom"
-			},
-			"dataSources": {
-				"primary": "ds_fr6nNQxr"
-			}
-		},
 		"viz_7XOOwl8i": {
 			"type": "splunk.line",
 			"options": {
@@ -95,7 +86,9 @@
 			},
 			"dataSources": {
 				"primary": "ds_YfXCHkJr_ds_fr6nNQxr"
-			}
+			},
+			"title": "Memory Utilization SNMP",
+			"description": "cempMemPoolTable"
 		},
 		"viz_napgmygx": {
 			"type": "splunk.singlevalue",
@@ -113,7 +106,31 @@
 			},
 			"dataSources": {
 				"primary": "ds_hQ2YJYgT_ds_fr6nNQxr"
-			}
+			},
+			"title": "Memory Utilization gNMI",
+			"description": "nto-memory-summary"
+		},
+		"viz_Jrz2mcti": {
+			"type": "splunk.line",
+			"options": {
+				"legendDisplay": "bottom",
+				"nullValueDisplay": "connect"
+			},
+			"dataSources": {
+				"primary": "ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr"
+			},
+			"title": "One Minute CPU - gNMI"
+		},
+		"viz_GdTqu1Zt": {
+			"type": "splunk.line",
+			"options": {
+				"legendDisplay": "bottom",
+				"nullValueDisplay": "connect"
+			},
+			"dataSources": {
+				"primary": "ds_JES3XTUB_ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr"
+			},
+			"title": "One Minute CPU - SNMP"
 		}
 	},
 	"dataSources": {
@@ -178,7 +195,7 @@
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\" \r\n"
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n\r\n"
 			},
 			"name": "1 min cpu"
 		},
@@ -189,7 +206,7 @@
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal5minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\" \r\n"
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal5minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n\r\n"
 			},
 			"name": "5 min cpu"
 		},
@@ -200,7 +217,7 @@
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal15minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\" \r\n"
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal15minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n\r\n\r\n"
 			},
 			"name": "15 min cpu"
 		},
@@ -211,7 +228,7 @@
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"CPUMetricData.total_cpu_one_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" "
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_one_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval _time = now()\r\n"
 			},
 			"name": "1 min cpu gnmi"
 		},
@@ -222,7 +239,7 @@
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"CPUMetricData.total_cpu_five_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n\r\n"
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_five_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval _time = now()\r\n"
 			},
 			"name": "5 min cpu gnmi"
 		},
@@ -233,7 +250,7 @@
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"CPUMetricData.total_cpu_fifteen_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n"
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_fifteen_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval _time = now()"
 			},
 			"name": "15 min cpu gnmi"
 		},
@@ -244,7 +261,7 @@
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats avg(\"cempMemPoolTable.cempMemPoolFree\") as \"Free\" avg(\"cempMemPoolTable.cempMemPoolUsed\") as \"Used\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cempMemPoolName\"=\"processor\" AND source=\"$sourceToken$\" span=60s\r\n| eval MemoryUsageRatio = Used / (Used + Free)\r\n| stats latest(MemoryUsageRatio) as MemoryUsageRatio\r\n| eval Percentage = round(MemoryUsageRatio * 100, 2) . \"%\"\r\n| fields Percentage"
+				"query": "| mstats avg(\"cempMemPoolTable.cempMemPoolHCFree\") as \"Free\" avg(\"cempMemPoolTable.cempMemPoolHCUsed\") as \"Used\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cempMemPoolName\"=\"processor\" AND source=\"$sourceToken$\" span=60s\r\n| eval MemoryUsageRatio = Used / (Used + Free)\r\n| stats latest(MemoryUsageRatio) as MemoryUsageRatio\r\n| eval Percentage = round(MemoryUsageRatio * 100, 2) . \"%\"\r\n| fields Percentage\r\n\r\n"
 			},
 			"name": "Yield total memory used percent"
 		},
@@ -291,6 +308,28 @@
 				"query": "| mstats avg(\"nto-memory-summary.detail/total_used\") as \"Used\" avg(\"nto-memory-summary.detail/free_physical_memory\") as \"Free\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"path\"=\"Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail\" AND source=\"$sourceToken$\" span=60s\r\n| eval MemoryUsageRatio = Used / (Used + Free)\r\n| timechart span=10s avg(MemoryUsageRatio) as \"Memory Usage Ratio\"\r\n"
 			},
 			"name": "Memory Line Chart copy 1"
+		},
+		"ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"CPUMetricData.total_cpu_one_minute\") prestats=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" span=10s\r\n| timechart avg(\"CPUMetricData.total_cpu_one_minute\") AS \"CPUMetricData.total_cpu_one_minute\" span=10s\r\n| fields - _span*\r\n"
+			},
+			"name": "One Minute CPU - gNMI"
+		},
+		"ds_JES3XTUB_ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") prestats=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" span=10s\r\n| timechart avg(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") AS \"cpmProcessExtRevTable.cpmCPUTotal1minRev\" span=10s\r\n| fields - _span*\r\n"
+			},
+			"name": "One Minute CPU - SNMP"
 		}
 	},
 	"inputs": {
@@ -304,7 +343,8 @@
 		},
 		"input_5nnzTp0g": {
 			"options": {
-				"token": "sourceToken"
+				"token": "sourceToken",
+				"defaultValue": "xr-6"
 			},
 			"title": "Choose Switch",
 			"type": "input.dropdown",
@@ -424,16 +464,6 @@
 				}
 			},
 			{
-				"item": "viz_qZcGR9yy",
-				"type": "block",
-				"position": {
-					"x": 0,
-					"y": 640,
-					"w": 630,
-					"h": 300
-				}
-			},
-			{
 				"item": "viz_7XOOwl8i",
 				"type": "block",
 				"position": {
@@ -458,6 +488,26 @@
 				"type": "block",
 				"position": {
 					"x": 0,
+					"y": 640,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_Jrz2mcti",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 950,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_GdTqu1Zt",
+				"type": "block",
+				"position": {
+					"x": 630,
 					"y": 950,
 					"w": 630,
 					"h": 300
