@@ -98,6 +98,7 @@
 			"dataSources": {
 				"ds.search": {
 					"options": {
+						"refresh": "65s",
 						"queryParameters": {
 							"latest": "$global_time.latest$",
 							"earliest": "$global_time.earliest$"
@@ -146,7 +147,7 @@
 					"earliest": "-24h@h",
 					"latest": "now"
 				},
-				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.5.1.1\" AND source=\"xr-1\" BY \"neighbor_address\" \r\n| eval now=now() \r\n| where latest_value_time > (now - 300)\r\n| fields - now\r\n"
+				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.5.1.1\" AND source=\"xr-1\"\r\n"
 			},
 			"name": "xr-1 from xr-5 SNMP"
 		},
@@ -157,7 +158,7 @@
 					"earliest": "-24h@h",
 					"latest": "now"
 				},
-				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.6.1.1\" AND source=\"xr-2\" BY \"neighbor_address\" \r\n| eval now=now() \r\n| where latest_value_time > (now - 300)\r\n| fields - now\r\n\r\n"
+				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.6.1.1\" AND source=\"xr-2\"\r\n\r\n"
 			},
 			"name": "xr-2 from xr-6 SNMP"
 		},
@@ -190,35 +191,23 @@
 					"earliest": "-24h@h",
 					"latest": "now"
 				},
-				"query": "| mstats latest(\"instanceSpecificBGPData-prefixes-accepted.prefixes_accepted\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"neighbor_address\"=\"10.2.2.1\" AND source=\"xr-8\""
+				"query": "| mstats latest(\"instanceSpecificBGPData-prefixes-accepted.prefixes_accepted\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"neighbor_address\"=\"10.2.2.2\" AND source=\"xr-8\""
 			},
-			"name": "xr-5 from xr-8 gNMI copy 1"
-		}
-	},
-	"inputs": {
-		"input_5nnzTp0g": {
-			"options": {
-				"defaultValue": "*",
-				"token": "sourceToken"
-			},
-			"title": "Choose Switch",
-			"type": "input.dropdown",
-			"dataSources": {
-				"primary": "ds_sourceDropDown"
-			}
+			"name": "prefixes from bird"
 		},
-		"input_IFWp5hzO": {
+		"ds_MToUw7Y1_ds_7nk8YO6H_ds_5fzRRfLw": {
+			"type": "ds.search",
 			"options": {
-				"items": [],
-				"token": "ms_multi_interfaces"
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.5.1.1\" AND source=\"xr-1\" BY \"neighbor_address\" \r\n| eval now=now() \r\n| where latest_value_time > (now - 300)\r\n| fields - now\r\n"
 			},
-			"title": "Choose Interface(s)",
-			"type": "input.multiselect",
-			"dataSources": {
-				"primary": "ds_nameDropDown"
-			}
+			"name": "xr-1 from xr-5 SNMP copy 1"
 		}
 	},
+	"inputs": {},
 	"layout": {
 		"type": "absolute",
 		"options": {
@@ -251,8 +240,8 @@
 				"item": "viz_qbnCJ8u4",
 				"type": "block",
 				"position": {
-					"x": 1060,
-					"y": 40,
+					"x": 290,
+					"y": 490,
 					"w": 140,
 					"h": 140
 				}
@@ -261,8 +250,8 @@
 				"item": "viz_NTxVAJg8",
 				"type": "block",
 				"position": {
-					"x": 1060,
-					"y": 200,
+					"x": 290,
+					"y": 650,
 					"w": 140,
 					"h": 140
 				}
@@ -298,10 +287,19 @@
 				}
 			}
 		],
-		"globalInputs": [
-			"input_5nnzTp0g",
-			"input_IFWp5hzO"
-		]
+		"globalInputs": []
+	},
+	"defaults": {
+		"dataSources": {
+			"global": {
+				"options": {
+					"refresh": "35s",
+					"queryParameters": {
+						"earliest": "-4h@m"
+					}
+				}
+			}
+		}
 	},
 	"description": "BGP metrics via both gNMI subscription and SNMP Polling",
 	"title": "BGP Metrics gNMI & SNMP"

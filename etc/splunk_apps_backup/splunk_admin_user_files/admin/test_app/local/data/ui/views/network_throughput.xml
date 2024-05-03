@@ -535,7 +535,7 @@
 		"dataSources": {
 			"global": {
 				"options": {
-					"refresh": "1m",
+					"refresh": "35s",
 					"queryParameters": {
 						"earliest": "-4h@m"
 					}
