@@ -6,10 +6,6 @@ modtime = 1714412217.245167000
 version = 9.1.2
 modtime = 1714495890.114183000
 
-[views/bgp_metrics_gnmi__snmp]
+[views/network_throughput]
 version = 9.1.2
-modtime = 1714512550.101993000
-
-[views/copied_over_from_analytics]
-version = 9.1.2
-modtime = 1714452508.590459000
+modtime = 1714786902.723424000
