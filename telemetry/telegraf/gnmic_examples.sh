@@ -65,21 +65,49 @@ gnmic sub \
 
 
 
+♦
 
 
 
 
 
 
-
-
+#! Testing only
 gnmic --username cisco --password cisco123 -a 198.18.133.1:57400 --skip-verify sub --mode stream --stream-mode sample --sample-interval 3s --path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/neighbors --debug
 gnmic --username cisco --password cisco123 -a 198.18.133.1:57400               sub --mode stream --stream-mode sample --sample-interval 3s --path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/neighbors --debug
-gnmic --username cisco --password cisco123 -a 198.18.133.1:57400               sub --mode stream --stream-mode sample --sample-interval 3s --path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/global-process-info --insecure --debug 
 gnmic --username cisco --password cisco123 -a 198.18.133.1:57400 --skip-verify sub --mode stream --stream-mode sample --sample-interval 3s --path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/neighbors --insecure --debug 
-
-
 gnmic --username cisco --password cisco123 -a 198.18.133.1:57400               sub --mode stream --stream-mode sample --sample-interval 3s --path Cisco-IOS-XR-infra-statsd-oper:infra-statistics/interfaces/interface/latest/generic-counters --debug
+
+
+
+#! Working
+gnmic --username cisco --password cisco123 -a 198.18.133.1:57400               sub --mode stream --stream-mode sample --sample-interval 3s --path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/global-process-info --insecure --debug 
+
+gnmic --username cisco --password cisco123 -a 198.18.133.2:57400               sub --mode stream --stream-mode sample --sample-interval 3s --path Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization[node-name=0/RP0/CPU0]/total-cpu-one-minute --insecure --debug 
+gnmic --username cisco --password cisco123 -a 198.18.133.6:57400               sub --mode stream --stream-mode sample --sample-interval 3s --path Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization[node-name=0/RP0/CPU0]/total-cpu-one-minute --insecure --debug 
+
+root@2f534a5a7844:/# snmpwalk -v3 -u cisco -l authPriv -a MD5 -A cisco123 -x DES -X cisco123 198.18.133.5 1.3.6.1.2.1.47.1.1.1.1.7
+iso.3.6.1.2.1.47.1.1.1.1.7.1 = STRING: "0/RP0"
+iso.3.6.1.2.1.47.1.1.1.1.7.2 = STRING: "0/RP0-Virtual-Motherboard"
+iso.3.6.1.2.1.47.1.1.1.1.7.3 = STRING: "0/RP0-Virtual-IDPROM"
+iso.3.6.1.2.1.47.1.1.1.1.7.4 = STRING: "0/RP0-MgmtEth0/RP0/CPU0/0"
+iso.3.6.1.2.1.47.1.1.1.1.7.10 = STRING: "0/RP0-CPU Module"
+iso.3.6.1.2.1.47.1.1.1.1.7.11 = STRING: "0/RP0-Intel 8 Core CPU Complex"
+iso.3.6.1.2.1.47.1.1.1.1.7.12 = STRING: "0/RP0-Virtual processor for sysadmin"
+iso.3.6.1.2.1.47.1.1.1.1.7.13 = STRING: "0/RP0-Virtual processor for RP IOS-XR"
+iso.3.6.1.2.1.47.1.1.1.1.7.14 = STRING: "0/RP0-Virtual processor for LCP XR"
+iso.3.6.1.2.1.47.1.1.1.1.7.65537 = STRING: "0/0"
+iso.3.6.1.2.1.47.1.1.1.1.7.65538 = STRING: "0/0-Virtual-Motherboard"
+iso.3.6.1.2.1.47.1.1.1.1.7.65539 = STRING: "0/0-Virtual-IDPROM"
+iso.3.6.1.2.1.47.1.1.1.1.7.65546 = STRING: "0/0-Ether Port container 0"
+
+iso.3.6.1.2.1.47.1.1.1.1.7.10 = STRING: "0/RP0-CPU Module"
+snmpwalk -v3 -u cisco -l authPriv -a MD5 -A cisco123 -x DES -X cisco123 198.18.133.5 iso.3.6.1.2.1.47.1.1.1.1.7.10
+
+
+Xpath	/
+Prefix	wdsysmon-fd-oper
+
 
 
 gnmic -a 198.18.133.1:57400 -u cisco -p cisco123 --insecure capabilities 
