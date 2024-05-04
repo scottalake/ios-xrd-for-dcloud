@@ -7,7 +7,7 @@
 	"visualizations": {
 		"viz_CcrVG9vo": {
 			"type": "splunk.line",
-			"title": "Packets Sent / Received",
+			"title": "Packets Sent / Received (gNMI)",
 			"description": "gNMI Subscription via Telegraf",
 			"dataSources": {
 				"primary": "ds_in_out"
@@ -19,7 +19,7 @@
 		},
 		"viz_JrCvgjE1": {
 			"type": "splunk.line",
-			"title": "In / Out Unicast Packets",
+			"title": "In / Out Unicast Packets (SNMP)",
 			"description": "From Telegraf SNMP Poller",
 			"dataSources": {
 				"primary": "ds_9qTUXhKu_ds_in_out"
@@ -57,15 +57,6 @@
 			"dataSources": {
 				"primary": "ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U"
 			}
-		},
-		"viz_xF8ebHeC": {
-			"type": "splunk.singlevalue",
-			"title": "1 min cpu gnmi",
-			"dataSources": {
-				"primary": "ds_JiMOJokD_ds_J6paBZ8U"
-			},
-			"showProgressBar": true,
-			"showLastUpdated": true
 		},
 		"viz_0WNvFOWo": {
 			"type": "splunk.singlevalue",
@@ -133,6 +124,37 @@
 				"primary": "ds_JES3XTUB_ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr"
 			},
 			"title": "One Minute CPU - SNMP"
+		},
+		"viz_ZKoLEHsW": {
+			"type": "splunk.line",
+			"title": "Input Drops (gNMI) ==> XR-7 G0/0/0/0",
+			"description": "",
+			"dataSources": {
+				"primary": "ds_crno381b_ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		},
+		"viz_tBSVwaC6": {
+			"type": "splunk.line",
+			"title": "Interface Discards (SNMP)  ==> XR-7 G0/0/0/0",
+			"description": "",
+			"dataSources": {
+				"primary": "ds_wYXJpfDG_ds_crno381b_ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		},
+		"viz_OuK91XAn": {
+			"type": "splunk.singlevalue",
+			"title": "1 min cpu gnmi",
+			"dataSources": {
+				"primary": "ds_TLb4SkzJ_ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U"
+			}
 		}
 	},
 	"dataSources": {
@@ -171,7 +193,7 @@
 			"dataSources": {
 				"ds.search": {
 					"options": {
-						"refresh": "1m",
+						"refresh": "35s",
 						"queryParameters": {
 							"latest": "$global_time.latest$",
 							"earliest": "$global_time.earliest$"
@@ -183,7 +205,7 @@
 		"ds_9qTUXhKu_ds_in_out": {
 			"type": "ds.search",
 			"options": {
-				"query": "| mstats rate_avg(\"interface.ifInUcastPkts\") as \"interface.ifInUcastPkts /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"interface.ifOutUcastPkts\") as \"interface.ifOutUcastPkts /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time\r\n",
+				"query": "| mstats latest(\"interface.ifInUcastPkts\") as \"Inbound Unicast Packets\" WHERE index=\"mertics_data\" AND telegraf_tag=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=30s\r\n| streamstats current=f window=1 latest(\"Inbound Unicast Packets\") as \"Previous Inbound Unicast Packets\"\r\n| eval \"Packets Received\" = 'Inbound Unicast Packets' - 'Previous Inbound Unicast Packets'\r\n| eval \"Packets Received\" = if('Packets Received' < 0, null(), 'Packets Received')\r\n| timechart span=30s sum(\"Packets Received\") as \"Inbound Packets/s\"\r\n",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
@@ -194,72 +216,66 @@
 		"ds_J6paBZ8U": {
 			"type": "ds.search",
 			"options": {
-				"refresh": "1m",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n\r\n"
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n\r\n"
 			},
 			"name": "1 min cpu svc snmp"
 		},
 		"ds_R7u3eP6k_ds_J6paBZ8U": {
 			"type": "ds.search",
 			"options": {
-				"refresh": "1m",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal5minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n\r\n"
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal5minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n\r\n"
 			},
 			"name": "5 min cpu svc snmp"
 		},
 		"ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U": {
 			"type": "ds.search",
 			"options": {
-				"refresh": "1m",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal15minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n\r\n\r\n"
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal15minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n\r\n\r\n"
 			},
 			"name": "15 min cpu svc snmp"
 		},
 		"ds_JiMOJokD_ds_J6paBZ8U": {
 			"type": "ds.search",
 			"options": {
-				"refresh": "1m",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"CPUMetricData.total_cpu_one_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval _time = now()\r\n"
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_one_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n"
 			},
 			"name": "1 min cpu svc gnmi"
 		},
 		"ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U": {
 			"type": "ds.search",
 			"options": {
-				"refresh": "1m",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"CPUMetricData.total_cpu_five_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval _time = now()\r\n"
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_five_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n"
 			},
 			"name": "5 min cpu svc gnmi"
 		},
 		"ds_jBWLeYV3_ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U": {
 			"type": "ds.search",
 			"options": {
-				"refresh": "1m",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
 				},
-				"query": "| mstats latest(\"CPUMetricData.total_cpu_fifteen_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval _time = now()"
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_fifteen_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n"
 			},
 			"name": "15 min cpu svc gnmi"
 		},
@@ -339,6 +355,50 @@
 				"query": "| mstats avg(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") prestats=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" span=10s\r\n| timechart avg(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") AS \"cpmProcessExtRevTable.cpmCPUTotal1minRev\" span=10s\r\n| fields - _span*\r\n"
 			},
 			"name": "One Minute CPU - Line Chart SNMP"
+		},
+		"ds_crno381b_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"infra-statistics.input_drops\") as \"Rate (Avg) /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-7\" AND \"interface_name\"=\"GigabitEthernet0/0/0/0\"  span=10s\r\n| fields - _span*\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "input drops xr7 facing source"
+		},
+		"ds_wYXJpfDG_ds_crno381b_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"interface.ifInDiscards\") as \"Rate (Avg) /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"source\"=\"xr-7\" AND \"ifDescr\"=\"GigabitEthernet0/0/0/0\"  span=10s\r\n| fields - _span*\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "Input drops xr7 facing Source SNMP"
+		},
+		"ds_TLb4SkzJ_ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_one_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n"
+			},
+			"name": "5 min cpu svc gnmi copy 1"
+		},
+		"ds_lEptvxJl_ds_wYXJpfDG_ds_crno381b_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"infra-statistics.input_drops\") as \"Rate (Avg) /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-7\" AND \"interface_name\"=\"GigabitEthernet0/0/0/0\"  span=10s\r\n| fields - _span*\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "Input drops xr7 facing Source SNMP copy 1"
 		}
 	},
 	"inputs": {
@@ -378,7 +438,7 @@
 		"type": "absolute",
 		"options": {
 			"width": 1440,
-			"height": 1500,
+			"height": 1800,
 			"display": "auto"
 		},
 		"structure": [
@@ -387,8 +447,8 @@
 				"type": "block",
 				"position": {
 					"x": 0,
-					"y": 0,
-					"w": 730,
+					"y": 360,
+					"w": 630,
 					"h": 300
 				}
 			},
@@ -396,28 +456,28 @@
 				"item": "viz_JrCvgjE1",
 				"type": "block",
 				"position": {
-					"x": 0,
-					"y": 300,
-					"w": 730,
-					"h": 340
+					"x": 650,
+					"y": 360,
+					"w": 630,
+					"h": 300
 				}
 			},
 			{
 				"item": "viz_RKFCbn6D",
 				"type": "block",
 				"position": {
-					"x": 750,
+					"x": 530,
 					"y": 10,
-					"w": 250,
-					"h": 250
+					"w": 210,
+					"h": 140
 				}
 			},
 			{
 				"item": "viz_WwEJbajM",
 				"type": "block",
 				"position": {
-					"x": 750,
-					"y": 500,
+					"x": 10,
+					"y": 160,
 					"w": 150,
 					"h": 140
 				}
@@ -426,8 +486,8 @@
 				"item": "viz_bVVBTz7u",
 				"type": "block",
 				"position": {
-					"x": 910,
-					"y": 500,
+					"x": 170,
+					"y": 160,
 					"w": 150,
 					"h": 140
 				}
@@ -436,18 +496,8 @@
 				"item": "viz_hVqys3Rt",
 				"type": "block",
 				"position": {
-					"x": 1070,
-					"y": 500,
-					"w": 150,
-					"h": 140
-				}
-			},
-			{
-				"item": "viz_xF8ebHeC",
-				"type": "block",
-				"position": {
-					"x": 750,
-					"y": 350,
+					"x": 330,
+					"y": 160,
 					"w": 150,
 					"h": 140
 				}
@@ -456,8 +506,8 @@
 				"item": "viz_0WNvFOWo",
 				"type": "block",
 				"position": {
-					"x": 910,
-					"y": 350,
+					"x": 170,
+					"y": 10,
 					"w": 150,
 					"h": 140
 				}
@@ -466,8 +516,8 @@
 				"item": "viz_1BlZTnSs",
 				"type": "block",
 				"position": {
-					"x": 1070,
-					"y": 350,
+					"x": 330,
+					"y": 10,
 					"w": 150,
 					"h": 140
 				}
@@ -476,8 +526,8 @@
 				"item": "viz_7XOOwl8i",
 				"type": "block",
 				"position": {
-					"x": 630,
-					"y": 640,
+					"x": 650,
+					"y": 680,
 					"w": 630,
 					"h": 300
 				}
@@ -486,10 +536,10 @@
 				"item": "viz_napgmygx",
 				"type": "block",
 				"position": {
-					"x": 1010,
-					"y": 10,
-					"w": 250,
-					"h": 250
+					"x": 530,
+					"y": 160,
+					"w": 210,
+					"h": 140
 				}
 			},
 			{
@@ -497,7 +547,7 @@
 				"type": "block",
 				"position": {
 					"x": 0,
-					"y": 640,
+					"y": 680,
 					"w": 630,
 					"h": 300
 				}
@@ -507,7 +557,7 @@
 				"type": "block",
 				"position": {
 					"x": 0,
-					"y": 950,
+					"y": 990,
 					"w": 630,
 					"h": 300
 				}
@@ -516,10 +566,40 @@
 				"item": "viz_GdTqu1Zt",
 				"type": "block",
 				"position": {
-					"x": 630,
-					"y": 950,
+					"x": 650,
+					"y": 990,
 					"w": 630,
 					"h": 300
+				}
+			},
+			{
+				"item": "viz_ZKoLEHsW",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 1300,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_tBSVwaC6",
+				"type": "block",
+				"position": {
+					"x": 650,
+					"y": 1300,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_OuK91XAn",
+				"type": "block",
+				"position": {
+					"x": 10,
+					"y": 10,
+					"w": 150,
+					"h": 140
 				}
 			}
 		],
