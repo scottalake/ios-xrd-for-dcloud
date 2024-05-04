@@ -1,0 +1,157 @@
+
+<dashboard version="2" theme="light">
+    <label>Classic Dashboard</label>
+    <description></description>
+    <definition><![CDATA[
+{
+	"visualizations": {
+		"viz_E8KHWj0o": {
+			"type": "splunk.line",
+			"options": {
+				"yAxisAbbreviation": "auto",
+				"y2AxisAbbreviation": "off",
+				"showRoundedY2AxisLabels": false,
+				"legendTruncation": "ellipsisMiddle",
+				"showY2MajorGridLines": true,
+				"nullValueDisplay": "connect",
+				"dataValuesDisplay": "off",
+				"seriesColorsByField": {
+					"Avg": "#1e93c6",
+					"ifcounters.in_pkts": "#1e93c6",
+					"ifcounters.out_pkts": "#f2b827",
+					"Rate (Avg) ifcounters.in_pkts /s": "#d6563c",
+					"Avg ifcounters.out_pkts": "#f2b827",
+					"ifcounters.in_pkts /s": "#d6563c",
+					"ifcounters.out_pkts /s": "#6a5c9e"
+				},
+				"showXMajorGridLines": true,
+				"legendMode": "seriesCompare",
+				"lineDashStylesByField": {
+					"Avg": "solid",
+					"ifcounters.in_pkts": "solid",
+					"ifcounters.out_pkts": "solid",
+					"Rate (Avg) ifcounters.in_pkts /s": "solid",
+					"Avg ifcounters.out_pkts": "solid",
+					"ifcounters.in_pkts /s": "solid",
+					"ifcounters.out_pkts /s": "solid"
+				}
+			},
+			"dataSources": {
+				"primary": "ds_WjoyMGqw"
+			},
+			"title": "ifcounters.in_pkts, ifcounters.out_pkts"
+		}
+	},
+	"dataSources": {
+		"ds_WjoyMGqw": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"ifcounters.in_pkts\") as \"ifcounters.in_pkts /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" span=10s\n| fields - _span*\n| append [\n| mstats rate_avg(\"ifcounters.out_pkts\") as \"ifcounters.out_pkts /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" span=10s\n| fields - _span*\n]\n| selfjoin keepsingle=true _time",
+				"queryParameters": {
+					"earliest": "-1h"
+				}
+			},
+			"name": "ifcounters.in_pkts_ ifcounters.out_pkts search"
+		}
+	},
+	"defaults": {
+		"dataSources": {
+			"ds.search": {
+				"options": {
+					"queryParameters": {}
+				}
+			}
+		}
+	},
+	"inputs": {},
+	"layout": {
+		"type": "absolute",
+		"options": {
+			"height": 250,
+			"width": 1440,
+			"display": "auto"
+		},
+		"structure": [
+			{
+				"item": "viz_E8KHWj0o",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 0,
+					"w": 1440,
+					"h": 250
+				}
+			}
+		],
+		"globalInputs": []
+	},
+	"description": "",
+	"title": "Classic Dashboard"
+}
+    ]]></definition>
+    <meta type="hiddenElements"><![CDATA[
+{
+	"hideEdit": false,
+	"hideOpenInSearch": false,
+	"hideExport": false
+}
+    ]]></meta>
+    <meta type="conversionReport"><![CDATA[
+{
+	"conversionErrors": [],
+	"conversionWarnings": [
+		{
+			"type": "unsupportedOptionGeneric",
+			"optionName": "displayview",
+			"optionValue": "analytics_workspace",
+			"line": 25,
+			"convertedId": "viz_E8KHWj0o",
+			"vizType": "splunk.line"
+		}
+	],
+	"counts": {
+		"visualizations": {
+			"count": 1,
+			"convertedCount": 1,
+			"configCount": 10,
+			"convertedConfigCount": 9
+		},
+		"inputs": {
+			"count": 0,
+			"convertedCount": 0,
+			"configCount": 0,
+			"convertedConfigCount": 0
+		},
+		"searches": {
+			"count": 1,
+			"convertedCount": 1,
+			"configCount": 2,
+			"convertedConfigCount": 2
+		},
+		"dataSources": 1,
+		"panels": {
+			"count": 1,
+			"convertedCount": 1,
+			"configCount": 0,
+			"convertedConfigCount": 0
+		},
+		"rows": {
+			"count": 1,
+			"convertedCount": 1,
+			"configCount": 0,
+			"convertedConfigCount": 0
+		},
+		"dashboardLevelConfigs": {
+			"count": 1,
+			"convertedCount": 1,
+			"configCount": 2,
+			"convertedConfigCount": 2
+		}
+	},
+	"conversionTime": 1713275974271,
+	"originDashboardTitle": "Classic Dashboard 1 Copy",
+	"originDashboardId": "classic_dashboard_1_copy",
+	"originDashboardApp": "test_app"
+}
+    ]]></meta>
+</dashboard>

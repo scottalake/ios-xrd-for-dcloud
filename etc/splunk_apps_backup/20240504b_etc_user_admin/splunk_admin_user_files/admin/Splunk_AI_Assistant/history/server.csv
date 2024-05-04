@@ -1,0 +1,3 @@
+sid,"splunk_server","_time","is_realtime",search,"adhoc_search_level","event_count","exec_time","result_count","scan_count",status,"total_run_time","__mv_sid","__mv_splunk_server","__mv__time","__mv_is_realtime","__mv_search","__mv_adhoc_search_level","__mv_event_count","__mv_exec_time","__mv_result_count","__mv_scan_count","__mv_status","__mv_total_run_time"
+"1713227794.5",server,"1713227794.473753",0,"| makeresults 1 | join type=left [| rest /services/apps/local splunk_server=local | search disabled=0 label=""Python for Scientific Computing"" | table version]
+          | eval req=if(version>=""4.0.0"", 1, 0)","",0,1713227794,1,0,completed,"0.095",,,,,,,,,,,,
