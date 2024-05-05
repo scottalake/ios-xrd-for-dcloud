@@ -37,6 +37,8 @@ while True:
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
 
+        3. Back up user icons
+
        10. Restart splunk
 
        99. Exit""")

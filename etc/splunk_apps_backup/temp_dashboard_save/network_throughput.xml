@@ -193,6 +193,7 @@
 			"dataSources": {
 				"ds.search": {
 					"options": {
+						"refresh": "35s",
 						"queryParameters": {
 							"latest": "$global_time.latest$",
 							"earliest": "$global_time.earliest$"
@@ -204,7 +205,7 @@
 		"ds_9qTUXhKu_ds_in_out": {
 			"type": "ds.search",
 			"options": {
-				"query": "| mstats rate_avg(\"interface.ifInUcastPkts\") as \"interface.ifInUcastPkts /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"interface.ifOutUcastPkts\") as \"interface.ifOutUcastPkts /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time",
+				"query": "| mstats latest(\"interface.ifInUcastPkts\") as \"Inbound Unicast Packets\" WHERE index=\"mertics_data\" AND telegraf_tag=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=30s\r\n| streamstats current=f window=1 latest(\"Inbound Unicast Packets\") as \"Previous Inbound Unicast Packets\"\r\n| eval \"Packets Received\" = 'Inbound Unicast Packets' - 'Previous Inbound Unicast Packets'\r\n| eval \"Packets Received\" = if('Packets Received' < 0, null(), 'Packets Received')\r\n| timechart span=30s sum(\"Packets Received\") as \"Inbound Packets/s\"\r\n",
 				"queryParameters": {
 					"earliest": "$global_time.earliest$",
 					"latest": "$global_time.latest$"
@@ -614,6 +615,7 @@
 		"dataSources": {
 			"global": {
 				"options": {
+					"refresh": "35s",
 					"queryParameters": {
 						"earliest": "-4h@m"
 					}

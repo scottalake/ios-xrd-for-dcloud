@@ -98,6 +98,7 @@
 			"dataSources": {
 				"ds.search": {
 					"options": {
+						"refresh": "65s",
 						"queryParameters": {
 							"latest": "$global_time.latest$",
 							"earliest": "$global_time.earliest$"
@@ -292,6 +293,7 @@
 		"dataSources": {
 			"global": {
 				"options": {
+					"refresh": "35s",
 					"queryParameters": {
 						"earliest": "-4h@m"
 					}
