@@ -1,0 +1,805 @@
+
+<dashboard version="2" theme="light">
+    <label>Topology Throughput Source-Dest</label>
+    <description></description>
+    <definition><![CDATA[
+{
+	"dataSources": {
+		"search_1": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats sum(\"infra-statistics.packets_received\") as Packets_Received, sum(\"infra-statistics.packets_sent\") as Packets_Sent WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-1\" AND (\"interface_name\"=\"GigabitEthernet0/0/0/0\" OR \"interface_name\"=\"GigabitEthernet0/0/0/1\" OR \"interface_name\"=\"GigabitEthernet0/0/0/2\")\r\n| eval Total_Packets = Packets_Received + Packets_Sent\r\n| stats sum(Total_Packets) as Total_Packets\r\n| table Total_Packets\r\n",
+				"queryParameters": {
+					"earliest": "$global_time_tok.earliest$",
+					"latest": "$global_time_tok.latest$"
+				}
+			},
+			"name": "Total Throughput xr-1"
+		},
+		"ds_tZOPpVQA_search_1": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats sum(\"infra-statistics.packets_received\") as Packets_Received, sum(\"infra-statistics.packets_sent\") as Packets_Sent WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-2\" AND (\"interface_name\"=\"GigabitEthernet0/0/0/0\" OR \"interface_name\"=\"GigabitEthernet0/0/0/1\" OR \"interface_name\"=\"GigabitEthernet0/0/0/2\")\r\n| eval Total_Packets = Packets_Received + Packets_Sent\r\n| stats sum(Total_Packets) as Total_Packets\r\n| table Total_Packets\r\n",
+				"queryParameters": {
+					"earliest": "$global_time_tok.earliest$",
+					"latest": "$global_time_tok.latest$"
+				}
+			},
+			"name": "Total Throughput xr-2"
+		},
+		"ds_rj8qBBOD_search_1": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats sum(\"infra-statistics.packets_received\") as Packets_Received, sum(\"infra-statistics.packets_sent\") as Packets_Sent WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-5\" AND (\"interface_name\"=\"GigabitEthernet0/0/0/0\" OR \"interface_name\"=\"GigabitEthernet0/0/0/1\" OR \"interface_name\"=\"GigabitEthernet0/0/0/2\")\r\n| eval Total_Packets = Packets_Received + Packets_Sent\r\n| stats sum(Total_Packets) as Total_Packets\r\n| table Total_Packets\r\n",
+				"queryParameters": {
+					"earliest": "$global_time_tok.earliest$",
+					"latest": "$global_time_tok.latest$"
+				}
+			},
+			"name": "Total Throughput xr-5"
+		},
+		"ds_fCNe3aiW_ds_tZOPpVQA_search_1": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats sum(\"infra-statistics.packets_received\") as Packets_Received, sum(\"infra-statistics.packets_sent\") as Packets_Sent WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-6\" AND (\"interface_name\"=\"GigabitEthernet0/0/0/0\" OR \"interface_name\"=\"GigabitEthernet0/0/0/1\" OR \"interface_name\"=\"GigabitEthernet0/0/0/2\")\r\n| eval Total_Packets = Packets_Received + Packets_Sent\r\n| stats sum(Total_Packets) as Total_Packets\r\n| table Total_Packets\r\n",
+				"queryParameters": {
+					"earliest": "$global_time_tok.earliest$",
+					"latest": "$global_time_tok.latest$"
+				}
+			},
+			"name": "Total Throughput xr-6"
+		},
+		"ds_pIFa5LzM_ds_rj8qBBOD_search_1": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats sum(\"infra-statistics.packets_received\") as Packets_Received, sum(\"infra-statistics.packets_sent\") as Packets_Sent WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-7\" AND (\"interface_name\"=\"GigabitEthernet0/0/0/0\" OR \"interface_name\"=\"GigabitEthernet0/0/0/1\" OR \"interface_name\"=\"GigabitEthernet0/0/0/2\")\r\n| eval Total_Packets = Packets_Received + Packets_Sent\r\n| stats sum(Total_Packets) as Total_Packets\r\n| table Total_Packets\r\n",
+				"queryParameters": {
+					"earliest": "$global_time_tok.earliest$",
+					"latest": "$global_time_tok.latest$"
+				}
+			},
+			"name": "Total Throughput xr-7"
+		},
+		"ds_h0KeRtRX_ds_fCNe3aiW_ds_tZOPpVQA_search_1": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats sum(\"infra-statistics.packets_received\") as Packets_Received, sum(\"infra-statistics.packets_sent\") as Packets_Sent WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-8\" AND (\"interface_name\"=\"GigabitEthernet0/0/0/0\" OR \"interface_name\"=\"GigabitEthernet0/0/0/1\" OR \"interface_name\"=\"GigabitEthernet0/0/0/2\")\r\n| eval Total_Packets = Packets_Received + Packets_Sent\r\n| stats sum(Total_Packets) as Total_Packets\r\n| table Total_Packets\r\n",
+				"queryParameters": {
+					"earliest": "$global_time_tok.earliest$",
+					"latest": "$global_time_tok.latest$"
+				}
+			},
+			"name": "Total Throughput xr-8"
+		}
+	},
+	"layout": {
+		"type": "absolute",
+		"options": {
+			"height": 500,
+			"backgroundColor": "transparent",
+			"display": "fit-to-width"
+		},
+		"structure": [
+			{
+				"item": "viz_uHwXN44a",
+				"type": "line",
+				"position": {
+					"from": {
+						"item": "viz_V3fsTNZp",
+						"port": "e"
+					},
+					"to": {
+						"item": "viz_tz4qQLHW",
+						"port": "w"
+					}
+				}
+			},
+			{
+				"item": "viz_pEsZzuK9",
+				"type": "line",
+				"position": {
+					"from": {
+						"x": 540,
+						"y": 305
+					},
+					"to": {
+						"item": "viz_sg4aovIo",
+						"port": "e"
+					}
+				}
+			},
+			{
+				"item": "viz_iYw5DBMZ",
+				"type": "line",
+				"position": {
+					"from": {
+						"item": "viz_Uq3qVfbd",
+						"port": "s"
+					},
+					"to": {
+						"item": "viz_sg4aovIo",
+						"port": "n"
+					}
+				}
+			},
+			{
+				"item": "viz_WdLIXGrH",
+				"type": "line",
+				"position": {
+					"from": {
+						"item": "viz_Uq3qVfbd",
+						"port": "e"
+					},
+					"to": {
+						"item": "viz_V3fsTNZp",
+						"port": "w"
+					}
+				}
+			},
+			{
+				"item": "viz_4Z2h0rxq",
+				"type": "line",
+				"position": {
+					"from": {
+						"item": "viz_HT6WIoMu",
+						"port": "e"
+					},
+					"to": {
+						"item": "viz_sg4aovIo",
+						"port": "w"
+					}
+				}
+			},
+			{
+				"item": "viz_PKjBAkaJ",
+				"type": "line",
+				"position": {
+					"from": {
+						"item": "viz_HT6WIoMu",
+						"port": "e"
+					},
+					"to": {
+						"item": "viz_Uq3qVfbd",
+						"port": "w"
+					}
+				}
+			},
+			{
+				"item": "viz_PE11oTGO",
+				"type": "line",
+				"position": {
+					"from": {
+						"item": "viz_tz4qQLHW",
+						"port": "e"
+					},
+					"to": {
+						"item": "viz_p66b6UFU",
+						"port": "w"
+					}
+				}
+			},
+			{
+				"item": "viz_c7zOxZKS",
+				"type": "line",
+				"position": {
+					"from": {
+						"x": 645,
+						"y": 314
+					},
+					"to": {
+						"item": "viz_tz4qQLHW",
+						"port": "w"
+					}
+				}
+			},
+			{
+				"item": "viz_R0R013s3",
+				"type": "line",
+				"position": {
+					"from": {
+						"x": 590,
+						"y": 270
+					},
+					"to": {
+						"x": 600,
+						"y": 200
+					}
+				}
+			},
+			{
+				"item": "chart_1",
+				"type": "block",
+				"position": {
+					"x": 319,
+					"y": 105,
+					"w": 80,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_Uq3qVfbd",
+				"type": "block",
+				"position": {
+					"x": 310,
+					"y": 130,
+					"w": 100,
+					"h": 70
+				}
+			},
+			{
+				"item": "viz_2Dq6hVtj",
+				"type": "block",
+				"position": {
+					"x": 307,
+					"y": 341,
+					"w": 94,
+					"h": 20
+				}
+			},
+			{
+				"item": "viz_sg4aovIo",
+				"type": "block",
+				"position": {
+					"x": 300,
+					"y": 270,
+					"w": 100,
+					"h": 70
+				}
+			},
+			{
+				"item": "viz_EpTGsDrl",
+				"type": "block",
+				"position": {
+					"x": 559,
+					"y": 108,
+					"w": 80,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_V3fsTNZp",
+				"type": "block",
+				"position": {
+					"x": 550,
+					"y": 130,
+					"w": 100,
+					"h": 70
+				}
+			},
+			{
+				"item": "viz_AOAOK4OH",
+				"type": "block",
+				"position": {
+					"x": 540,
+					"y": 270,
+					"w": 100,
+					"h": 70
+				}
+			},
+			{
+				"item": "viz_ThbfnJMK",
+				"type": "block",
+				"position": {
+					"x": 110,
+					"y": 190,
+					"w": 80,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_HT6WIoMu",
+				"type": "block",
+				"position": {
+					"x": 100,
+					"y": 210,
+					"w": 100,
+					"h": 70
+				}
+			},
+			{
+				"item": "viz_0k87dxIs",
+				"type": "block",
+				"position": {
+					"x": 760,
+					"y": 177,
+					"w": 80,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_tz4qQLHW",
+				"type": "block",
+				"position": {
+					"x": 750,
+					"y": 200,
+					"w": 100,
+					"h": 70
+				}
+			},
+			{
+				"item": "viz_p66b6UFU",
+				"type": "block",
+				"position": {
+					"x": 930,
+					"y": 200,
+					"w": 60,
+					"h": 70
+				}
+			},
+			{
+				"item": "viz_ZY85WCvr",
+				"type": "block",
+				"position": {
+					"x": 130,
+					"y": 280,
+					"w": 50,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_sEiMTdy6",
+				"type": "block",
+				"position": {
+					"x": 320,
+					"y": 200,
+					"w": 50,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_AedBFmJO",
+				"type": "block",
+				"position": {
+					"x": 350,
+					"y": 250,
+					"w": 50,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_Ztp2GaVP",
+				"type": "block",
+				"position": {
+					"x": 558,
+					"y": 194,
+					"w": 50,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_LH76aqBd",
+				"type": "block",
+				"position": {
+					"x": 597,
+					"y": 250,
+					"w": 50,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_N3VqgGAx",
+				"type": "block",
+				"position": {
+					"x": 780,
+					"y": 266,
+					"w": 50,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_1YgiBaqW",
+				"type": "block",
+				"position": {
+					"x": 940,
+					"y": 260,
+					"w": 70,
+					"h": 40
+				}
+			},
+			{
+				"item": "viz_WajvWj8E",
+				"type": "block",
+				"position": {
+					"x": 545,
+					"y": 340,
+					"w": 90,
+					"h": 30
+				}
+			},
+			{
+				"item": "viz_aeYebpaf",
+				"type": "block",
+				"position": {
+					"x": 330,
+					"y": 130,
+					"w": 60,
+					"h": 60
+				}
+			},
+			{
+				"item": "viz_SAB7Bt49",
+				"type": "block",
+				"position": {
+					"x": 120,
+					"y": 220,
+					"w": 60,
+					"h": 60
+				}
+			},
+			{
+				"item": "viz_oxXHTHvB",
+				"type": "block",
+				"position": {
+					"x": 320,
+					"y": 270,
+					"w": 60,
+					"h": 60
+				}
+			},
+			{
+				"item": "viz_dZ4CZ0kJ",
+				"type": "block",
+				"position": {
+					"x": 570,
+					"y": 130,
+					"w": 60,
+					"h": 60
+				}
+			},
+			{
+				"item": "viz_Hq22vq1v",
+				"type": "block",
+				"position": {
+					"x": 560,
+					"y": 270,
+					"w": 60,
+					"h": 60
+				}
+			},
+			{
+				"item": "viz_PBi7GFs7",
+				"type": "block",
+				"position": {
+					"x": 770,
+					"y": 200,
+					"w": 60,
+					"h": 60
+				}
+			},
+			{
+				"item": "viz_jMCVpv11",
+				"type": "block",
+				"position": {
+					"x": 950,
+					"y": 200,
+					"w": 60,
+					"h": 60
+				}
+			},
+			{
+				"item": "viz_MJvMhYFr",
+				"type": "block",
+				"position": {
+					"x": 820,
+					"y": 340,
+					"w": 90,
+					"h": 100
+				}
+			}
+		],
+		"globalInputs": [
+			"input_1"
+		]
+	},
+	"title": "Topology Throughput Source-Dest",
+	"description": "",
+	"inputs": {
+		"input_1": {
+			"type": "input.timerange",
+			"title": "Time Range",
+			"options": {
+				"token": "global_time_tok",
+				"defaultValue": "-1h,now"
+			}
+		}
+	},
+	"defaults": {},
+	"visualizations": {
+		"chart_1": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "search_1"
+			},
+			"title": "",
+			"description": "",
+			"showProgressBar": false,
+			"showLastUpdated": false,
+			"options": {
+				"backgroundColor": "transparent"
+			}
+		},
+		"viz_Uq3qVfbd": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://6632a4cceec887f95c0c3f4a"
+			}
+		},
+		"viz_2Dq6hVtj": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "ds_tZOPpVQA_search_1"
+			},
+			"title": "",
+			"description": "",
+			"showProgressBar": false,
+			"showLastUpdated": false,
+			"options": {
+				"backgroundColor": "transparent"
+			}
+		},
+		"viz_sg4aovIo": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://6632a4cceec887f95c0c3f4a"
+			}
+		},
+		"viz_EpTGsDrl": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "ds_rj8qBBOD_search_1"
+			},
+			"title": "",
+			"description": "",
+			"showProgressBar": false,
+			"showLastUpdated": false,
+			"options": {
+				"backgroundColor": "transparent"
+			}
+		},
+		"viz_V3fsTNZp": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://6632a4cceec887f95c0c3f4a"
+			}
+		},
+		"viz_WajvWj8E": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "ds_fCNe3aiW_ds_tZOPpVQA_search_1"
+			},
+			"title": "",
+			"description": "",
+			"showProgressBar": false,
+			"showLastUpdated": false,
+			"options": {
+				"backgroundColor": "transparent"
+			}
+		},
+		"viz_AOAOK4OH": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://6632a4cceec887f95c0c3f4a"
+			}
+		},
+		"viz_ThbfnJMK": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "ds_pIFa5LzM_ds_rj8qBBOD_search_1"
+			},
+			"title": "",
+			"description": "",
+			"showProgressBar": false,
+			"showLastUpdated": false,
+			"options": {
+				"backgroundColor": "transparent"
+			}
+		},
+		"viz_HT6WIoMu": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://6632a4cceec887f95c0c3f4a"
+			}
+		},
+		"viz_0k87dxIs": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "ds_h0KeRtRX_ds_fCNe3aiW_ds_tZOPpVQA_search_1"
+			},
+			"title": "",
+			"description": "",
+			"showProgressBar": false,
+			"showLastUpdated": false,
+			"options": {
+				"backgroundColor": "transparent"
+			}
+		},
+		"viz_tz4qQLHW": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://6632a4cceec887f95c0c3f4a"
+			}
+		},
+		"viz_uHwXN44a": {
+			"type": "abslayout.line"
+		},
+		"viz_pEsZzuK9": {
+			"type": "abslayout.line"
+		},
+		"viz_iYw5DBMZ": {
+			"type": "abslayout.line"
+		},
+		"viz_WdLIXGrH": {
+			"type": "abslayout.line"
+		},
+		"viz_4Z2h0rxq": {
+			"type": "abslayout.line"
+		},
+		"viz_PKjBAkaJ": {
+			"type": "abslayout.line"
+		},
+		"viz_PE11oTGO": {
+			"type": "abslayout.line"
+		},
+		"viz_c7zOxZKS": {
+			"type": "abslayout.line"
+		},
+		"viz_R0R013s3": {
+			"type": "abslayout.line"
+		},
+		"viz_p66b6UFU": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://6632a4cceec887f95c0c3f4a"
+			}
+		},
+		"viz_ZY85WCvr": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "*****xr-7*****",
+				"fontColor": "#0877a6",
+				"fontSize": "large"
+			}
+		},
+		"viz_sEiMTdy6": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "*****xr-1*****",
+				"fontColor": "#0877a6",
+				"fontSize": "large"
+			}
+		},
+		"viz_AedBFmJO": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "*****xr-2*****",
+				"fontColor": "#0877a6",
+				"fontSize": "large"
+			}
+		},
+		"viz_Ztp2GaVP": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "*****xr-5*****",
+				"fontColor": "#0877a6",
+				"fontSize": "large"
+			}
+		},
+		"viz_LH76aqBd": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "*****xr-6*****",
+				"fontColor": "#0877a6",
+				"fontSize": "large"
+			}
+		},
+		"viz_N3VqgGAx": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "*****xr-8*****",
+				"fontColor": "#0877a6",
+				"fontSize": "large"
+			}
+		},
+		"viz_1YgiBaqW": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "*****BGP Route Server*****",
+				"fontColor": "#0877a6",
+				"fontSize": "small"
+			}
+		},
+		"viz_aeYebpaf": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://icon-datacenter__13a43013-4b5b-4553-a035-ebcb43b0bbcb.svg",
+				"majorColor": "transparent",
+				"trendColor": "transparent",
+				"iconColor": "#0877a6"
+			}
+		},
+		"viz_SAB7Bt49": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://icon-datacenter__13a43013-4b5b-4553-a035-ebcb43b0bbcb.svg",
+				"majorColor": "transparent",
+				"trendColor": "transparent",
+				"iconColor": "#0877a6"
+			}
+		},
+		"viz_oxXHTHvB": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://icon-datacenter__13a43013-4b5b-4553-a035-ebcb43b0bbcb.svg",
+				"majorColor": "transparent",
+				"trendColor": "transparent",
+				"iconColor": "#0877a6"
+			}
+		},
+		"viz_dZ4CZ0kJ": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://icon-datacenter__13a43013-4b5b-4553-a035-ebcb43b0bbcb.svg",
+				"majorColor": "transparent",
+				"trendColor": "transparent",
+				"iconColor": "#0877a6"
+			}
+		},
+		"viz_Hq22vq1v": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://icon-datacenter__13a43013-4b5b-4553-a035-ebcb43b0bbcb.svg",
+				"majorColor": "transparent",
+				"trendColor": "transparent",
+				"iconColor": "#0877a6"
+			}
+		},
+		"viz_PBi7GFs7": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://icon-datacenter__13a43013-4b5b-4553-a035-ebcb43b0bbcb.svg",
+				"majorColor": "transparent",
+				"trendColor": "transparent",
+				"iconColor": "#0877a6"
+			}
+		},
+		"viz_jMCVpv11": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://icon-datacenter__13a43013-4b5b-4553-a035-ebcb43b0bbcb.svg",
+				"majorColor": "transparent",
+				"trendColor": "transparent",
+				"iconColor": "#0877a6"
+			}
+		},
+		"viz_MJvMhYFr": {
+			"type": "splunk.singlevalueicon",
+			"options": {
+				"showValue": false,
+				"icon": "splunk-enterprise-kvstore://66367bf2cdc4901d8301b552"
+			}
+		}
+	}
+}
+    ]]></definition>
+    <meta type="hiddenElements"><![CDATA[
+{
+	"hideEdit": false,
+	"hideOpenInSearch": false,
+	"hideExport": false
+}
+    ]]></meta>
+</dashboard>

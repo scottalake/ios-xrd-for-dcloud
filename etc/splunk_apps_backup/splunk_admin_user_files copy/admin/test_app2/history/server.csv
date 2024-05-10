@@ -1,2 +1,0 @@
-sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level","event_count","exec_time","result_count","scan_count",status,"total_run_time","__mv_sid","__mv_splunk_server","__mv__time","__mv_is_realtime","__mv_provenance","__mv_search","__mv_adhoc_search_level","__mv_event_count","__mv_exec_time","__mv_result_count","__mv_scan_count","__mv_status","__mv_total_run_time"
-"rt_md_1713369780.6",server,"1713369780.705461",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1713369780,0,0,failed,"65.032",,,,,,,,,,,,,

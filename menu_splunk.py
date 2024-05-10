@@ -37,6 +37,8 @@ while True:
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
 
+        3. Back up user icons
+
        10. Restart splunk
 
        99. Exit""")
@@ -51,28 +53,27 @@ while True:
         os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/test_app/")
         print("Creating tar file for test_app and copying to ~/ios-xr-streaming-telemetry-demo/...")
         print("")
-        os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf test_app_latest.tar.gz                                                                -C /opt/splunk/etc/apps/test_app             .                                   && sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz                                 /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf test_app_latest.tar.gz                                       -C /opt/splunk/etc/apps/test_app             .  && sudo mv /opt/splunk/etc/apps/test_app_latest.tar.gz               /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
         print("Making dated backup copy of tar file and saving to separate directory...")
-        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_latest.tar.gz                                   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_test_app_latest.tar.gz")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/test_app_latest.tar.gz           /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_test_app_latest.tar.gz")
+
+        print("Creating tar file for Splunk_ML_Toolkit and copying to ~/ios-xr-streaming-telemetry-demo/...")
+        print("")
+        os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf Splunk_ML_Toolkit_latest.tar.gz                              -C /opt/splunk/etc/apps/Splunk_ML_Toolkit    .  && sudo mv /opt/splunk/etc/apps/Splunk_ML_Toolkit_latest.tar.gz      /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        print("Making dated backup copy of tar file and saving to separate directory...")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_ML_Toolkit_latest.tar.gz  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_ML_Toolkit_latest.tar.gz")
+
+        # print("Creating tar file for SA-Eventgen and copying to ~/ios-xr-streaming-telemetry-demo/...")
+        # print("")
+        # os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf SA-Eventgen_latest.tar.gz                                    -C /opt/splunk/etc/apps/SA-Eventgen          .  && sudo mv /opt/splunk/etc/apps/SA-Eventgen_latest.tar.gz            /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        # print("Making dated backup copy of tar file and saving to separate directory...")
+        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/SA-Eventgen_latest.tar.gz        /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_SA-Eventgen_latest.tar.gz")
+
         print("Copying splunk admin folder to ios-xr-streaming-telemetry-demo/...")
         os.system("sudo cp -r /opt/splunk/etc/users/admin/ /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/splunk_admin_user_files")
         print("Changing file ownership to dcloud:dcloud...")
         os.system("sudo chown -R dcloud:dcloud  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/splunk_admin_user_files")
         print("Backing up test_app...COMPLETE")
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf network-diagram-viz_latest.tar.gz                                                     -C /opt/splunk/etc/apps/network-diagram-viz  .                                   && sudo mv /opt/splunk/etc/apps/network-diagram-viz_latest.tar.gz                      /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/network-diagram-viz_latest.tar.gz                        /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_network-diagram-viz_latest.tar.gz")
-        # time.sleep(2)
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_ML_Toolkit_latest.tar.gz                                                       -C /opt/splunk/etc/apps/Splunk_ML_Toolkit    .                                   && sudo mv /opt/splunk/etc/apps/Splunk_ML_Toolkit_latest.tar.gz                        /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_ML_Toolkit_latest.tar.gz                          /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_ML_Toolkit_latest.tar.gz")
-        # time.sleep(2)
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf search_latest.tar.gz                                                                  -C /opt/splunk/etc/apps/search               .                                   && sudo mv /opt/splunk/etc/apps/search_latest.tar.gz                                   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/search_latest.tar.gz                                     /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_search_latest.tar.gz")
-        # time.sleep(2)
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz                                -C /opt/splunk/etc/apps/Splunk_SA_Scientific_Python_linux_x86_64               . && sudo mv /opt/splunk/etc/apps/Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_SA_Scientific_Python_linux_x86_64_latest.tar.gz")
-        # time.sleep(2)
-        # os.system("cd /opt/splunk/etc/apps/ && sudo tar -czvf Splunk_AI_Assistant_latest.tar.gz                                -C /opt/splunk/etc/apps/Splunk_AI_Assistant               . && sudo mv /opt/splunk/etc/apps/Splunk_AI_Assistant_latest.tar.gz /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup")
-        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_AI_Assistant_latest.tar.gz   /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_Splunk_AI_Assistant_latest.tar.gz")
 
     elif ch == 2:
         print("Restoring test_app and other persistent files...")
@@ -101,6 +102,10 @@ while True:
         print("")
         print("Restoring test_app and related files... COMPLETE")
         print("")
+
+    if ch == 3:
+        os.system(f"sudo cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/custom_icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg  /opt/splunk/etc/apps/splunk-dashboard-studio/appserver/static/icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg")
+        os.system("sudo chown splunk:splunk  /opt/splunk/etc/apps/splunk-dashboard-studio/appserver/static/icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg")
 
     elif ch == 10:
         os.system("sudo -u root /opt/splunk/bin/splunk restart")

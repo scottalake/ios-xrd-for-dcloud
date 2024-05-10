@@ -1,0 +1,313 @@
+
+<dashboard version="2" theme="light">
+    <label>BGP Metrics gNMI &amp; SNMP</label>
+    <description>BGP metrics via both gNMI subscription and SNMP Polling</description>
+    <definition><![CDATA[
+{
+	"visualizations": {
+		"viz_nfc6YJwv": {
+			"type": "splunk.singlevalue",
+			"title": "XR-1 - gNMI",
+			"dataSources": {
+				"primary": "ds_5fzRRfLw"
+			},
+			"description": "Prefixes from XR-5"
+		},
+		"viz_TuL7mEv1": {
+			"type": "splunk.singlevalue",
+			"title": "XR-2 - gNMI",
+			"dataSources": {
+				"primary": "ds_SackbTAm_ds_5fzRRfLw"
+			},
+			"description": "Prefixes from XR-6"
+		},
+		"viz_qbnCJ8u4": {
+			"type": "splunk.singlevalue",
+			"title": "XR-1 - SNMP",
+			"dataSources": {
+				"primary": "ds_7nk8YO6H_ds_5fzRRfLw"
+			},
+			"description": "xr-1 from xr-5 SNMP"
+		},
+		"viz_NTxVAJg8": {
+			"type": "splunk.singlevalue",
+			"title": "XR-2 - SNMP",
+			"dataSources": {
+				"primary": "ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw"
+			},
+			"description": "Prefixes from XR-6"
+		},
+		"viz_891PfJQM": {
+			"type": "splunk.singlevalue",
+			"title": "XR-5 - gNMI",
+			"dataSources": {
+				"primary": "ds_MmGFSzNS_ds_5fzRRfLw"
+			},
+			"description": "Prefixes from XR-8"
+		},
+		"viz_9VmvSE3C": {
+			"type": "splunk.singlevalue",
+			"title": "XR-6 - gNMI",
+			"dataSources": {
+				"primary": "ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw"
+			},
+			"description": "Prefixes from XR-8"
+		},
+		"viz_bd7cMMzB": {
+			"type": "splunk.singlevalue",
+			"title": "XR-8 - gNMI",
+			"dataSources": {
+				"primary": "ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw"
+			},
+			"description": "Prefixes from BIRD"
+		}
+	},
+	"dataSources": {
+		"ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"if-statistics.packets_received\") as \"if-statistics.packets_received /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" interface_name IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"if-statistics.packets_sent\") as \"if-statistics.packets_sent /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" interface_name IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "packets_sent_rec_gnmi"
+		},
+		"ds_sourceDropDown": {
+			"name": "populate_source_dropdown",
+			"type": "ds.search",
+			"options": {
+				"query": "| mcatalog values(source) WHERE index=\"mertics_data\" by source ",
+				"earliest": "-24h@h",
+				"latest": "now",
+				"enableSmartSources": true
+			}
+		},
+		"ds_nameDropDown": {
+			"name": "populate_name_dropdown",
+			"type": "ds.search",
+			"options": {
+				"query": "| mcatalog values(interface_name) WHERE index=\"mertics_data\" by interface_name",
+				"earliest": "-24h@h",
+				"latest": "now",
+				"enableSmartSources": true
+			}
+		},
+		"defaults": {
+			"dataSources": {
+				"ds.search": {
+					"options": {
+						"queryParameters": {
+							"latest": "$global_time.latest$",
+							"earliest": "$global_time.earliest$"
+						}
+					}
+				}
+			}
+		},
+		"ds_9qTUXhKu_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"interface.ifInUcastPkts\") as \"interface.ifInUcastPkts /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"interface.ifOutUcastPkts\") as \"interface.ifOutUcastPkts /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "snmp unicast pkts"
+		},
+		"ds_5fzRRfLw": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"instanceSpecificBGPData-prefixes-accepted.prefixes_accepted\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"neighbor_address\"=\"10.0.0.5\" AND source=\"xr-1\""
+			},
+			"name": "xr-1 from xr-5 gNMI"
+		},
+		"ds_SackbTAm_ds_5fzRRfLw": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"instanceSpecificBGPData-prefixes-accepted.prefixes_accepted\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"neighbor_address\"=\"10.0.0.6\" AND source=\"xr-2\""
+			},
+			"name": "xr-2 from xr-6 gNMI"
+		},
+		"ds_7nk8YO6H_ds_5fzRRfLw": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.5.1.1\" AND source=\"xr-1\"\r\n"
+			},
+			"name": "xr-1 from xr-5 SNMP"
+		},
+		"ds_Gut39OoN_ds_7nk8YO6H_ds_5fzRRfLw": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.6.1.1\" AND source=\"xr-2\"\r\n\r\n"
+			},
+			"name": "xr-2 from xr-6 SNMP"
+		},
+		"ds_MmGFSzNS_ds_5fzRRfLw": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"instanceSpecificBGPData-prefixes-accepted.prefixes_accepted\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"neighbor_address\"=\"10.0.0.8\" AND source=\"xr-5\""
+			},
+			"name": "xr-5 from xr-8 gNMI"
+		},
+		"ds_79518SAe_ds_SackbTAm_ds_5fzRRfLw": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"instanceSpecificBGPData-prefixes-accepted.prefixes_accepted\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"neighbor_address\"=\"10.0.0.8\" AND source=\"xr-6\""
+			},
+			"name": "xr-6 from xr-8 gNMI"
+		},
+		"ds_ajPSAEFy_ds_MmGFSzNS_ds_5fzRRfLw": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"instanceSpecificBGPData-prefixes-accepted.prefixes_accepted\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"neighbor_address\"=\"10.2.2.2\" AND source=\"xr-8\""
+			},
+			"name": "prefixes from bird"
+		},
+		"ds_MToUw7Y1_ds_7nk8YO6H_ds_5fzRRfLw": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| mstats latest(\"cisco_bgp_prefix_table.cbgpPeer2AcceptedPrefixes\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"neighbor_address\"=\"1.4.10.0.0.5.1.1\" AND source=\"xr-1\" BY \"neighbor_address\" \r\n| eval now=now() \r\n| where latest_value_time > (now - 300)\r\n| fields - now\r\n"
+			},
+			"name": "xr-1 from xr-5 SNMP copy 1"
+		}
+	},
+	"inputs": {},
+	"layout": {
+		"type": "absolute",
+		"options": {
+			"width": 1440,
+			"height": 960,
+			"display": "auto"
+		},
+		"structure": [
+			{
+				"item": "viz_nfc6YJwv",
+				"type": "block",
+				"position": {
+					"x": 280,
+					"y": 40,
+					"w": 140,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_TuL7mEv1",
+				"type": "block",
+				"position": {
+					"x": 280,
+					"y": 190,
+					"w": 140,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_qbnCJ8u4",
+				"type": "block",
+				"position": {
+					"x": 290,
+					"y": 490,
+					"w": 140,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_NTxVAJg8",
+				"type": "block",
+				"position": {
+					"x": 290,
+					"y": 650,
+					"w": 140,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_891PfJQM",
+				"type": "block",
+				"position": {
+					"x": 470,
+					"y": 40,
+					"w": 140,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_9VmvSE3C",
+				"type": "block",
+				"position": {
+					"x": 470,
+					"y": 190,
+					"w": 140,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_bd7cMMzB",
+				"type": "block",
+				"position": {
+					"x": 690,
+					"y": 130,
+					"w": 140,
+					"h": 140
+				}
+			}
+		],
+		"globalInputs": []
+	},
+	"defaults": {
+		"dataSources": {
+			"global": {
+				"options": {
+					"queryParameters": {
+						"earliest": "-4h@m"
+					}
+				}
+			}
+		}
+	},
+	"description": "BGP metrics via both gNMI subscription and SNMP Polling",
+	"title": "BGP Metrics gNMI & SNMP"
+}
+    ]]></definition>
+    <meta type="hiddenElements"><![CDATA[
+{
+	"hideEdit": false,
+	"hideOpenInSearch": false,
+	"hideExport": false
+}
+    ]]></meta>
+</dashboard>

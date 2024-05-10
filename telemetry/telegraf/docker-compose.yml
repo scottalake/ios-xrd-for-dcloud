@@ -9,7 +9,7 @@ services:
         dockerfile: ./Dockerfile
       ports:
         - 9273:9273
-        - 57500:57500
+        - 57400:57400
       restart: always
       volumes:
         - /home/dcloud/ios-xr-streaming-telemetry-demo/telemetry/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro

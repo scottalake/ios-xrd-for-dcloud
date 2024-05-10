@@ -1,0 +1,633 @@
+
+<dashboard version="2" theme="light">
+    <label>System Throughput &amp; CPU</label>
+    <description>Total throughput for last time period</description>
+    <definition><![CDATA[
+{
+	"visualizations": {
+		"viz_CcrVG9vo": {
+			"type": "splunk.line",
+			"title": "Packets Sent / Received (gNMI)",
+			"description": "gNMI Subscription via Telegraf",
+			"dataSources": {
+				"primary": "ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		},
+		"viz_JrCvgjE1": {
+			"type": "splunk.line",
+			"title": "In / Out Unicast Packets (SNMP)",
+			"description": "From Telegraf SNMP Poller",
+			"dataSources": {
+				"primary": "ds_9qTUXhKu_ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		},
+		"viz_RKFCbn6D": {
+			"type": "splunk.singlevalue",
+			"title": "Mem Used % SNMP",
+			"dataSources": {
+				"primary": "ds_R0h6HA6w"
+			},
+			"description": "cempMemPool MIB"
+		},
+		"viz_WwEJbajM": {
+			"type": "splunk.singlevalue",
+			"title": "1 min cpu snmp",
+			"dataSources": {
+				"primary": "ds_J6paBZ8U"
+			}
+		},
+		"viz_bVVBTz7u": {
+			"type": "splunk.singlevalue",
+			"title": "5 min cpu snmp",
+			"dataSources": {
+				"primary": "ds_R7u3eP6k_ds_J6paBZ8U"
+			}
+		},
+		"viz_hVqys3Rt": {
+			"type": "splunk.singlevalue",
+			"title": "15 min cpu snmp",
+			"dataSources": {
+				"primary": "ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U"
+			}
+		},
+		"viz_0WNvFOWo": {
+			"type": "splunk.singlevalue",
+			"title": "5 min cpu gnmi",
+			"dataSources": {
+				"primary": "ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U"
+			}
+		},
+		"viz_1BlZTnSs": {
+			"type": "splunk.singlevalue",
+			"title": "15 min cpu gnmi",
+			"dataSources": {
+				"primary": "ds_jBWLeYV3_ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U"
+			}
+		},
+		"viz_7XOOwl8i": {
+			"type": "splunk.line",
+			"options": {
+				"legendDisplay": "bottom"
+			},
+			"dataSources": {
+				"primary": "ds_YfXCHkJr_ds_fr6nNQxr"
+			},
+			"title": "Memory Utilization SNMP",
+			"description": "cempMemPoolTable"
+		},
+		"viz_napgmygx": {
+			"type": "splunk.singlevalue",
+			"title": "Mem Used % gNMI",
+			"dataSources": {
+				"primary": "ds_2QqwFn7Q_ds_R0h6HA6w"
+			},
+			"description": "nto-memory-summary xpath"
+		},
+		"viz_T3CmKxp5": {
+			"type": "splunk.line",
+			"options": {
+				"legendDisplay": "bottom",
+				"nullValueDisplay": "connect"
+			},
+			"dataSources": {
+				"primary": "ds_hQ2YJYgT_ds_fr6nNQxr"
+			},
+			"title": "Memory Utilization gNMI",
+			"description": "nto-memory-summary"
+		},
+		"viz_Jrz2mcti": {
+			"type": "splunk.line",
+			"options": {
+				"legendDisplay": "bottom",
+				"nullValueDisplay": "connect"
+			},
+			"dataSources": {
+				"primary": "ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr"
+			},
+			"title": "One Minute CPU - gNMI"
+		},
+		"viz_GdTqu1Zt": {
+			"type": "splunk.line",
+			"options": {
+				"legendDisplay": "bottom",
+				"nullValueDisplay": "connect"
+			},
+			"dataSources": {
+				"primary": "ds_JES3XTUB_ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr"
+			},
+			"title": "One Minute CPU - SNMP"
+		},
+		"viz_ZKoLEHsW": {
+			"type": "splunk.line",
+			"title": "Input Drops (gNMI) ==> XR-7 G0/0/0/0",
+			"description": "",
+			"dataSources": {
+				"primary": "ds_crno381b_ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		},
+		"viz_tBSVwaC6": {
+			"type": "splunk.line",
+			"title": "Interface Discards (SNMP)  ==> XR-7 G0/0/0/0",
+			"description": "",
+			"dataSources": {
+				"primary": "ds_wYXJpfDG_ds_crno381b_ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		},
+		"viz_OuK91XAn": {
+			"type": "splunk.singlevalue",
+			"title": "1 min cpu gnmi",
+			"dataSources": {
+				"primary": "ds_TLb4SkzJ_ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U"
+			}
+		}
+	},
+	"dataSources": {
+		"ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"if-statistics.packets_received\") as \"if-statistics.packets_received /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" interface_name IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"if-statistics.packets_sent\") as \"if-statistics.packets_sent /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" interface_name IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "packets_sent_rec_gnmi line chart"
+		},
+		"ds_sourceDropDown": {
+			"name": "populate_source_dropdown",
+			"type": "ds.search",
+			"options": {
+				"query": "| mcatalog values(source) WHERE index=\"mertics_data\" by source ",
+				"earliest": "-24h@h",
+				"latest": "now",
+				"enableSmartSources": true
+			}
+		},
+		"ds_nameDropDown": {
+			"name": "populate_name_dropdown",
+			"type": "ds.search",
+			"options": {
+				"query": "| mcatalog values(interface_name) WHERE index=\"mertics_data\" by interface_name",
+				"earliest": "-24h@h",
+				"latest": "now",
+				"enableSmartSources": true
+			}
+		},
+		"defaults": {
+			"dataSources": {
+				"ds.search": {
+					"options": {
+						"queryParameters": {
+							"latest": "$global_time.latest$",
+							"earliest": "$global_time.earliest$"
+						}
+					}
+				}
+			}
+		},
+		"ds_9qTUXhKu_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"interface.ifInUcastPkts\") as \"interface.ifInUcastPkts /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"interface.ifOutUcastPkts\") as \"interface.ifOutUcastPkts /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "unicast pkts line chart snmp"
+		},
+		"ds_J6paBZ8U": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n\r\n"
+			},
+			"name": "1 min cpu svc snmp"
+		},
+		"ds_R7u3eP6k_ds_J6paBZ8U": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal5minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n\r\n"
+			},
+			"name": "5 min cpu svc snmp"
+		},
+		"ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats latest(\"cpmProcessExtRevTable.cpmCPUTotal15minRev\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cpmCPUTotalPhysicalIndex\"=\"13\" AND source=\"$sourceToken$\"  earliest=-5m latest=now\r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n\r\n\r\n"
+			},
+			"name": "15 min cpu svc snmp"
+		},
+		"ds_JiMOJokD_ds_J6paBZ8U": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_one_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n"
+			},
+			"name": "1 min cpu svc gnmi"
+		},
+		"ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_five_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n"
+			},
+			"name": "5 min cpu svc gnmi"
+		},
+		"ds_jBWLeYV3_ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_fifteen_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n"
+			},
+			"name": "15 min cpu svc gnmi"
+		},
+		"ds_R0h6HA6w": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"cempMemPoolTable.cempMemPoolHCFree\") as \"Free\" avg(\"cempMemPoolTable.cempMemPoolHCUsed\") as \"Used\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cempMemPoolName\"=\"processor\" AND source=\"$sourceToken$\" span=60s\r\n| eval MemoryUsageRatio = Used / (Used + Free)\r\n| stats latest(MemoryUsageRatio) as MemoryUsageRatio\r\n| eval Percentage = round(MemoryUsageRatio * 100, 2) . \"%\"\r\n| fields Percentage\r\n\r\n"
+			},
+			"name": "Single Value Mem Used SNMP"
+		},
+		"ds_fr6nNQxr": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"cempMemPoolTable.cempMemPoolFree\") as \"Free\" avg(\"cempMemPoolTable.cempMemPoolUsed\") as \"Used\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cempMemPoolName\"=\"processor\" AND source=\"$sourceToken$\" span=60s\r\n| eval MemoryUsageRatio = Used / (Used + Free)\r\n| timechart avg(MemoryUsageRatio) as \"Memory Usage Ratio\" span=60s\r\n"
+			},
+			"name": "Memory Line Chart"
+		},
+		"ds_YfXCHkJr_ds_fr6nNQxr": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"cempMemPoolTable.cempMemPoolHCFree\") as \"Free\" avg(\"cempMemPoolTable.cempMemPoolHCUsed\") as \"Used\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"cempMemPoolName\"=\"processor\" AND source=\"$sourceToken$\" span=60s\r\n| eval MemoryUsageRatio = Used / (Used + Free)\r\n| timechart avg(MemoryUsageRatio) as \"Memory Usage Ratio\" span=60s\r\n"
+			},
+			"name": "Memory Utilization Line Chart SNMP"
+		},
+		"ds_2QqwFn7Q_ds_R0h6HA6w": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"nto-memory-summary.detail/total_used\") as \"Used\" avg(\"nto-memory-summary.detail/free_physical_memory\") as \"Free\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"path\"=\"Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail\" AND source=\"$sourceToken$\" span=10s\r\n| eval MemoryUsageRatio = Used / (Used + Free)\r\n| stats latest(MemoryUsageRatio) as MemoryUsageRatio\r\n| eval Percentage = round(MemoryUsageRatio * 100, 2) . \"%\"\r\n| fields Percentage"
+			},
+			"name": "Single Value Mem Used gNMI"
+		},
+		"ds_hQ2YJYgT_ds_fr6nNQxr": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"nto-memory-summary.detail/total_used\") as \"Used\" avg(\"nto-memory-summary.detail/free_physical_memory\") as \"Free\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"path\"=\"Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail\" AND source=\"$sourceToken$\" span=60s\r\n| eval MemoryUsageRatio = Used / (Used + Free)\r\n| timechart span=10s avg(MemoryUsageRatio) as \"Memory Usage Ratio\"\r\n"
+			},
+			"name": "Memory Utilization Line Chart gNMI"
+		},
+		"ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"CPUMetricData.total_cpu_one_minute\") prestats=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" span=10s\r\n| timechart avg(\"CPUMetricData.total_cpu_one_minute\") AS \"CPUMetricData.total_cpu_one_minute\" span=10s\r\n| fields - _span*\r\n"
+			},
+			"name": "One Minute CPU Line Chart- gNMI"
+		},
+		"ds_JES3XTUB_ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats avg(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") prestats=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" span=10s\r\n| timechart avg(\"cpmProcessExtRevTable.cpmCPUTotal1minRev\") AS \"cpmProcessExtRevTable.cpmCPUTotal1minRev\" span=10s\r\n| fields - _span*\r\n"
+			},
+			"name": "One Minute CPU - Line Chart SNMP"
+		},
+		"ds_crno381b_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"infra-statistics.input_drops\") as \"Rate (Avg) /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-7\" AND \"interface_name\"=\"GigabitEthernet0/0/0/0\"  span=10s\r\n| fields - _span*\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "input drops xr7 facing source"
+		},
+		"ds_wYXJpfDG_ds_crno381b_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"interface.ifInDiscards\") as \"Rate (Avg) /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND \"source\"=\"xr-7\" AND \"ifDescr\"=\"GigabitEthernet0/0/0/0\"  span=10s\r\n| fields - _span*\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "Input drops xr7 facing Source SNMP"
+		},
+		"ds_TLb4SkzJ_ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				},
+				"query": "| mstats latest(\"CPUMetricData.total_cpu_one_minute\") as latest_value WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"node_name\"=\"0/RP0/CPU0\" AND source=\"$sourceToken$\" \r\n| eval latest_value = tostring(latest_value) . \"%\"\r\n"
+			},
+			"name": "5 min cpu svc gnmi copy 1"
+		},
+		"ds_lEptvxJl_ds_wYXJpfDG_ds_crno381b_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"infra-statistics.input_drops\") as \"Rate (Avg) /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND \"source\"=\"xr-7\" AND \"interface_name\"=\"GigabitEthernet0/0/0/0\"  span=10s\r\n| fields - _span*\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "Input drops xr7 facing Source SNMP copy 1"
+		}
+	},
+	"inputs": {
+		"input_global_trp": {
+			"type": "input.timerange",
+			"options": {
+				"token": "global_time",
+				"defaultValue": "-60m@m,now"
+			},
+			"title": "Global Time Range"
+		},
+		"input_5nnzTp0g": {
+			"options": {
+				"token": "sourceToken",
+				"defaultValue": "xr-6"
+			},
+			"title": "Choose Switch",
+			"type": "input.dropdown",
+			"dataSources": {
+				"primary": "ds_sourceDropDown"
+			}
+		},
+		"input_IFWp5hzO": {
+			"options": {
+				"items": [],
+				"token": "ms_multi_interfaces",
+				"selectFirstSearchResult": true
+			},
+			"title": "Choose Interface(s)",
+			"type": "input.multiselect",
+			"dataSources": {
+				"primary": "ds_nameDropDown"
+			}
+		}
+	},
+	"layout": {
+		"type": "absolute",
+		"options": {
+			"width": 1440,
+			"height": 1800,
+			"display": "auto"
+		},
+		"structure": [
+			{
+				"item": "viz_CcrVG9vo",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 360,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_JrCvgjE1",
+				"type": "block",
+				"position": {
+					"x": 650,
+					"y": 360,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_RKFCbn6D",
+				"type": "block",
+				"position": {
+					"x": 530,
+					"y": 10,
+					"w": 210,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_WwEJbajM",
+				"type": "block",
+				"position": {
+					"x": 10,
+					"y": 160,
+					"w": 150,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_bVVBTz7u",
+				"type": "block",
+				"position": {
+					"x": 170,
+					"y": 160,
+					"w": 150,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_hVqys3Rt",
+				"type": "block",
+				"position": {
+					"x": 330,
+					"y": 160,
+					"w": 150,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_0WNvFOWo",
+				"type": "block",
+				"position": {
+					"x": 170,
+					"y": 10,
+					"w": 150,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_1BlZTnSs",
+				"type": "block",
+				"position": {
+					"x": 330,
+					"y": 10,
+					"w": 150,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_7XOOwl8i",
+				"type": "block",
+				"position": {
+					"x": 650,
+					"y": 680,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_napgmygx",
+				"type": "block",
+				"position": {
+					"x": 530,
+					"y": 160,
+					"w": 210,
+					"h": 140
+				}
+			},
+			{
+				"item": "viz_T3CmKxp5",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 680,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_Jrz2mcti",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 990,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_GdTqu1Zt",
+				"type": "block",
+				"position": {
+					"x": 650,
+					"y": 990,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_ZKoLEHsW",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 1300,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_tBSVwaC6",
+				"type": "block",
+				"position": {
+					"x": 650,
+					"y": 1300,
+					"w": 630,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_OuK91XAn",
+				"type": "block",
+				"position": {
+					"x": 10,
+					"y": 10,
+					"w": 150,
+					"h": 140
+				}
+			}
+		],
+		"globalInputs": [
+			"input_global_trp",
+			"input_5nnzTp0g",
+			"input_IFWp5hzO"
+		]
+	},
+	"description": "Total throughput for last time period",
+	"title": "System Throughput & CPU",
+	"defaults": {
+		"dataSources": {
+			"global": {
+				"options": {
+					"queryParameters": {
+						"earliest": "-4h@m"
+					}
+				}
+			}
+		}
+	}
+}
+    ]]></definition>
+    <meta type="hiddenElements"><![CDATA[
+{
+	"hideEdit": false,
+	"hideOpenInSearch": false,
+	"hideExport": false
+}
+    ]]></meta>
+</dashboard>

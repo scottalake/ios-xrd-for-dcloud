@@ -1,0 +1,168 @@
+
+<dashboard version="2" theme="light">
+    <label>Interface Statistics gNMI &amp; SNMP</label>
+    <description>Interface Statistics via both gNMI subscription and SNMP Polling</description>
+    <definition><![CDATA[
+{
+	"visualizations": {
+		"viz_CcrVG9vo": {
+			"type": "splunk.line",
+			"title": "Packets Sent / Received",
+			"description": "gNMI Subscription via Telegraf",
+			"dataSources": {
+				"primary": "ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		},
+		"viz_JrCvgjE1": {
+			"type": "splunk.line",
+			"title": "In / Out Unicast Packets",
+			"description": "From Telegraf SNMP Poller",
+			"dataSources": {
+				"primary": "ds_9qTUXhKu_ds_in_out"
+			},
+			"options": {
+				"nullValueDisplay": "connect",
+				"legendDisplay": "bottom"
+			}
+		}
+	},
+	"dataSources": {
+		"ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"if-statistics.packets_received\") as \"if-statistics.packets_received /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" interface_name IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"if-statistics.packets_sent\") as \"if-statistics.packets_sent /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND source=\"$sourceToken$\" interface_name IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "packets_sent_rec_gnmi"
+		},
+		"ds_sourceDropDown": {
+			"name": "populate_source_dropdown",
+			"type": "ds.search",
+			"options": {
+				"query": "| mcatalog values(source) WHERE index=\"mertics_data\" by source ",
+				"earliest": "-24h@h",
+				"latest": "now",
+				"enableSmartSources": true
+			}
+		},
+		"ds_nameDropDown": {
+			"name": "populate_name_dropdown",
+			"type": "ds.search",
+			"options": {
+				"query": "| mcatalog values(interface_name) WHERE index=\"mertics_data\" by interface_name",
+				"earliest": "-24h@h",
+				"latest": "now",
+				"enableSmartSources": true
+			}
+		},
+		"defaults": {
+			"dataSources": {
+				"ds.search": {
+					"options": {
+						"queryParameters": {
+							"latest": "$global_time.latest$",
+							"earliest": "$global_time.earliest$"
+						}
+					}
+				}
+			}
+		},
+		"ds_9qTUXhKu_ds_in_out": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"interface.ifInUcastPkts\") as \"interface.ifInUcastPkts /s\" chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n| append [\r\n| mstats rate_avg(\"interface.ifOutUcastPkts\") as \"interface.ifOutUcastPkts /s\"         chart=true WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"snmp\" AND source=\"$sourceToken$\" ifDescr IN ($ms_multi_interfaces$) span=10s\r\n| fields - _span*\r\n]\r\n| selfjoin keepsingle=true _time\r\n",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"name": "snmp unicast pkts"
+		}
+	},
+	"inputs": {
+		"input_global_trp": {
+			"type": "input.timerange",
+			"options": {
+				"token": "global_time",
+				"defaultValue": "-60m@m,now"
+			},
+			"title": "Global Time Range"
+		},
+		"input_5nnzTp0g": {
+			"options": {
+				"defaultValue": "*",
+				"token": "sourceToken"
+			},
+			"title": "Choose Switch",
+			"type": "input.dropdown",
+			"dataSources": {
+				"primary": "ds_sourceDropDown"
+			}
+		},
+		"input_IFWp5hzO": {
+			"options": {
+				"items": [],
+				"token": "ms_multi_interfaces",
+				"selectFirstSearchResult": true
+			},
+			"title": "Choose Interface(s)",
+			"type": "input.multiselect",
+			"dataSources": {
+				"primary": "ds_nameDropDown"
+			}
+		}
+	},
+	"layout": {
+		"type": "absolute",
+		"options": {
+			"width": 1440,
+			"height": 960,
+			"display": "auto"
+		},
+		"structure": [
+			{
+				"item": "viz_CcrVG9vo",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 0,
+					"w": 730,
+					"h": 300
+				}
+			},
+			{
+				"item": "viz_JrCvgjE1",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 300,
+					"w": 730,
+					"h": 300
+				}
+			}
+		],
+		"globalInputs": [
+			"input_global_trp",
+			"input_5nnzTp0g",
+			"input_IFWp5hzO"
+		]
+	},
+	"description": "Interface Statistics via both gNMI subscription and SNMP Polling",
+	"title": "Interface Statistics gNMI & SNMP"
+}
+    ]]></definition>
+    <meta type="hiddenElements"><![CDATA[
+{
+	"hideEdit": false,
+	"hideOpenInSearch": false,
+	"hideExport": false
+}
+    ]]></meta>
+</dashboard>
