@@ -29,15 +29,19 @@ while True:
             c) Restart splunk.
         -------------------------------------------------
 
-        1. **BACKUP** custom splunk apps to iosxr_streaming_telemetry_demo repo
+        1.  Backup test_app and admin user files
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
 
-        2. **RESTORE** custom splunk apps iosxr_streaming_telemetry_demo repo
+        2.  Restore test_app
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
 
-        3. Back up user icons
+        3.  Restore admin user files
+            NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
+                   THIS TASK.  LOG INTO 198.18.133.23
+
+        4. Back up user icons
 
        10. Restart splunk
 
@@ -47,6 +51,7 @@ while True:
     ch=int(input("Enter your choice: "))
 
     if ch == 1:
+        #  1.  Backup test_app and admin user files 
         local_timezone = pytz.timezone('US/Pacific')
         now = datetime.datetime.now(tz=local_timezone)
         date_time_string = now.strftime("%Y-%m-%d_%H-%M")
@@ -76,7 +81,8 @@ while True:
         print("Backing up test_app...COMPLETE")
 
     elif ch == 2:
-        print("Restoring test_app and other persistent files...")
+        # 2.  Restore test_app
+        print("Restoring test_app if not done as part of build operation...")
         print("")
         local_timezone = pytz.timezone('US/Pacific')
         now = datetime.datetime.now(tz=local_timezone)
@@ -96,6 +102,41 @@ while True:
         os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/users/admin")
         print("Restoring app-related files stored under admin user...")
         print("")
+        print("")
+        print("")
+        print("Restoring test_app and related files... COMPLETE")
+        print("")
+
+    elif ch == 3:
+        # 3.  Restore mltk
+        print("Restoring mltk if not done as part of build operation...")
+        print("")
+        local_timezone = pytz.timezone('US/Pacific')
+        now = datetime.datetime.now(tz=local_timezone)
+        date_time_string = now.strftime("%Y-%m-%d_%H-%M")
+        os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/apps/Splunk_ML_Toolkit//")
+        print("Making back up copy of current Splunk_ML_Toolkit before restoring updated Splunk_ML_Toolkit from repo...")
+        print("")
+        os.system(f"sudo mkdir -p /home/dcloud/{date_time_string}_Splunk_ML_Toolkit/_backup/")
+        os.system(f"sudo mv /opt/splunk/etc/apps/Splunk_ML_Toolkit/ /home/dcloud/{date_time_string}_Splunk_ML_Toolkit_backup/")
+        print("Deleting old Splunk_ML_Toolkit...")
+        print("")
+        os.system("sudo rm -rf /opt/splunk/etc/Splunk_ML_Toolkit/")
+        os.system("sudo mkdir -p /opt/splunk/etc/apps/Splunk_ML_Toolkit/")
+        print("Unziping Splunk_ML_Toolkit gz file from repo to /opt/splunk/etc/apps/Splunk_ML_Toolkit...")
+        print("")
+        os.system("sudo tar -xvzf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_ML_Toolkit_latest.tar.gz -C /opt/splunk/etc/apps/Splunk_ML_Toolkit/")
+        os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/users/admin")
+        print("Restoring app-related files stored under admin user...")
+        print("")
+        print("")
+        print("")
+        print("Restoring Splunk_ML_Toolkit and related files... COMPLETE")
+        print("")
+
+    elif ch == 4:
+        print("Restoring admin user persistent files...")
+        print("")
         os.system("sudo cp -rf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/splunk_admin_user_files/admin /opt/splunk/etc/users/")
         os.system("sudo chown -R splunk:splunk  /opt/splunk/etc/users/admin/")
         print("")
@@ -103,7 +144,7 @@ while True:
         print("Restoring test_app and related files... COMPLETE")
         print("")
 
-    if ch == 3:
+    elif ch == 5:
         os.system(f"sudo cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/custom_icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg  /opt/splunk/etc/apps/splunk-dashboard-studio/appserver/static/icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg")
         os.system("sudo chown splunk:splunk  /opt/splunk/etc/apps/splunk-dashboard-studio/appserver/static/icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg")
 
