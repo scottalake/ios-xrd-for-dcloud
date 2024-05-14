@@ -6,7 +6,8 @@ import time
 
 # The URL to the HEC endpoint
 hec_url = 'http://198.18.133.23:8088/services/collector'
-hec_token = '2e68be0a-d8a2-490b-aee7-293b0d421ed8'  # Replace with the actual token value provided by Splunk
+#hec_token = '2e68be0a-d8a2-490b-aee7-293b0d421ed8'  # Replace with the actual token value provided by Splunk
+hec_token = '3e3d51d4-cfd7-4375-b50c-e5bcfd9559ae'  # Replace with the actual token value provided by Splunk
 
 headers = {
     'Authorization': f'Splunk {hec_token}',
@@ -16,6 +17,7 @@ headers = {
 # Function to send a single metric event to Splunk
 def send_metric_to_splunk(metric_data):
     response = requests.post(hec_url, headers=headers, data=json.dumps(metric_data), verify=False)
+    time.sleep(.5)
     if response.status_code == 200:
         print("Data sent successfully.")
     else:
