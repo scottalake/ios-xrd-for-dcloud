@@ -1,0 +1,142 @@
+{
+  "visualizations": {
+      "viz_1BAm6ljX": {
+          "type": "splunk.line",
+          "dataSources": {
+              "primary": "ds_6v2nFTBZ"
+          },
+          "showProgressBar": false,
+          "showLastUpdated": false,
+          "title": "Activity by Status",
+          "description": "Select Method and Status Codes"
+      }
+  },
+  "dataSources": {
+      "ds_ljNWYr7J": {
+          "type": "ds.search",
+          "options": {
+              "query": "index=_internal \n|  stats count by method"
+          },
+          "name": "Method"
+      },
+      "ds_neN4LNL4": {
+          "type": "ds.search",
+          "options": {
+              "query": "index=_internal \n| stats count by status"
+          },
+          "name": "Status"
+      },
+      "ds_6v2nFTBZ": {
+          "type": "ds.search",
+          "options": {
+              "query": "index=_internal method=\"$method$\" \n| search status IN ($status$)\n| timechart count by status"
+          },
+          "name": "Status codes per method"
+      }
+  },
+  "defaults": {
+      "dataSources": {
+          "ds.search": {
+              "options": {
+                  "queryParameters": {
+                      "latest": "$global_time.latest$",
+                      "earliest": "$global_time.earliest$"
+                  }
+              }
+          }
+      }
+  },
+  "inputs": {
+      "input_global_trp": {
+          "type": "input.timerange",
+          "options": {
+              "token": "global_time",
+              "defaultValue": "-24h@h,now"
+          },
+          "title": "Global Time Range"
+      },
+      "input_08lrAW9u": {
+          "options": {
+              "items": ">frame(label, value) | prepend(formattedStatics) | objects()",
+              "defaultValue": "*",
+              "token": "method"
+          },
+          "title": "Select Method",
+          "type": "input.dropdown",
+          "dataSources": {
+              "primary": "ds_ljNWYr7J"
+          },
+          "context": {
+              "formattedConfig": {
+                  "number": {
+                      "prefix": ""
+                  }
+              },
+              "formattedStatics": ">statics | formatByType(formattedConfig)",
+              "statics": [
+                  [
+                      "All"
+                  ],
+                  [
+                      "*"
+                  ]
+              ],
+              "label": ">primary | seriesByName(\"method\") | renameSeries(\"label\") | formatByType(formattedConfig)",
+              "value": ">primary | seriesByName(\"method\") | renameSeries(\"value\") | formatByType(formattedConfig)"
+          }
+      },
+      "input_RhQr1bEx": {
+          "options": {
+              "items": ">frame(label, value) | prepend(formattedStatics) | objects()",
+              "defaultValue": "*",
+              "token": "status"
+          },
+          "title": "Select Status Code",
+          "type": "input.multiselect",
+          "dataSources": {
+              "primary": "ds_neN4LNL4"
+          },
+          "context": {
+              "formattedConfig": {
+                  "number": {
+                      "prefix": ""
+                  }
+              },
+              "formattedStatics": ">statics | formatByType(formattedConfig)",
+              "statics": [
+                  [
+                      "All"
+                  ],
+                  [
+                      "*"
+                  ]
+              ],
+              "label": ">primary | seriesByName(\"status\") | renameSeries(\"label\") | formatByType(formattedConfig)",
+              "value": ">primary | seriesByName(\"status\") | renameSeries(\"value\") | formatByType(formattedConfig)"
+          }
+      }
+  },
+  "layout": {
+      "type": "grid",
+      "options": {},
+      "structure": [
+          {
+              "item": "viz_1BAm6ljX",
+              "type": "block",
+              "position": {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1200,
+                  "h": 400
+              }
+          }
+      ],
+      "globalInputs": [
+          "input_global_trp",
+          "input_08lrAW9u",
+          "input_RhQr1bEx"
+      ]
+  },
+  "description": "",
+  "title": "Inputs Examples"
+}

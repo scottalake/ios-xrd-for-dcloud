@@ -26,3 +26,82 @@ sid,"splunk_server","_time","is_realtime",search,"adhoc_search_level","api_lt","
 "admin__admin__search__search2_1713831286.3239",server,"1713831286.365272",0,"| rest splunk_server=local /services/licenser/pools | rename title AS pool | search pool=""auto_generated_pool_download-trial"" | search [rest splunk_server=local /services/licenser/groups | search is_active=1 | eval stack_id=stack_ids | fields stack_id] | eval quota=if(isnull(effective_quota),quota,effective_quota) | eval ""Used""=round(used_bytes/1024/1024/1024, 3) | eval ""Quota""=round(quota/1024/1024/1024, 3) | fields pool ""Used"" ""Quota""","",,0,1713831286,1,0,,completed,"0.073",splunkjs,0,0,search2,,,,,,,,,,,,,,,,,,,,,,
 "1714860801.122",server,"1714860801.776439",0,"| mcatalog values(metric_name) as metric WHERE NOT (""_dims""=""rollup_aggregate"" OR ""_dims""=""rollup_span"" OR ""_dims""=""rollup_source_index"") AND (""index""=""*"" OR ""index""=""_*"" ) BY index
     | mvexpand metric limit=20000","","1714860801.000000000",62744,1714860801,513,62744,"1714860801.000000000",completed,"0.124",,,,,"1714688001.000000000","1714688001.000000000",,,,,,,,,,,,,,,,,,,,
+"rt_md_1715386712.83",server,"1715386712.092721",1,"| metadata type=sourcetypes | search totalCount > 0","",,0,1715386712,0,0,,failed,"71.039","UI:Search",,,,,,,,,,,,,,,,,,,,,,,,,
+"1715386722.84",server,"1715386722.003529",0,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
+    | mvexpand metrics limit=20000","",,20628,1715386722,500,20628,,canceled,"0.11900000000000001",,,,,"1715385821.000000000","1715385821.000000000",,,,,,,,,,,,,,,,,,,,
+"1715386737.85",server,"1715386737.901419",0,"| mcatalog values(metric_name) WHERE metric_name=""infra-statistics.packets_received"" AND (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index | fields index","","1715386446.114000000",92,1715386737,1,92,"1715386446.114000000",canceled,"0.041",,,,,"1715382846.114000000","1715382846.114000000",,,,,,,,,,,,,,,,,,,,
+"1715386738.86",server,"1715386738.415504",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" earliest=1715382846.114 latest=1715386446.114 span=10s
+| timechart avg(""infra-statistics.packets_received"") AS ""0 / 216ee4a4-61b0-4fe9-816f-3119bc662562 / SERIES / Avg"" span=10s
+| fields - _span*","",,11040,1715386738,361,11040,"1715386446.114000000",canceled,"0.036000000000000004",,,,,,"1715382846.114000000",,,,,,,,,,,,,,,,,,,,
+"1715386860.89",server,"1715386860.171381",0,"| mcatalog values(_dims) WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | mvexpand values(_dims)","",,22660,1715386860,1438,22660,,canceled,"0.109",,,,,"1715385960.000000000","1715385960.000000000",,,,,,,,,,,,,,,,,,,,
+"1715386874.90",server,"1715386874.223600",0,"| mcatalog values(""interface_name"") as dimVals WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | eval dim=""interface_name"" | mvexpand dimVals | fields index, metric_name, dim, dimVals
+| sort - ""interface_name""","",,22563,1715386874,666,22563,,completed,"0.055",,,,,"1715385974.000000000","1715385974.000000000",,,,,,,,,,,,,,,,,,,,
+"1715386901.91",server,"1715386901.042314",0,"| mcatalog values(""agent_host"") as dimVals WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | eval dim=""agent_host"" | mvexpand dimVals | fields index, metric_name, dim, dimVals
+| sort - ""agent_host""","",,28130,1715386901,468,28130,,completed,"0.057",,,,,"1715386001.000000000","1715386001.000000000",,,,,,,,,,,,,,,,,,,,
+"1715386908.92",server,"1715386908.159420",0,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND ""agent_host""=""198.18.133.1"" AND (""index""=""*"" OR ""index""=""_*"" ) 
+    | mvexpand metrics limit=20000","",,0,1715386908,0,0,,canceled,"0.1",,,,,"1715386008.000000000","1715386008.000000000",,,,,,,,,,,,,,,,,,,,
+"1715386933.93",server,"1715386933.091232",0,"| mcatalog values(""host"") as dimVals WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | eval dim=""host"" | mvexpand dimVals | fields index, metric_name, dim, dimVals
+| sort - ""host""","",,7114,1715386933,500,7114,,completed,"0.051000000000000004",,,,,"1715386033.000000000","1715386033.000000000",,,,,,,,,,,,,,,,,,,,
+"1715386945.94",server,"1715386945.915373",0,"| mcatalog values(""name"") as dimVals WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | eval dim=""name"" | mvexpand dimVals | fields index, metric_name, dim, dimVals
+| sort - ""name""","",,13779,1715386945,280,13779,,completed,"0.054",,,,,"1715386045.000000000","1715386045.000000000",,,,,,,,,,,,,,,,,,,,
+"1715386974.97",server,"1715386974.084319",0,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND (""index""=""*"" OR ""index""=""_*"" ) 
+    | mvexpand metrics limit=20000","",,1792,1715386974,74,1792,,canceled,"0.046",,,,,"1715386074.000000000","1715386074.000000000",,,,,,,,,,,,,,,,,,,,
+"1715386987.98",server,"1715386987.949616",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" earliest=1715382846.114 latest=1715386446.114 span=10s
+| timechart avg(""infra-statistics.packets_received"") AS ""0 / 75b908f9-13c1-49fb-8489-46b307e61fdc / SERIES / Avg"" span=10s
+| fields - _span*","",,1440,1715386987,361,1440,"1715386446.114000000",canceled,"0.033",,,,,,"1715382846.114000000",,,,,,,,,,,,,,,,,,,,
+"1715387006.99",server,"1715387006.492028",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" span=10s
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=10s
+| fields - _span*",verbose,"1715387006.000000000",371,1715387006,361,1440,"1715387006.000000000",completed,"0.068","UI:Search",,,,"1715383406.000000000","1715383406.000000000",,,,,,,,,,,,,,,,,,,,
+"1715387026.100",server,"1715387026.663537",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND source=""xr-1"" span=30s
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=10s
+| fields - _span*",verbose,"1715387026.000000000",122,1715387026,361,238,"1715387026.000000000",completed,"0.04","UI:Search",,,,"1715383426.000000000","1715383426.000000000",,,,,,,,,,,,,,,,,,,,
+"1715387096.101",server,"1715387096.153402",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND source=""xr-1"" span=30s
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=10s
+| fields - _span*",verbose,"1715387096.000000000",241,1715387096,721,480,"1715387096.000000000",completed,"0.063","UI:Search",,,,"1715379896.000000000","1715379896.000000000",,,,,,,,,,,,,,,,,,,,
+"1715387107.102",server,"1715387107.547632",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND source=""xr-1"" span=31s
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=10s
+| fields - _span*",verbose,"1715387107.000000000",232,1715387107,721,478,"1715387107.000000000",completed,"0.035","UI:Search",,,,"1715379907.000000000","1715379907.000000000",,,,,,,,,,,,,,,,,,,,
+"1715387164.105",server,"1715387164.501320",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND source=""xr-1"" span=10
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=10s
+| fields - _span*",verbose,"1715387164.000000000",239,1715387164,721,478,"1715387164.000000000",completed,"0.033","UI:Search",,,,"1715379964.000000000","1715379964.000000000",,,,,,,,,,,,,,,,,,,,
+"1715387206.106",server,"1715387206.118280",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND source=""xr-1"" span=30
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=30s
+| fields - _span*",verbose,"1715387206.000000000",240,1715387206,241,478,"1715387206.000000000",completed,"0.033","UI:Search",,,,"1715380006.000000000","1715380006.000000000",,,,,,,,,,,,,,,,,,,,
+"1715387620.109",server,"1715387620.820414",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND source=""xr-1"" span=30
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=30s
+| fields - _span*",verbose,"1715387620.000000000",30,1715387620,31,58,"1715387620.000000000",completed,"0.03","UI:Search",,,,"1715386720.000000000","1715386720.000000000",,,,,,,,,,,,,,,,,,,,
+"1715387622.110",server,"1715387622.173953",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND source=""xr-1"" span=30
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=30s
+| fields - _span*",verbose,"1715387622.000000000",30,1715387622,31,58,"1715387622.000000000",completed,"0.043000000000000003","UI:Search",,,,"1715386722.000000000","1715386722.000000000",,,,,,,,,,,,,,,,,,,,
+"1715387689.111",server,"1715387689.489677",0,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" AND ""interface_name""=""GigabitEthernet0/0/0/0"" AND source=""xr-1"" span=30
+| timechart avg(""infra-statistics.packets_received"") AS Avg span=30s
+| fields - _span*",verbose,"1715387689.000000000",29,1715387689,31,58,"1715387689.000000000",completed,"0.03","UI:Search",,,,"1715386789.000000000","1715386789.000000000",,,,,,,,,,,,,,,,,,,,
+"admin__admin__search__search1_1715471178.1293",server,"1715471178.292433",0,"| rest splunk_server=server /services/server/info
+| fields splunk_server version
+| join type=outer splunk_server [rest splunk_server=server /services/server/status/installed-file-integrity
+    | fields splunk_server check_ready check_failures.fail]
+| eval check_status = case(isnull('check_failures.fail') AND isnotnull(check_ready), ""enabled"", 'check_failures.fail' == ""check_disabled"", ""disabled"", isnull(check_ready), ""feature unavailable"")
+| eval check_ready = if(check_status == ""enabled"", check_ready, ""N/A"")
+| fields version check_status check_ready
+| rename version AS ""Splunk version"" check_status AS ""Check status"" check_ready AS ""Results ready?""","",,0,1715471178,1,0,,completed,"0.053","UI:Dashboard:integrity_check_of_installed_files",0,0,search1,,,,,,,,,,,,,,,,,,,,,,
+"admin__admin__search__search2_1715471178.1294",server,"1715471178.294665",0,"| rest splunk_server=server /services/server/status/installed-file-integrity
+| fields check_failures.*
+| untable splunk_server file_path check_result
+| replace ""check_failures.*"" WITH ""*"" IN file_path
+| fields file_path check_result
+| rename file_path AS ""File path"" check_result AS ""Check result""","",,0,1715471178,1,0,,completed,"0.036000000000000004","UI:Dashboard:integrity_check_of_installed_files",0,0,search2,,,,,,,,,,,,,,,,,,,,,,
+"1715471194.1295",server,"1715471194.772219",0,"| rest splunk_server=server /services/server/status/installed-file-integrity | fields check_failures.* | untable splunk_server file_path check_result | replace ""check_failures.*"" WITH ""*"" IN file_path | fields file_path check_result | rename file_path AS ""File path"" check_result AS ""Check result""",verbose,,0,1715471194,1,0,,completed,"0.012","UI:Search",,,,,,,,,,,,,,,,,,,,,,,,,
+"admin__admin__search__search1_1715471215.1296",server,"1715471215.992147",0,"| rest splunk_server=server /services/server/info
+| fields splunk_server version
+| join type=outer splunk_server [rest splunk_server=server /services/server/status/installed-file-integrity
+    | fields splunk_server check_ready check_failures.fail]
+| eval check_status = case(isnull('check_failures.fail') AND isnotnull(check_ready), ""enabled"", 'check_failures.fail' == ""check_disabled"", ""disabled"", isnull(check_ready), ""feature unavailable"")
+| eval check_ready = if(check_status == ""enabled"", check_ready, ""N/A"")
+| fields version check_status check_ready
+| rename version AS ""Splunk version"" check_status AS ""Check status"" check_ready AS ""Results ready?""","",,0,1715471216,1,0,,completed,"0.03","UI:Dashboard:integrity_check_of_installed_files",0,0,search1,,,,,,,,,,,,,,,,,,,,,,
+"admin__admin__search__search2_1715471215.1297",server,"1715471216.000171",0,"| rest splunk_server=server /services/server/status/installed-file-integrity
+| fields check_failures.*
+| untable splunk_server file_path check_result
+| replace ""check_failures.*"" WITH ""*"" IN file_path
+| fields file_path check_result
+| rename file_path AS ""File path"" check_result AS ""Check result""","",,0,1715471216,1,0,,completed,"0.041","UI:Dashboard:integrity_check_of_installed_files",0,0,search2,,,,,,,,,,,,,,,,,,,,,,

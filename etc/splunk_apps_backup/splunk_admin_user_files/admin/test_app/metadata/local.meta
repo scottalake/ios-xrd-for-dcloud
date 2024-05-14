@@ -13,3 +13,7 @@ modtime = 1714857235.928790000
 [views/bgp_metrics_gnmi__snmp]
 version = 9.1.2
 modtime = 1714857232.179698000
+
+[views/json_restore_test]
+version = 9.1.2
+modtime = 1715405218.208983000
