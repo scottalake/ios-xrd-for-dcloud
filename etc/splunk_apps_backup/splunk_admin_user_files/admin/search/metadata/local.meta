@@ -13,3 +13,7 @@ modtime = 1715386719.142727000
 [ui-tour/dashboards-tour%3Aenterprise]
 version = 9.1.2
 modtime = 1715395712.392225000
+
+[ui-tour/adddata-tour%3Aenterprise]
+version = 9.1.2
+modtime = 1715568721.838145000
