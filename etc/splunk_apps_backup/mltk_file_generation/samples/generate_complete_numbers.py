@@ -8,7 +8,7 @@ numbers = pd.read_csv("numbers.csv", header=None, names=["Rate (Avg) /s"])
 seed_value = 60000
 
 # Generate timestamps starting from a given date, at 30-second intervals
-start_time = datetime(2024, 5, 10, 3, 0, 0)
+start_time = datetime(2024, 5, 14, 3, 0, 0)
 timestamps = [start_time + timedelta(seconds=30*i) for i in range(len(numbers))]
 
 # Convert the list of packets per interval to a cumulative sum
@@ -32,6 +32,6 @@ complete_data = pd.DataFrame({
 complete_data['_time'] = complete_data['_time'].dt.strftime('%Y-%m-%dT%H:%M:%S.%f+00:00')
 
 # Save the new CSV file
-complete_data.to_csv("complete_numbers.csv", index=False)
+complete_data.to_csv("packets_received_data.csv", index=False)
 
 print("CSV file with detailed data has been created.")

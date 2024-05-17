@@ -1,27 +1,3 @@
 [history/.dummy_history]
 version = 9.1.2
-modtime = 1714412217.245167000
-
-[views/interface_statistics]
-version = 9.1.2
-modtime = 1714495890.114183000
-
-[views/network_throughput]
-version = 9.1.2
-modtime = 1714857235.928790000
-
-[views/bgp_metrics_gnmi__snmp]
-version = 9.1.2
-modtime = 1714857232.179698000
-
-[views/json_restore_test]
-version = 9.1.2
-modtime = 1715405218.208983000
-
-[ui-tour/adddata-tour%3Aenterprise]
-version = 9.1.2
-modtime = 1715566178.927936000
-
-[lookups/__mlspl_outbound_traffic_017_threshold.mlmodel]
-version = 9.1.2
-modtime = 1715702991.834557000
+modtime = 1715902978.587899000

@@ -24,7 +24,8 @@ def send_metric_to_splunk(metric_data):
         print(f"Failed to send data. Response code: {response.status_code}, Response body: {response.text}")
 
 # Read the CSV file and construct the JSON payload for each metric
-with open('complete_numbers.csv', newline='') as csvfile:
+#with open('complete_numbers.csv', newline='') as csvfile:
+with open('packets_received_data.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         # Debug: Print the keys to make sure they match the expected column names

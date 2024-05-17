@@ -1,0 +1,7 @@
+1	interface_name	  0	0	0	0	
+2	GigabitEthernet0/0/0/0	  0	0	0	0	
+3	path	  0	0	0	0	
+4	Cisco-IOS-XR-infra-statsd-oper:/infra-statistics/interfaces/interface/latest/generic-counters	  0	0	0	0	
+5	telegraf_tag	  0	0	0	0	
+6	gnmi	  0	0	0	0	
+7	metric_name:infra-statistics.packets_received	  0	0	0	0	
