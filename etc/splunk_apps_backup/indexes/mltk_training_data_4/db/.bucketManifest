@@ -1,2 +1,2 @@
 id,path,"raw_size","event_count","host_count","source_count","sourcetype_count","size_on_disk",modtime,"frozen_in_cluster","origin_site","tsidx_minified","journal_size","merge_source",createdate
-"mltk_training_data_4~0~9F450893-9708-4083-8855-C3638102A87C","hot_v1_0","","","","","","","",0,"",0,"","",""
+"mltk_training_data_4~0~9F450893-9708-4083-8855-C3638102A87C","db_1715805570_1715655600_0",30000,5000,1,1,1,73728,1715929372,0,"",0,40,"",""
