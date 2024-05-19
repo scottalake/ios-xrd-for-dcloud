@@ -1,0 +1,21 @@
+sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level","api_et","event_count","exec_time","result_count","scan_count","search_et",status,"total_run_time","__mv_sid","__mv_splunk_server","__mv__time","__mv_is_realtime","__mv_provenance","__mv_search","__mv_adhoc_search_level","__mv_api_et","__mv_event_count","__mv_exec_time","__mv_result_count","__mv_scan_count","__mv_search_et","__mv_status","__mv_total_run_time"
+"rt_md_1716053139.4589",server,"1716053139.283916",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716053139,0,0,,failed,"66.12",,,,,,,,,,,,,,,
+"1716053156.4590",server,"1716053156.046455",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
+    | mvexpand metrics limit=20000","","1716052256.000000000",31159,1716053156,503,31159,"1716052256.000000000",canceled,"0.161",,,,,,,,,,,,,,,
+"1716053159.4591",server,"1716053159.788320",0,,"| mcatalog values(_dims) WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | mvexpand values(_dims)","","1716052259.000000000",31171,1716053159,1460,31171,"1716052259.000000000",completed,"0.07",,,,,,,,,,,,,,,
+"rt_md_1716071254.5238",server,"1716071254.161787",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716071254,0,0,,failed,"72.068",,,,,,,,,,,,,,,
+"1716071287.5241",server,"1716071287.341118",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
+    | mvexpand metrics limit=20000","","1716070387.000000000",32673,1716071287,501,32673,"1716070387.000000000",canceled,"0.126",,,,,,,,,,,,,,,
+"rt_md_1716071352.5244",server,"1716071352.478678",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716071352,0,0,,failed,"2477.422",,,,,,,,,,,,,,,
+"rt_md_1716081402.31",server,"1716081402.593582",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716081402,0,0,,failed,"68.084",,,,,,,,,,,,,,,
+"1716081419.32",server,"1716081419.990893",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
+    | mvexpand metrics limit=20000","","1716080519.000000000",34449,1716081420,515,34449,"1716080519.000000000",canceled,"0.309",,,,,,,,,,,,,,,
+"rt_md_1716082422.5",server,"1716082422.501528",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716082422,0,0,,failed,"71.078",,,,,,,,,,,,,,,
+"rt_md_1716082492.9",server,"1716082492.206698",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716082492,0,0,,failed,"77.07000000000001",,,,,,,,,,,,,,,
+"1716082508.12",server,"1716082508.419313",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
+    | mvexpand metrics limit=20000","","1716081608.000000000",39418,1716082508,515,39418,"1716081608.000000000",canceled,"0.133",,,,,,,,,,,,,,,
+"rt_md_1716082517.13",server,"1716082517.259960",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716082517,0,0,,failed,"81.03",,,,,,,,,,,,,,,
+"rt_md_1716089020.9",server,"1716089020.136927",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716089020,0,0,,failed,"69.033",,,,,,,,,,,,,,,
+"rt_md_1716089029.10",server,"1716089029.760862",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716089029,0,0,,failed,"66.068",,,,,,,,,,,,,,,
+"1716089034.11",server,"1716089034.588462",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
+    | mvexpand metrics limit=20000","","1716088134.000000000",49633,1716089034,505,49633,"1716088134.000000000",canceled,"0.14400000000000002",,,,,,,,,,,,,,,

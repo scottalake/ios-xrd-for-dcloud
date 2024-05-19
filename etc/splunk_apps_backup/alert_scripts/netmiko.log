@@ -34777,3 +34777,955 @@ DEBUG:netmiko:Pattern found: ([#\$])
 
 RP/0/RP0/CPU0:xr-box#
 DEBUG:netmiko:write_channel: b'exit\n'
+DEBUG:paramiko.transport:starting thread (client mode): 0xd4ec7f0
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.4.0
+DEBUG:paramiko.transport:Remote version/idstring: SSH-2.0-Cisco-2.0
+INFO:paramiko.transport:Connected (version 2.0, client Cisco-2.0)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: ecdh-sha2-nistp521, ecdh-sha2-nistp384, ecdh-sha2-nistp256, diffie-hellman-group14-sha1, curve25519-sha256, diffie-hellman-group14-sha256, diffie-hellman-group16-sha512, curve25519-sha256@libssh.org
+DEBUG:paramiko.transport:server key: ecdsa-sha2-nistp521, ecdsa-sha2-nistp384, ecdsa-sha2-nistp256, ssh-dss, rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+DEBUG:paramiko.transport:client encrypt: aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com, chacha20-poly1305@openssh.com
+DEBUG:paramiko.transport:server encrypt: aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com, chacha20-poly1305@openssh.com
+DEBUG:paramiko.transport:client mac: hmac-sha2-512, hmac-sha2-256, hmac-sha1
+DEBUG:paramiko.transport:server mac: hmac-sha2-512, hmac-sha2-256, hmac-sha1
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: curve25519-sha256@libssh.org
+DEBUG:paramiko.transport:HostKey: ssh-ed25519
+DEBUG:paramiko.transport:Cipher: aes128-ctr
+DEBUG:paramiko.transport:MAC: hmac-sha2-256
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-ed25519 host key for 198.18.133.1: b'22274995b32a8e87013bfb052334aeec'
+DEBUG:paramiko.transport:Got EXT_INFO: {'server-sig-algs\x00': b'ssh-rsa,rsa-sha2-256,rsa-sha2-512,x509v3-ssh-rsa,x509v3-ssh-dss,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp256,ssh-rsa-cert-v01@openssh.com,ssh-dss-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com'}
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 32768 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([>#]) 
+
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal width 511
+
+Sat May 18 14:09:27.342 UTC
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: (terminal width 511) terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal length 0
+
+Sat May 18 14:09:27.378 UTC
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+
+Sat May 18 14:09:27.342 UTC
+RP/0/RP0/CPU0:xr-box#terminal length 0
+DEBUG:netmiko:
+
+Sat May 18 14:09:27.342 UTC
+RP/0/RP0/CPU0:xr-box#terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ([>#]) 
+
+Sat May 18 14:09:27.378 UTC
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal length 0
+
+Sat May 18 14:09:28.497 UTC
+
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) terminal length 0
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'show version\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show version
+
+Sat May 18 14:09:29.214 UTC
+
+DEBUG:netmiko:Pattern found: (show\ version) show version
+DEBUG:netmiko:read_channel: Cisco IOS XR Software, Version 7.10.1
+Copyright (c) 2013-2023 by Cisco Systems, Inc.
+
+Build Information:
+ Built By     : deenayak
+ Built On     : Wed Aug 16 21:36:13 PDT 2023
+ Built Host   : iox-ucs-053
+ Workspace    : /auto/srcarchive16/prod/7.10.1/xrv9k/ws
+ Version      : 7.10.1
+ Location     : /opt/cisco/XR/packages/
+ Label        : 7.10.1
+
+cisco IOS-XRv 9000 () processor
+System uptime is 1 day 16 hours 17 minutes
+
+
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'show clock\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show clock
+
+Sat May 18 14:09:29.927 UTC
+
+DEBUG:netmiko:Pattern found: (show\ clock) show clock
+DEBUG:netmiko:read_channel: 14:09:29.949 UTC Sat May 18 2024
+
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'show ip bgp neighbor brief\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show ip bgp neighbor brief
+
+Sat May 18 14:09:30.641 UTC
+
+DEBUG:netmiko:Pattern found: (show\ ip\ bgp\ neighbor\ brief) show ip bgp neighbor brief
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+Neighbor         Spk    AS  Description                         Up/Down  NBRState
+10.0.0.2          0 65500                                         1d14h Established 
+10.0.0.5          0 65538                                         1d14h Established 
+10.0.0.7          0 65500                                         1d14h Established 
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'exit\n'
+DEBUG:paramiko.transport:starting thread (client mode): 0xd4ee3b0
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.4.0
+DEBUG:paramiko.transport:EOF in transport thread
+DEBUG:paramiko.transport:Remote version/idstring: SSH-2.0-Cisco-2.0
+INFO:paramiko.transport:Connected (version 2.0, client Cisco-2.0)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: ecdh-sha2-nistp521, ecdh-sha2-nistp384, ecdh-sha2-nistp256, diffie-hellman-group14-sha1, curve25519-sha256, diffie-hellman-group14-sha256, diffie-hellman-group16-sha512, curve25519-sha256@libssh.org
+DEBUG:paramiko.transport:server key: ecdsa-sha2-nistp521, ecdsa-sha2-nistp384, ecdsa-sha2-nistp256, ssh-dss, rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+DEBUG:paramiko.transport:client encrypt: aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com, chacha20-poly1305@openssh.com
+DEBUG:paramiko.transport:server encrypt: aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com, chacha20-poly1305@openssh.com
+DEBUG:paramiko.transport:client mac: hmac-sha2-512, hmac-sha2-256, hmac-sha1
+DEBUG:paramiko.transport:server mac: hmac-sha2-512, hmac-sha2-256, hmac-sha1
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: curve25519-sha256@libssh.org
+DEBUG:paramiko.transport:HostKey: ssh-ed25519
+DEBUG:paramiko.transport:Cipher: aes128-ctr
+DEBUG:paramiko.transport:MAC: hmac-sha2-256
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-ed25519 host key for 198.18.133.1: b'22274995b32a8e87013bfb052334aeec'
+DEBUG:paramiko.transport:Got EXT_INFO: {'server-sig-algs\x00': b'ssh-rsa,rsa-sha2-256,rsa-sha2-512,x509v3-ssh-rsa,x509v3-ssh-dss,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp256,ssh-rsa-cert-v01@openssh.com,ssh-dss-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com'}
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 32768 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([>#]) 
+
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal width 511
+
+Sat May 18 14:09:31.308 UTC
+
+DEBUG:netmiko:Pattern found: (terminal width 511) terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal length 0
+
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+
+Sat May 18 14:09:31.308 UTC
+terminal length 0
+DEBUG:netmiko:
+
+Sat May 18 14:09:31.308 UTC
+terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#terminal length 0
+
+Sat May 18 14:09:31.361 UTC
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([>#]) 
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'configure terminal\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: configure terminal
+
+Sat May 18 14:09:32.232 UTC
+
+DEBUG:netmiko:Pattern found: (configure\ terminal) configure terminal
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box(config)#
+DEBUG:netmiko:Pattern found: (RP/0/RP0/CPU0:xr\-box.*) 
+
+Sat May 18 14:09:32.232 UTC
+RP/0/RP0/CPU0:xr-box(config)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box(config)#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box(config)#
+DEBUG:netmiko:write_channel: b'router static\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router static
+
+RP/0/RP0/CPU0:xr-box(config-static)#
+DEBUG:netmiko:Pattern found: (router\ static) router static
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:RP/0/RP0/CPU0:xr\-box.*$|#.*$)) 
+
+RP/0/RP0/CPU0:xr-box(config-static)#
+DEBUG:netmiko:write_channel: b'address-family ipv4 unicast\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: address-family ipv4 unicast
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: (address\-family\ ipv4\ unicast) address-family ipv4 unicast
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:RP/0/RP0/CPU0:xr\-box.*$|#.*$)) 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'198.18.14.10/32 Null0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 198.18.14.10/32 Null0
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: (198\.18\.14\.10/32\ Null0) 198.18.14.10/32 Null0
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:RP/0/RP0/CPU0:xr\-box.*$|#.*$)) 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'commit\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: commit
+
+Sat May 18 14:09:32.662 UTC
+
+DEBUG:netmiko:Pattern found: (commit) commit
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: ((?:RP/0/RP0/CPU0:xr\-box.*$|#.*$)) 
+
+Sat May 18 14:09:32.662 UTC
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:configure terminal
+
+Sat May 18 14:09:32.232 UTC
+RP/0/RP0/CPU0:xr-box(config)#router static
+
+RP/0/RP0/CPU0:xr-box(config-static)#address-family ipv4 unicast
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#198.18.14.10/32 Null0
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#commit
+
+Sat May 18 14:09:32.662 UTC
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'end\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: end
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: (end) end
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (Uncommitted|#$)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (Uncommitted|#$) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'exit\n'
+DEBUG:paramiko.transport:starting thread (client mode): 0xd4ec5e0
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.4.0
+DEBUG:paramiko.transport:EOF in transport thread
+DEBUG:paramiko.transport:Remote version/idstring: SSH-2.0-Cisco-2.0
+INFO:paramiko.transport:Connected (version 2.0, client Cisco-2.0)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: ecdh-sha2-nistp521, ecdh-sha2-nistp384, ecdh-sha2-nistp256, diffie-hellman-group14-sha1, curve25519-sha256, diffie-hellman-group14-sha256, diffie-hellman-group16-sha512, curve25519-sha256@libssh.org
+DEBUG:paramiko.transport:server key: ecdsa-sha2-nistp521, ecdsa-sha2-nistp384, ecdsa-sha2-nistp256, rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+DEBUG:paramiko.transport:client encrypt: aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com, chacha20-poly1305@openssh.com
+DEBUG:paramiko.transport:server encrypt: aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com, chacha20-poly1305@openssh.com
+DEBUG:paramiko.transport:client mac: hmac-sha2-512, hmac-sha2-256, hmac-sha1
+DEBUG:paramiko.transport:server mac: hmac-sha2-512, hmac-sha2-256, hmac-sha1
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: curve25519-sha256@libssh.org
+DEBUG:paramiko.transport:HostKey: ssh-ed25519
+DEBUG:paramiko.transport:Cipher: aes128-ctr
+DEBUG:paramiko.transport:MAC: hmac-sha2-256
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-ed25519 host key for 198.18.133.2: b'9b856e33b15b0428ecdc0f1bf3b55c6a'
+DEBUG:paramiko.transport:Got EXT_INFO: {'server-sig-algs\x00': b'ssh-rsa,rsa-sha2-256,rsa-sha2-512,x509v3-ssh-rsa,x509v3-ssh-dss,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp256,ssh-rsa-cert-v01@openssh.com,ssh-dss-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com'}
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 32768 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([>#]) 
+
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal width 511
+
+Sat May 18 14:09:34.711 UTC
+
+DEBUG:netmiko:Pattern found: (terminal width 511) terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal length 0
+
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+
+Sat May 18 14:09:34.711 UTC
+terminal length 0
+DEBUG:netmiko:
+
+Sat May 18 14:09:34.711 UTC
+terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#terminal length 0
+
+Sat May 18 14:09:34.761 UTC
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([>#]) 
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal length 0
+
+Sat May 18 14:09:36.279 UTC
+
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) terminal length 0
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'show version\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show version
+
+Sat May 18 14:09:36.971 UTC
+
+DEBUG:netmiko:Pattern found: (show\ version) show version
+DEBUG:netmiko:read_channel: Cisco IOS XR Software, Version 7.10.1
+Copyright (c) 2013-2023 by Cisco Systems, Inc.
+
+Build Information:
+ Built By     : deenayak
+ Built On     : Wed Aug 16 21:36:13 PDT 2023
+ Built Host   : iox-ucs-053
+ Workspace    : /auto/srcarchive16/prod/7.10.1/xrv9k/ws
+ Version      : 7.10.1
+ Location     : /opt/cisco/XR/packages/
+ Label        : 7.10.1
+
+cisco IOS-XRv 9000 () processor
+System uptime is 1 day 16 hours 17 minutes
+
+
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'show clock\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show clock
+
+Sat May 18 14:09:37.697 UTC
+
+DEBUG:netmiko:Pattern found: (show\ clock) show clock
+DEBUG:netmiko:read_channel: 14:09:37.722 UTC Sat May 18 2024
+
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'show ip bgp neighbor brief\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show ip bgp neighbor brief
+
+Sat May 18 14:09:38.424 UTC
+
+DEBUG:netmiko:Pattern found: (show\ ip\ bgp\ neighbor\ brief) show ip bgp neighbor brief
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+Neighbor         Spk    AS  Description                         Up/Down  NBRState
+10.0.0.1          0 65500                                         1d14h Established 
+10.0.0.6          0 65538                                         1d14h Established 
+10.0.0.7          0 65500                                         1d14h Established 
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'exit\n'
+DEBUG:paramiko.transport:starting thread (client mode): 0xd4ef3d0
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.4.0
+DEBUG:paramiko.transport:EOF in transport thread
+DEBUG:paramiko.transport:Remote version/idstring: SSH-2.0-Cisco-2.0
+INFO:paramiko.transport:Connected (version 2.0, client Cisco-2.0)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: ecdh-sha2-nistp521, ecdh-sha2-nistp384, ecdh-sha2-nistp256, diffie-hellman-group14-sha1, curve25519-sha256, diffie-hellman-group14-sha256, diffie-hellman-group16-sha512, curve25519-sha256@libssh.org
+DEBUG:paramiko.transport:server key: ecdsa-sha2-nistp521, ecdsa-sha2-nistp384, ecdsa-sha2-nistp256, rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+DEBUG:paramiko.transport:client encrypt: aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com, chacha20-poly1305@openssh.com
+DEBUG:paramiko.transport:server encrypt: aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com, chacha20-poly1305@openssh.com
+DEBUG:paramiko.transport:client mac: hmac-sha2-512, hmac-sha2-256, hmac-sha1
+DEBUG:paramiko.transport:server mac: hmac-sha2-512, hmac-sha2-256, hmac-sha1
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: curve25519-sha256@libssh.org
+DEBUG:paramiko.transport:HostKey: ssh-ed25519
+DEBUG:paramiko.transport:Cipher: aes128-ctr
+DEBUG:paramiko.transport:MAC: hmac-sha2-256
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-ed25519 host key for 198.18.133.2: b'9b856e33b15b0428ecdc0f1bf3b55c6a'
+DEBUG:paramiko.transport:Got EXT_INFO: {'server-sig-algs\x00': b'ssh-rsa,rsa-sha2-256,rsa-sha2-512,x509v3-ssh-rsa,x509v3-ssh-dss,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp256,ssh-rsa-cert-v01@openssh.com,ssh-dss-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com'}
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 32768 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([>#]) 
+
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal width 511
+
+Sat May 18 14:09:38.887 UTC
+
+DEBUG:netmiko:Pattern found: (terminal width 511) terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal length 0
+
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+
+Sat May 18 14:09:38.887 UTC
+terminal length 0
+DEBUG:netmiko:
+
+Sat May 18 14:09:38.887 UTC
+terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box#terminal length 0
+
+Sat May 18 14:09:38.954 UTC
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([>#]) 
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'configure terminal\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: configure terminal
+
+Sat May 18 14:09:39.816 UTC
+
+DEBUG:netmiko:Pattern found: (configure\ terminal) configure terminal
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box(config)#
+DEBUG:netmiko:Pattern found: (RP/0/RP0/CPU0:xr\-box.*) 
+
+Sat May 18 14:09:39.816 UTC
+RP/0/RP0/CPU0:xr-box(config)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box(config)#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box(config)#
+DEBUG:netmiko:write_channel: b'router static\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router static
+
+RP/0/RP0/CPU0:xr-box(config-static)#
+DEBUG:netmiko:Pattern found: (router\ static) router static
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:RP/0/RP0/CPU0:xr\-box.*$|#.*$)) 
+
+RP/0/RP0/CPU0:xr-box(config-static)#
+DEBUG:netmiko:write_channel: b'address-family ipv4 unicast\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: address-family ipv4 unicast
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: (address\-family\ ipv4\ unicast) address-family ipv4 unicast
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:RP/0/RP0/CPU0:xr\-box.*$|#.*$)) 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'198.18.14.10/32 Null0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 198.18.14.10/32 Null0
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: (198\.18\.14\.10/32\ Null0) 198.18.14.10/32 Null0
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:RP/0/RP0/CPU0:xr\-box.*$|#.*$)) 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'commit\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: commit
+
+Sat May 18 14:09:40.231 UTC
+
+DEBUG:netmiko:Pattern found: (commit) commit
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: ((?:RP/0/RP0/CPU0:xr\-box.*$|#.*$)) 
+
+Sat May 18 14:09:40.231 UTC
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:configure terminal
+
+Sat May 18 14:09:39.816 UTC
+RP/0/RP0/CPU0:xr-box(config)#router static
+
+RP/0/RP0/CPU0:xr-box(config-static)#address-family ipv4 unicast
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#198.18.14.10/32 Null0
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#commit
+
+Sat May 18 14:09:40.231 UTC
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box(config-static-afi)#
+DEBUG:netmiko:write_channel: b'end\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: end
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: (end) end
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (Uncommitted|#$)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (Uncommitted|#$) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:Pattern found: ([#\$]) 
+
+RP/0/RP0/CPU0:xr-box#
+DEBUG:netmiko:write_channel: b'exit\n'

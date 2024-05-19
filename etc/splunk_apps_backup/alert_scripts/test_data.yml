@@ -1,0 +1,19 @@
+...
+
+alert_scenario:
+  username: cisco
+  password: cisco123
+  netmiko_device_type: cisco_xr
+  ip_list: 
+  - '198.18.133.1'
+  - '198.18.133.2'
+  show_command_list:
+  - 'show version'
+  - 'show clock'
+  - 'show ip bgp neighbor brief'
+  config_commands_list:
+  - 'router static'
+  - 'address-family ipv4 unicast'
+  - '198.18.14.10/32 Null0'
+
+
