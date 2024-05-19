@@ -19,3 +19,5 @@ sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level"
 "rt_md_1716089029.10",server,"1716089029.760862",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716089029,0,0,,failed,"66.068",,,,,,,,,,,,,,,
 "1716089034.11",server,"1716089034.588462",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
     | mvexpand metrics limit=20000","","1716088134.000000000",49633,1716089034,505,49633,"1716088134.000000000",canceled,"0.14400000000000002",,,,,,,,,,,,,,,
+"rt_md_1716128398.1224",server,"1716128398.246648",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716128398,0,0,,failed,"66.08",,,,,,,,,,,,,,,
+"rt_md_1716128403.1227",server,"1716128403.879635",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,0,1716128403,0,0,,failed,"78.07600000000001",,,,,,,,,,,,,,,
