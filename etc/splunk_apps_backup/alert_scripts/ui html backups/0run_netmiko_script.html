@@ -1,0 +1,45 @@
+<fieldset>
+  <legend>Network Automation Alert Action</legend>
+  
+  <div class="formRow">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="param.username" value="cisco" readonly />
+  </div>
+  
+  <div class="formRow">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="param.password" value="cisco123" readonly />
+  </div>
+  </p>
+  <div class="formRow">
+    <label for="netmiko_device_type">Netmiko Device Type:</label>
+    <input type="text" id="netmiko_device_type" name="param.netmiko_device_type" value="cisco_xr" readonly />
+  </div>
+  </p>
+  <div class="formRow">
+    <label>Before Show Commands:</label>
+    <label>(Enter the show commands you would like to run *before* any configuration commands are sent.)</label>
+    <div class="commandList">
+      <input type="text" name="param.before_show_command_list" size="60" placeholder="Enter FIRST *before* show command" /><br />
+  </p>
+    </div>
+  </div>
+  </p>
+  <div class="formRow">
+    <label>Config Commands:</label>
+    <div class="commandList">
+      <!-- Users can enter up to 10 config commands -->
+      <input type="text" name="param.config_commands_list" size="60" placeholder="Enter FIRST configuration command" /><br />
+  </p>
+    </div>
+  </div>
+  <div class="formRow">
+    <label>After Show Commands:</label>
+    <label>(Enter the show commands you would like to run *after* any configuration commands are sent.)</label>
+    <div class="commandList">
+      <!-- Users can enter up to 10 "After" show commands -->
+      <input type="text" name="param.after_show_command_list" size="60" placeholder="Enter FIRST *after* show command" /><br />
+    </div>
+  </div>
+  
+</fieldset>

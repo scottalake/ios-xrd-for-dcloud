@@ -90,7 +90,11 @@ while True:
         print("Making dated backup copy of tar file and saving to separate directory...")
         os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/xr_commands_alert_action_latest.tar.gz  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_xr_commands_alert_action_latest.tar.gz")
 
-
+        print("Creating tar file for xr_commands_alert_action2 and copying to ~/ios-xr-streaming-telemetry-demo/...")
+        print("")
+        os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf xr_commands_alert_action2_latest.tar.gz                              -C /opt/splunk/etc/apps/xr_commands_alert_action2    .  && sudo mv /opt/splunk/etc/apps/xr_commands_alert_action2_latest.tar.gz      /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        print("Making dated backup copy of tar file and saving to separate directory...")
+        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/xr_commands_alert_action2_latest.tar.gz  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_xr_commands_alert_action_latest2.tar.gz")
 
     elif ch == 2:
         # 2.  Restore test_app
