@@ -1,0 +1,533 @@
+sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level","event_count","exec_time","result_count","scan_count",status,"total_run_time","api_index_et","api_index_lt","savedsearch_name","__mv_sid","__mv_splunk_server","__mv__time","__mv_is_realtime","__mv_provenance","__mv_search","__mv_adhoc_search_level","__mv_event_count","__mv_exec_time","__mv_result_count","__mv_scan_count","__mv_status","__mv_total_run_time","__mv_api_index_et","__mv_api_index_lt","__mv_savedsearch_name"
+"rt_md_1715914852.4601",server,"1715914852.997511",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1715914853,0,0,failed,"71.065",,,,,,,,,,,,,,,,,,,
+"1715914855.4603",server,"1715914855.013518",0,"UI:Search","| history | search NOT search=""| history*"" AND NOT search=""*metadata*"" AND NOT search=""*loadjob*"" AND NOT savedsearch_name=""*"" AND NOT search=""search"" AND NOT search=""*from sid*"" AND NOT search=""| eventcount summarize=false index=* index=_**"" AND NOT provenance=""UI:LocateData"" AND NOT provenance=""UI:TableEditor"" AND NOT provenance=""UI:DataModel"" AND NOT provenance=""UI:Pivot"" AND NOT provenance=""UI:Dataset"" | dedup search | head 100000","",0,1715914855,0,0,completed,"0.024",,,,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD513e0828febc3a751_1715914906.4653",server,"1715914906.237719",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" 
+WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m","",0,1715914906,0,0,canceled,"0.067",0,0,"469768b0-db22-4472-a07b-9cdccce5e1a3",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD513e0828febc3a751_1715914906.4654",server,"1715914906.259619",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" 
+WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m","",0,1715914906,0,0,canceled,"0.093",0,0,"469768b0-db22-4472-a07b-9cdccce5e1a3",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD513e0828febc3a751_1715914906.4655",server,"1715914906.290531",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" 
+WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m",smart,0,1715914906,0,0,completed,"0.10200000000000001",0,0,"469768b0-db22-4472-a07b-9cdccce5e1a3",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD513e0828febc3a751_1715914921.4674",server,"1715914921.499655",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m",smart,0,1715914921,0,0,canceled,"0.063",0,0,"469768b0-db22-4472-a07b-9cdccce5e1a3",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD513e0828febc3a751_1715914921.4675",server,"1715914921.519517",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m",smart,0,1715914921,0,0,completed,"0.073",0,0,"469768b0-db22-4472-a07b-9cdccce5e1a3",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715916975.5648",server,"1715916975.316398",0,splunkjs," | from inputlookup:complete_numbers.csv","",0,1715916975,5000,0,canceled,"0.047",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715916975.5649",server,"1715916975.471426",0,splunkjs," | from inputlookup:complete_numbers.csv","",0,1715916975,5000,0,canceled,"0.055",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715916975.5650",server,"1715916975.486302",0,splunkjs," | from inputlookup:complete_numbers.csv",smart,0,1715916975,5000,0,completed,"0.048",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917360.5837",server,"1715917360.816764",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715917360,0,0,canceled,"0.003",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917360.5838",server,"1715917360.850875",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715917360,0,0,canceled,"0.003",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917378.5841",server,"1715917378.054792",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715917378,0,0,failed,"0.004",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917386.5844",server,"1715917386.233735",0,splunkjs," | from inputlookup:complete_numbers.csv",smart,0,1715917386,5000,0,canceled,"0.10200000000000001",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917386.5845",server,"1715917386.264851",0,splunkjs," | from inputlookup:complete_numbers.csv",smart,0,1715917386,5000,0,completed,"0.11900000000000001",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917444.5877",server,"1715917444.036860",0,splunkjs," | from inputlookup:complete_numbers.csv | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s""",smart,0,1715917444,0,0,canceled,"0.003",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917444.5878",server,"1715917444.082896",0,splunkjs," | from inputlookup:complete_numbers.csv | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s""",smart,0,1715917444,0,0,failed,"0.005",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917471.5899",server,"1715917471.588232",0,splunkjs," | from inputlookup:complete_numbers.csv",smart,0,1715917471,5000,0,canceled,"0.052000000000000005",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917471.5900",server,"1715917471.620922",0,splunkjs," | from inputlookup:complete_numbers.csv",smart,0,1715917471,5000,0,completed,"0.05",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917561.5941",server,"1715917561.583527",0,splunkjs," | from inputlookup:complete_numbers.csv | mstats rate_avg(""metric_name:infra-statistics.packets_received"") as ""Rate (Avg) /s"" span=1m",smart,0,1715917561,0,0,canceled,"0.006",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917561.5942",server,"1715917561.618853",0,splunkjs," | from inputlookup:complete_numbers.csv | mstats rate_avg(""metric_name:infra-statistics.packets_received"") as ""Rate (Avg) /s"" span=1m",smart,0,1715917561,0,0,failed,"0.006",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917599.5954",server,"1715917599.814760",0,splunkjs," | from inputlookup:disk_failures.csv | mstats rate_avg(""metric_name:infra-statistics.packets_received"") as ""Rate (Avg) /s"" span=1m",smart,0,1715917599,0,0,canceled,"0.003",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917599.5955",server,"1715917599.848808",0,splunkjs," | from inputlookup:disk_failures.csv | mstats rate_avg(""metric_name:infra-statistics.packets_received"") as ""Rate (Avg) /s"" span=1m",smart,0,1715917599,0,0,canceled,"0.003",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917609.5968",server,"1715917609.214840",0,splunkjs," | from inputlookup:disk_failures.csv",smart,0,1715917609,8202,0,canceled,"0.076",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917609.5969",server,"1715917609.248798",0,splunkjs," | from inputlookup:disk_failures.csv",smart,0,1715917609,8202,0,completed,"0.08600000000000001",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917631.5978",server,"1715917631.693872",0,splunkjs," | from inputlookup:firewall_traffic.csv",smart,0,1715917631,0,0,canceled,"0.727",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917631.5979",server,"1715917631.738439",0,splunkjs," | from inputlookup:firewall_traffic.csv",smart,0,1715917631,98943,0,canceled,"0.9450000000000001",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917649.5982",server,"1715917649.040887",0,splunkjs," | from inputlookup:internet_traffic.csv",smart,0,1715917649,14772,0,canceled,"0.074",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59172a5157d418a68_1715917649.5983",server,"1715917649.082900",0,splunkjs," | from inputlookup:internet_traffic.csv",smart,0,1715917649,14772,0,completed,"0.08",0,0,"1dd7a97d-791f-4764-ad60-cff29cfe55bd",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__searchBarSearch_1715917708.6013",server,"1715917708.854662",0,splunkjs,"| inputlookup hostperf.csv | eval _time=strptime(_time, ""%Y-%m-%dT%H:%M:%S.%3Q%z"") | timechart span=10m max(rtmax) as responsetime | head 1000",smart,0,1715917708,1000,0,completed,"0.179",0,0,searchBarSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD529e82d7cad9f9f58_1715917709.6014",server,"1715917709.483874",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__searchBarSearch_1715917708.6013 | head 1 | transpose | fields column | search column != ""column"" AND column != ""_*""","",0,1715917709,1,0,canceled,"0.026000000000000002",0,0,outlierVariableSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD529e82d7cad9f9f58_1715917709.6017",server,"1715917709.575845",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__searchBarSearch_1715917708.6013 | head 1 | transpose | fields column | search column != ""column"" AND column != ""_*""","",0,1715917709,1,0,completed,"0.10300000000000001",0,0,outlierVariableSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__splitByFieldsSearch_1715917710.6018",server,"1715917710.691725",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD529e82d7cad9f9f58_1715917709.6017 | search column != ""column"" AND column != ""responsetime"" AND (column != ""_*"" OR column = ""_time"")","",0,1715917710,0,0,completed,"0.024",0,0,splitByFieldsSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__outlierSearch_1715917711.6019",server,"1715917711.685729",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__searchBarSearch_1715917708.6013 | streamstats window=200 current=true median(""responsetime"") as median  | eval absDev=(abs('responsetime'-median)) | streamstats window=200 current=true median(absDev) as medianAbsDev  | eval lowerBound=(median-medianAbsDev*exact(20)), upperBound=(median+medianAbsDev*exact(20)) | eval isOutlier=if('responsetime' < lowerBound OR 'responsetime' > upperBound, 1, 0)","",0,1715917711,1000,0,completed,"0.031",0,0,outlierSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__outliersCountSearch_1715917712.6020",server,"1715917712.827240",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__outlierSearch_1715917711.6019 | where isOutlier=1 | stats count as outlierCount","",0,1715917712,1,0,completed,"0.056",0,0,outliersCountSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__outliersVizSearch_1715917712.6021",server,"1715917712.975477",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__outlierSearch_1715917711.6019  | fields _time, ""responsetime"", lowerBound, upperBound, isOutlier, *","",0,1715917713,1000,0,completed,"0.065",0,0,outliersVizSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD517426953b41387a8_1715917712.6022",server,"1715917712.978390",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__outlierSearch_1715917711.6019 | eval distance = max('responsetime' - median, median - 'responsetime') | eval distance = if(medianAbsDev!=0, floor(distance/medianAbsDev), 0) | chart count over distance | makecontinuous distance","",0,1715917713,40,0,completed,"0.092",0,0,outliersBarChartVizSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD57df09c0f66ea2200_1715917712.6023",server,"1715917712.981198",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__outlierSearch_1715917711.6019 | eval isOutlierBelow=if('responsetime' < lowerBound, 1, 0), isOutlierAbove=if('responsetime' > upperBound, 1, 0)  | timechart sum(isOutlier) as outliers ","",0,1715917713,8,0,completed,"0.10200000000000001",0,0,outliersOverTimeVizSearch,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917773.6055",server,"1715917773.400187",0,splunkjs," | from inputlookup:internet_traffic.csv","",0,1715917773,0,0,canceled,"0.151",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917773.6056",server,"1715917773.425400",0,splunkjs," | from inputlookup:internet_traffic.csv","",0,1715917773,0,0,canceled,"0.097",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917773.6057",server,"1715917773.453626",0,splunkjs," | from inputlookup:internet_traffic.csv",smart,0,1715917773,14772,0,completed,"0.152",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917895.6120",server,"1715917895.272359",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup hostperf.csv | eval _time=strptime(_time, ""%Y-%m-%dT%H:%M:%S.%3Q%z"") | timechart span=10m max(rtmax) as responsetime | head 1000",smart,0,1715917895,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917895.6121",server,"1715917895.317671",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup hostperf.csv | eval _time=strptime(_time, ""%Y-%m-%dT%H:%M:%S.%3Q%z"") | timechart span=10m max(rtmax) as responsetime | head 1000",smart,0,1715917895,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917901.6122",server,"1715917901.597293",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv",smart,0,1715917901,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917901.6123",server,"1715917901.625957",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv",smart,0,1715917901,0,0,failed,"0.004",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917932.6133",server,"1715917932.776323",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv",smart,0,1715917932,0,0,canceled,"0.005",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917935.6139",server,"1715917935.540451",0,splunkjs," | from inputlookup:app_usage.csv | inputlookup complete_numbers.csv",smart,0,1715917935,0,0,canceled,"0.004",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715917935.6140",server,"1715917935.571415",0,splunkjs," | from inputlookup:app_usage.csv | inputlookup complete_numbers.csv",smart,0,1715917935,0,0,failed,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD58a15ed754498bc88_1715917956.6158",server,"1715917956.115730",0,splunkjs," | inputlookup complete_numbers.csv
+| sort 0 _time  // Ensure the events are sorted by time before calculating deltas
+| streamstats current=f window=1 last(_time) as prev_time last(""infra-statistics.packets_received"") as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff)
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by interface_name","",0,1715917956,0,0,canceled,"0.08600000000000001",0,0,"dd797f0a-871a-4cfd-a5f9-1121b62e9dad",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD58a15ed754498bc88_1715917956.6159",server,"1715917956.133656",0,splunkjs," | inputlookup complete_numbers.csv
+| sort 0 _time  // Ensure the events are sorted by time before calculating deltas
+| streamstats current=f window=1 last(_time) as prev_time last(""infra-statistics.packets_received"") as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff)
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by interface_name","",0,1715917956,0,0,canceled,"0.109",0,0,"dd797f0a-871a-4cfd-a5f9-1121b62e9dad",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD58a15ed754498bc88_1715917956.6160",server,"1715917956.148370",0,splunkjs," | inputlookup complete_numbers.csv
+| sort 0 _time  // Ensure the events are sorted by time before calculating deltas
+| streamstats current=f window=1 last(_time) as prev_time last(""infra-statistics.packets_received"") as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff)
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by interface_name",smart,0,1715917956,0,0,completed,"0.105",0,0,"dd797f0a-871a-4cfd-a5f9-1121b62e9dad",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918004.6176",server,"1715918004.256041",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv",smart,0,1715918004,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918004.6177",server,"1715918004.300874",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv",smart,0,1715918004,0,0,failed,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918044.6198",server,"1715918044.585220",0,splunkjs," | from inputlookup:complete_numbers.csv | search source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0""
+| eval _time = strptime(_time, ""%Y-%m-%d %H:%M:%S"")
+| bucket _time span=1m
+| stats avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" by _time",smart,0,1715918044,0,0,canceled,"0.094",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918044.6199",server,"1715918044.615202",0,splunkjs," | from inputlookup:complete_numbers.csv | search source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0""
+| eval _time = strptime(_time, ""%Y-%m-%d %H:%M:%S"")
+| bucket _time span=1m
+| stats avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" by _time",smart,0,1715918044,0,0,completed,"0.11",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918088.6227",server,"1715918088.613657",0,splunkjs," | from inputlookup:complete_numbers.csv | search source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0""
+| eval _time = strptime(_time, ""%Y-%m-%d %H:%M:%S"")
+| bucket _time span=1m
+| mstats avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" by _time",smart,0,1715918088,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918088.6228",server,"1715918088.644742",0,splunkjs," | from inputlookup:complete_numbers.csv | search source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0""
+| eval _time = strptime(_time, ""%Y-%m-%d %H:%M:%S"")
+| bucket _time span=1m
+| mstats avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" by _time",smart,0,1715918088,0,0,failed,"0.013000000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918170.6262",server,"1715918170.208177",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715918170,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918170.6263",server,"1715918170.238448",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715918170,0,0,canceled,"0.004",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918178.6266",server,"1715918178.446361",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715918178,0,0,canceled,"0.062",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918178.6267",server,"1715918178.465298",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715918178,0,0,completed,"0.138",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918402.6368",server,"1715918402.247457",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")",smart,0,1715918402,0,0,canceled,"0.203",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918402.6369",server,"1715918402.286071",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")",smart,0,1715918402,5000,0,canceled,"0.7000000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918419.6394",server,"1715918419.890695",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")",smart,0,1715918419,5000,0,canceled,"0.06",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918420.6396",server,"1715918420.918516",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")",smart,0,1715918420,5000,0,canceled,"0.051000000000000004",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918421.6397",server,"1715918421.801082",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")",smart,0,1715918421,5000,0,canceled,"0.054",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918426.6398",server,"1715918426.286920",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")",smart,0,1715918426,5000,0,canceled,"0.049",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918426.6399",server,"1715918426.530171",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")",smart,0,1715918426,5000,0,completed,"0.048",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918437.6400",server,"1715918437.666000",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time",smart,0,1715918437,5000,0,canceled,"0.07100000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918437.6401",server,"1715918437.697865",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time",smart,0,1715918437,5000,0,canceled,"0.075",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918456.6404",server,"1715918456.196660",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last('metric_name:infra-statistics.packets_received') as prev_packets",smart,0,1715918456,5000,0,canceled,"0.062",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918456.6405",server,"1715918456.228007",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last('metric_name:infra-statistics.packets_received') as prev_packets",smart,0,1715918456,5000,0,completed,"0.07200000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918488.6435",server,"1715918488.213205",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff)",smart,0,1715918488,0,0,canceled,"0.083",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918488.6436",server,"1715918488.242291",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff)",smart,0,1715918488,0,0,completed,"0.075",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918523.6441",server,"1715918523.412311",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715918523,0,0,canceled,"0.198",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918523.6442",server,"1715918523.445099",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715918523,5000,0,canceled,"0.325",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918545.6464",server,"1715918545.444463",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715918545,5000,0,canceled,"0.105",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918546.6465",server,"1715918546.350816",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715918546,5000,0,completed,"0.062",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918554.6472",server,"1715918554.740226",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715918554,5000,0,completed,"0.07200000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918601.6482",server,"1715918601.061726",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0",smart,0,1715918601,0,0,canceled,"0.073",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918601.6483",server,"1715918601.112378",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0",smart,0,1715918601,0,0,completed,"0.10200000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918646.6508",server,"1715918646.766237",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff",smart,0,1715918646,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918646.6509",server,"1715918646.807756",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff",smart,0,1715918646,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918655.6512",server,"1715918655.416936",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff",smart,0,1715918655,5000,0,canceled,"0.067",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918655.6513",server,"1715918655.451151",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff",smart,0,1715918655,5000,0,completed,"0.075",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918676.6534",server,"1715918676.840372",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715918676,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918676.6535",server,"1715918676.898363",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715918676,0,0,canceled,"0.004",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918693.6543",server,"1715918693.059686",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m",smart,0,1715918693,0,0,canceled,"0.004",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918693.6544",server,"1715918693.090343",0,splunkjs," | from inputlookup:complete_numbers.csv | inputlookup complete_numbers.csv
+| eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m",smart,0,1715918693,0,0,failed,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918705.6547",server,"1715918705.216891",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715918705,2500,0,canceled,"0.114",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918705.6548",server,"1715918705.261819",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715918705,2500,0,completed,"0.125",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918745.6571",server,"1715918745.936474",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715918745,5000,0,canceled,"0.07200000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918745.6572",server,"1715918745.984330",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715918746,5000,0,completed,"0.126",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918860.6616",server,"1715918860.841201",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets",smart,0,1715918860,5000,0,canceled,"0.068",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715918860.6617",server,"1715918860.880618",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets",smart,0,1715918860,5000,0,completed,"0.07100000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919311.6837",server,"1715919311.514452",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| table _time, interface_name, packets_received, prev_packets",smart,0,1715919311,5000,0,canceled,"0.098",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919311.6838",server,"1715919311.559749",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| table _time, interface_name, packets_received, prev_packets",smart,0,1715919311,5000,0,completed,"0.105",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919378.6871",server,"1715919378.369781",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919378,0,0,canceled,"0.121",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919378.6872",server,"1715919378.399332",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| where isnotnull(packets_diff) AND packets_diff >= 0
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919378,2500,0,completed,"0.12",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919390.6876",server,"1715919390.133607",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715919390,5000,0,canceled,"0.111",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919390.6877",server,"1715919390.170899",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715919390,5000,0,canceled,"0.10400000000000001",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919419.6900",server,"1715919419.087449",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715919419,5000,0,completed,"0.067",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919462.6914",server,"1715919462.422683",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919462,2500,0,canceled,"0.081",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919462.6915",server,"1715919462.469689",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919462,2500,0,completed,"0.085",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919481.6939",server,"1715919481.795836",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715919481,5000,0,canceled,"0.073",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919481.6940",server,"1715919481.858694",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets",smart,0,1715919481,5000,0,completed,"0.064",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919510.6950",server,"1715919510.748244",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff",smart,0,1715919510,5000,0,canceled,"0.069",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919510.6951",server,"1715919510.794138",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff",smart,0,1715919510,5000,0,completed,"0.07",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919588.6987",server,"1715919588.376104",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time",smart,0,1715919588,5000,0,completed,"0.1",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919588.6988",server,"1715919588.571955",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| streamstats current=f window=1 last(_time) as prev_time last('metric_name:infra-statistics.packets_received') as prev_packets
+| eval time_diff = _time - prev_time",smart,0,1715919588,5000,0,canceled,"0.063",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919737.7060",server,"1715919737.843813",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919737,2500,0,canceled,"0.1",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919737.7061",server,"1715919737.917327",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = 'metric_name:infra-statistics.packets_received' - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919737,2500,0,completed,"0.094",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919880.7134",server,"1715919880.909655",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = packets_received - prev_packets  // Use the new field for clarity
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| where isnotnull(""Rate (Avg) /s"") AND ""Rate (Avg) /s"" >= 0 // Ensure we have valid rates
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919880,0,0,canceled,"0.004",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919880.7135",server,"1715919880.941703",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = packets_received - prev_packets  // Use the new field for clarity
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| where isnotnull(""Rate (Avg) /s"") AND ""Rate (Avg) /s"" >= 0 // Ensure we have valid rates
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919880,0,0,canceled,"0.004",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919898.7150",server,"1715919898.270027",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = packets_received - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| where isnotnull(""Rate (Avg) /s"") AND ""Rate (Avg) /s"" >= 0
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919898,0,0,canceled,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919898.7151",server,"1715919898.306188",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = packets_received - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| where isnotnull(""Rate (Avg) /s"") AND ""Rate (Avg) /s"" >= 0
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919898,0,0,failed,"0.003",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919913.7156",server,"1715919913.010364",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = packets_received - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919913,2500,0,canceled,"0.116",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715919913.7157",server,"1715919913.038066",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = packets_received - prev_packets
+| eval ""Rate (Avg) /s"" = packets_diff / time_diff
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715919913,2500,0,completed,"0.135",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715920058.7223",server,"1715920058.349192",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = packets_received - prev_packets
+| eval ""Rate (Avg) /s"" = if(isnotnull(packets_diff) AND packets_diff >= 0 AND time_diff > 0, packets_diff / time_diff, null())
+| fillnull value=0 ""Rate (Avg) /s""
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715920058,2500,0,canceled,"0.078",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD59dc288cc44d9c406_1715920058.7224",server,"1715920058.732351",0,splunkjs," | from inputlookup:complete_numbers.csv | eval _time = strptime(_time, ""%FT%T.%Q%:z"")
+| sort 0 _time
+| eval packets_received = 'metric_name:infra-statistics.packets_received'
+| streamstats current=f window=1 last(_time) as prev_time last(packets_received) as prev_packets
+| eval time_diff = _time - prev_time
+| eval packets_diff = packets_received - prev_packets
+| eval ""Rate (Avg) /s"" = if(isnotnull(packets_diff) AND packets_diff >= 0 AND time_diff > 0, packets_diff / time_diff, null())
+| fillnull value=0 ""Rate (Avg) /s""
+| bucket _time span=1m
+| stats avg(""Rate (Avg) /s"") as ""Rate (Avg) /s"" by _time, interface_name",smart,0,1715920058,2500,0,completed,"0.089",0,0,"cc823c79-1da1-4dd3-b47a-ac7d51dcc762",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD56c8fdb64f0c34c8e_1715974904.235",server,"1715974904.657228",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m","",5000,1715974904,2500,5000,canceled,"0.211",0,0,"09821ace-6656-410e-8c4d-00c6cf2698e4",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD56c8fdb64f0c34c8e_1715974904.236",server,"1715974904.723684",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m","",5000,1715974904,0,5000,canceled,"0.14100000000000001",0,0,"09821ace-6656-410e-8c4d-00c6cf2698e4",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD56c8fdb64f0c34c8e_1715974904.237",server,"1715974904.727502",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m",smart,5000,1715974904,2500,5000,completed,"0.186",0,0,"09821ace-6656-410e-8c4d-00c6cf2698e4",,,,,,,,,,,,,,,,
+"rt_md_1716052634.4549",server,"1716052634.934583",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",0,1716052635,0,0,failed,"70.072",,,,,,,,,,,,,,,,,,,
+"1716052636.4550",server,"1716052636.676506",0,"UI:Search","| history | search NOT search=""| history*"" AND NOT search=""*metadata*"" AND NOT search=""*loadjob*"" AND NOT savedsearch_name=""*"" AND NOT search=""search"" AND NOT search=""*from sid*"" AND NOT search=""| eventcount summarize=false index=* index=_**"" AND NOT provenance=""UI:LocateData"" AND NOT provenance=""UI:TableEditor"" AND NOT provenance=""UI:DataModel"" AND NOT provenance=""UI:Pivot"" AND NOT provenance=""UI:Dataset"" | dedup search | head 100000","",0,1716052636,0,0,completed,"0.14",,,,,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5074d4cd1368138b7_1716052755.4555",server,"1716052755.818547",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m","",5000,1716052755,0,5000,canceled,"0.117",0,0,"c34d3c01-a621-47c1-b852-301e6033cf90",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5074d4cd1368138b7_1716052755.4556",server,"1716052755.870940",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m","",0,1716052756,0,0,canceled,"0.084",0,0,"c34d3c01-a621-47c1-b852-301e6033cf90",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5074d4cd1368138b7_1716052755.4557",server,"1716052755.881787",0,splunkjs," | mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m",smart,5000,1716052756,2500,5000,completed,"0.128",0,0,"c34d3c01-a621-47c1-b852-301e6033cf90",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD57d41e58bef2b2635_1716052775.4558",server,"1716052775.076033",0,splunkjs,"| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m  | fit DensityFunction ""Rate (Avg) /s"" dist=auto threshold=0.017 show_density=true show_options=""feature_variables,split_by,params"" into ""_exp_draft_89b225d4328f464f9e6317bd2616b296""","",0,1716052775,0,0,canceled,"3.641",0,0,"4752ac3a-6011-4b48-8442-efe7c747d35a",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD57d41e58bef2b2635_1716052775.4559",server,"1716052775.117692",0,splunkjs,"| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE (index=""mltk_training_data_4"" AND (source=""xr-1"")) AND interface_name=""GigabitEthernet0/0/0/0""  span=1m  | fit DensityFunction ""Rate (Avg) /s"" dist=auto threshold=0.017 show_density=true show_options=""feature_variables,split_by,params"" into ""_exp_draft_89b225d4328f464f9e6317bd2616b296""","",5000,1716052775,2500,5000,completed,"4.787",0,0,"4752ac3a-6011-4b48-8442-efe7c747d35a",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5b4af5b225d5eb253_1716052781.4560",server,"1716052781.486051",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD57d41e58bef2b2635_1716052775.4559 | stats first(_isApply) as _isApply, sum(IsOutlier(Rate (Avg) /s)) as outlierCount  | sort - outlierCount | table _isApply, outlierCount, *","",0,1716052781,0,0,canceled,"0.258",0,0,"c705f540-1d3a-4bcb-a121-75ba034f63f5",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5066ea4437746a1bb_1716052781.4561",server,"1716052781.490496",0,splunkjs," | summary _exp_draft_89b225d4328f464f9e6317bd2616b296","",0,1716052781,0,0,canceled,"9.496",0,0,"607e303a-b91a-46a9-999c-e7c12293e202",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD53408c3e05f518482_1716052781.4562",server,"1716052781.495382",0,splunkjs," | summary _exp_draft_89b225d4328f464f9e6317bd2616b296 | `histogram(cardinality, 10)`","",0,1716052781,0,0,canceled,"9.461",0,0,"50aa2cd8-2821-4dac-825e-ddaa9b31550a",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5a9edd29271b95a91_1716052781.4563",server,"1716052781.505415",0,splunkjs," | summary _exp_draft_89b225d4328f464f9e6317bd2616b296 | replace ""Auto: *"" with ""*"" in type | multireport  [| where type=""Normal"" |`histogram(mean, 10)` | eval type=""Normal""] [| where type=""Exponential"" |`histogram(mean, 10)` | eval type=""Exponential""] [| where type=""Gaussian KDE"" |`histogram(mean, 10)` | eval type=""Gaussian KDE""] [| where type=""Beta"" |`histogram(mean, 10)` | eval type=""Beta""] | table mean count type","",0,1716052781,0,0,canceled,"11.525",0,0,"ab5e65af-c40e-4b0f-a7f3-48da94f21138",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD568c4628b64e45659_1716052781.4564",server,"1716052781.513160",0,splunkjs," | summary _exp_draft_89b225d4328f464f9e6317bd2616b296 | replace ""Auto: *"" with ""*"" in type | multireport  [| where type=""Normal"" |`histogram(std, 10)` | eval type=""Normal""] [| where type=""Exponential"" |`histogram(std, 10)` | eval type=""Exponential""] [| where type=""Gaussian KDE"" |`histogram(std, 10)` | eval type=""Gaussian KDE""] [| where type=""Beta"" |`histogram(std, 10)` | eval type=""Beta""] | table std count type","",0,1716052781,0,0,canceled,"11.769",0,0,"a8262e87-63c1-4192-97fc-a44cb5d911f9",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5b4af5b225d5eb253_1716052781.4565",server,"1716052781.613076",0,splunkjs,"| loadjob admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD57d41e58bef2b2635_1716052775.4559 | stats first(_isApply) as _isApply, sum(IsOutlier(Rate (Avg) /s)) as outlierCount  | sort - outlierCount | table _isApply, outlierCount, *","",0,1716052781,1,0,completed,"0.311",0,0,"c705f540-1d3a-4bcb-a121-75ba034f63f5",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5066ea4437746a1bb_1716052781.4566",server,"1716052781.616906",0,splunkjs," | summary _exp_draft_89b225d4328f464f9e6317bd2616b296","",0,1716052781,1,0,completed,"12.807",0,0,"607e303a-b91a-46a9-999c-e7c12293e202",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD53408c3e05f518482_1716052781.4567",server,"1716052781.630643",0,splunkjs," | summary _exp_draft_89b225d4328f464f9e6317bd2616b296 | `histogram(cardinality, 10)`","",0,1716052782,1,0,completed,"12.777000000000001",0,0,"50aa2cd8-2821-4dac-825e-ddaa9b31550a",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD5a9edd29271b95a91_1716052781.4568",server,"1716052781.636945",0,splunkjs," | summary _exp_draft_89b225d4328f464f9e6317bd2616b296 | replace ""Auto: *"" with ""*"" in type | multireport  [| where type=""Normal"" |`histogram(mean, 10)` | eval type=""Normal""] [| where type=""Exponential"" |`histogram(mean, 10)` | eval type=""Exponential""] [| where type=""Gaussian KDE"" |`histogram(mean, 10)` | eval type=""Gaussian KDE""] [| where type=""Beta"" |`histogram(mean, 10)` | eval type=""Beta""] | table mean count type","",0,1716052781,1,0,completed,"13.828",0,0,"ab5e65af-c40e-4b0f-a7f3-48da94f21138",,,,,,,,,,,,,,,,
+"admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD568c4628b64e45659_1716052781.4569",server,"1716052781.644959",0,splunkjs," | summary _exp_draft_89b225d4328f464f9e6317bd2616b296 | replace ""Auto: *"" with ""*"" in type | multireport  [| where type=""Normal"" |`histogram(std, 10)` | eval type=""Normal""] [| where type=""Exponential"" |`histogram(std, 10)` | eval type=""Exponential""] [| where type=""Gaussian KDE"" |`histogram(std, 10)` | eval type=""Gaussian KDE""] [| where type=""Beta"" |`histogram(std, 10)` | eval type=""Beta""] | table std count type","",0,1716052782,1,0,completed,"13.436",0,0,"a8262e87-63c1-4192-97fc-a44cb5d911f9",,,,,,,,,,,,,,,,
