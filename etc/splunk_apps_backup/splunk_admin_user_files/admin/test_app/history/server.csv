@@ -120,3 +120,221 @@ sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level"
 "rt_md_1716177892.20",server,"1716177892.783828",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,,,,0,1716177892,0,,0,,,failed,"64.06400000000001",,,,,,,,,,,,,,,,,,,,
 "rt_md_1716180662.87",server,"1716180662.528257",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,,,,0,1716180662,0,,0,,,canceled,"6.025",,,,,,,,,,,,,,,,,,,,
 "rt_md_1716180873.94",server,"1716180873.175877",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,,,,0,1716180873,0,,0,,,canceled,"30.017",,,,,,,,,,,,,,,,,,,,
+"rt_md_1716188164.352",server,"1716188164.007362",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,,,,0,1716188164,0,,0,,,failed,"65.03",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1716188173.353",server,"1716188173.849812",0,"UI:dashboard:system_throughput__cpu_clone","| mcatalog values(source) WHERE index=""mertics_data"" by source ","","1716173760.000000000",0,0,,32028,1716188173,7,"ds_sourceDropDown",32028,"1716173760.000000000",,completed,"0.081",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50439777b1ad49c30_1716188174.354",server,"1716188174.012449",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cempMemPoolTable.cempMemPoolHCFree"") as ""Free"" avg(""cempMemPoolTable.cempMemPoolHCUsed"") as ""Used"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cempMemPoolName""=""processor"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| stats latest(MemoryUsageRatio) as MemoryUsageRatio
+| eval Percentage = round(MemoryUsageRatio * 100, 2) . ""%""
+| fields Percentage
+
+","","1716184560.000000000",0,0,"1716188174.000000000",1440,1716188174,1,"ds_R0h6HA6w",1440,"1716184560.000000000","1716188174.000000000",completed,"0.244",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD562ba7f8f610eba4c_1716188174.355",server,"1716188174.017354",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+","","1716184560.000000000",0,0,"1716188174.000000000",18,1716188174,1,"ds_J6paBZ8U",18,"1716187874.000000000","1716188174.000000000",completed,"0.40700000000000003",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5b572238641bbeb35_1716188174.356",server,"1716188174.023640",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal5minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+","","1716184560.000000000",0,0,"1716188174.000000000",18,1716188174,1,"ds_R7u3eP6k_ds_J6paBZ8U",18,"1716187874.000000000","1716188174.000000000",completed,"0.315",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD554b657c1e24f9550_1716188174.357",server,"1716188174.029728",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal15minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+
+","","1716184560.000000000",0,0,"1716188174.000000000",18,1716188174,1,"ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U",18,"1716187874.000000000","1716188174.000000000",completed,"0.309",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5da2a1476eba20b6a_1716188174.358",server,"1716188174.035087",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_five_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184560.000000000",0,0,"1716188174.000000000",236,1716188174,1,"ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U",236,"1716184560.000000000","1716188174.000000000",completed,"0.273",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50d3d6dc9a7cf6aca_1716188174.359",server,"1716188174.042428",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_fifteen_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184560.000000000",0,0,"1716188174.000000000",236,1716188174,1,"ds_jBWLeYV3_ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U",236,"1716184560.000000000","1716188174.000000000",completed,"0.396",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD577ad264f3d9cfbf4_1716188174.360",server,"1716188174.117156",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cempMemPoolTable.cempMemPoolHCFree"") as ""Free"" avg(""cempMemPoolTable.cempMemPoolHCUsed"") as ""Used"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cempMemPoolName""=""processor"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| timechart avg(MemoryUsageRatio) as ""Memory Usage Ratio"" span=60s
+","","1716184560.000000000",0,0,"1716188174.000000000",1440,1716188174,61,"ds_YfXCHkJr_ds_fr6nNQxr",1440,"1716184560.000000000","1716188174.000000000",completed,"0.377",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5995aadea8b49e258_1716188174.361",server,"1716188174.121763",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""nto-memory-summary.detail/total_used"") as ""Used"" avg(""nto-memory-summary.detail/free_physical_memory"") as ""Free"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""path""=""Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail"" AND source=""xr-1"" span=10s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| stats latest(MemoryUsageRatio) as MemoryUsageRatio
+| eval Percentage = round(MemoryUsageRatio * 100, 2) . ""%""
+| fields Percentage","","1716184560.000000000",0,0,"1716188174.000000000",944,1716188175,1,"ds_2QqwFn7Q_ds_R0h6HA6w",944,"1716184560.000000000","1716188174.000000000",completed,"0.081",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5d26ba388d5b4308d_1716188174.362",server,"1716188174.128176",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""nto-memory-summary.detail/total_used"") as ""Used"" avg(""nto-memory-summary.detail/free_physical_memory"") as ""Free"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""path""=""Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| timechart span=10s avg(MemoryUsageRatio) as ""Memory Usage Ratio""
+","","1716184560.000000000",0,0,"1716188174.000000000",944,1716188174,362,"ds_hQ2YJYgT_ds_fr6nNQxr",944,"1716184560.000000000","1716188174.000000000",completed,"0.463",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD56e91a62e0877f6a6_1716188174.363",server,"1716188174.138752",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""CPUMetricData.total_cpu_one_minute"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" span=10s
+| timechart avg(""CPUMetricData.total_cpu_one_minute"") AS ""CPUMetricData.total_cpu_one_minute"" span=10s
+| fields - _span*
+","","1716184560.000000000",0,0,"1716188174.000000000",472,1716188175,362,"ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr",472,"1716184560.000000000","1716188174.000000000",completed,"0.178",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5b28d5fb170203c07_1716188174.364",server,"1716188174.149394",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" span=10s
+| timechart avg(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") AS ""cpmProcessExtRevTable.cpmCPUTotal1minRev"" span=10s
+| fields - _span*
+","","1716184560.000000000",0,0,"1716188174.000000000",720,1716188175,362,"ds_JES3XTUB_ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr",720,"1716184560.000000000","1716188174.000000000",completed,"0.14",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5c12cc73c4809717b_1716188174.365",server,"1716188174.170331",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""infra-statistics.input_drops"") as ""Rate (Avg) /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""source""=""xr-7"" AND ""interface_name""=""GigabitEthernet0/0/0/0""  span=10s
+| fields - _span*
+","","1716184560.000000000",0,0,"1716188174.000000000",236,1716188175,362,"ds_crno381b_ds_in_out",236,"1716184560.000000000","1716188174.000000000",completed,"0.148",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5ecfaa6512079846c_1716188174.366",server,"1716188174.241305",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""interface.ifInDiscards"") as ""Rate (Avg) /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""source""=""xr-7"" AND ""ifDescr""=""GigabitEthernet0/0/0/0""  span=10s
+| fields - _span*
+","","1716184560.000000000",0,0,"1716188174.000000000",240,1716188175,362,"ds_wYXJpfDG_ds_crno381b_ds_in_out",240,"1716184560.000000000","1716188174.000000000",completed,"0.14200000000000002",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1716188174.367",server,"1716188174.259797",0,"UI:dashboard:system_throughput__cpu_clone","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","","1716173760.000000000",0,0,,32028,1716188174,9,"ds_nameDropDown",32028,"1716173760.000000000",,completed,"0.123",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5569c6c9f21c20356_1716188174.368",server,"1716188174.264200",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_one_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184560.000000000",0,0,"1716188174.000000000",236,1716188175,1,"ds_TLb4SkzJ_ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U",236,"1716184560.000000000","1716188174.000000000",completed,"0.17400000000000002",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1716188174.369",server,"1716188174.805623",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","","1716184560.000000000",0,0,"1716188174.000000000",236,1716188174,362,"ds_in_out",236,"1716184560.000000000","1716188174.000000000",completed,"0.429",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1716188174.370",server,"1716188174.822093",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","","1716184560.000000000",0,0,"1716188174.000000000",240,1716188174,362,"ds_9qTUXhKu_ds_in_out",240,"1716184560.000000000","1716188174.000000000",completed,"0.368",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1716188240.373",server,"1716188240.411882",0,"UI:dashboard:system_throughput__cpu_clone","| mcatalog values(source) WHERE index=""mertics_data"" by source ","","1716173820.000000000",0,0,,42704,1716188240,7,"ds_sourceDropDown",42704,"1716173820.000000000",,completed,"0.068",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1716188240.374",server,"1716188240.417082",0,"UI:dashboard:system_throughput__cpu_clone","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","","1716173820.000000000",0,0,,42704,1716188240,9,"ds_nameDropDown",42704,"1716173820.000000000",,completed,"0.053",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50439777b1ad49c30_1716188240.375",server,"1716188240.430084",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cempMemPoolTable.cempMemPoolHCFree"") as ""Free"" avg(""cempMemPoolTable.cempMemPoolHCUsed"") as ""Used"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cempMemPoolName""=""processor"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| stats latest(MemoryUsageRatio) as MemoryUsageRatio
+| eval Percentage = round(MemoryUsageRatio * 100, 2) . ""%""
+| fields Percentage
+
+","","1716184620.000000000",0,0,"1716188240.000000000",1440,1716188240,1,"ds_R0h6HA6w",1440,"1716184620.000000000","1716188240.000000000",completed,"0.062",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50d3d6dc9a7cf6aca_1716188241.376",server,"1716188241.367216",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_fifteen_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184620.000000000",0,0,"1716188241.000000000",236,1716188241,1,"ds_jBWLeYV3_ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U",236,"1716184620.000000000","1716188241.000000000",completed,"0.263",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD554b657c1e24f9550_1716188241.377",server,"1716188241.375760",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal15minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+
+","","1716184620.000000000",0,0,"1716188241.000000000",18,1716188241,1,"ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U",18,"1716187941.000000000","1716188241.000000000",completed,"0.263",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD562ba7f8f610eba4c_1716188241.378",server,"1716188241.381183",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+","","1716184620.000000000",0,0,"1716188241.000000000",18,1716188241,1,"ds_J6paBZ8U",18,"1716187941.000000000","1716188241.000000000",completed,"0.255",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD577ad264f3d9cfbf4_1716188241.379",server,"1716188241.392586",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cempMemPoolTable.cempMemPoolHCFree"") as ""Free"" avg(""cempMemPoolTable.cempMemPoolHCUsed"") as ""Used"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cempMemPoolName""=""processor"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| timechart avg(MemoryUsageRatio) as ""Memory Usage Ratio"" span=60s
+","","1716184620.000000000",0,0,"1716188241.000000000",1440,1716188241,61,"ds_YfXCHkJr_ds_fr6nNQxr",1440,"1716184620.000000000","1716188241.000000000",completed,"0.327",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5b572238641bbeb35_1716188241.380",server,"1716188241.450014",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal5minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+","","1716184620.000000000",0,0,"1716188241.000000000",18,1716188241,1,"ds_R7u3eP6k_ds_J6paBZ8U",18,"1716187941.000000000","1716188241.000000000",completed,"0.275",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5d26ba388d5b4308d_1716188241.381",server,"1716188241.463904",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""nto-memory-summary.detail/total_used"") as ""Used"" avg(""nto-memory-summary.detail/free_physical_memory"") as ""Free"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""path""=""Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| timechart span=10s avg(MemoryUsageRatio) as ""Memory Usage Ratio""
+","","1716184620.000000000",0,0,"1716188241.000000000",944,1716188241,363,"ds_hQ2YJYgT_ds_fr6nNQxr",944,"1716184620.000000000","1716188241.000000000",completed,"0.259",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5da2a1476eba20b6a_1716188241.382",server,"1716188241.469499",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_five_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184620.000000000",0,0,"1716188241.000000000",236,1716188241,1,"ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U",236,"1716184620.000000000","1716188241.000000000",completed,"0.20700000000000002",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5569c6c9f21c20356_1716188242.383",server,"1716188242.372623",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_one_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184620.000000000",0,0,"1716188242.000000000",238,1716188242,1,"ds_TLb4SkzJ_ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U",238,"1716184620.000000000","1716188242.000000000",completed,"0.057",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD56e91a62e0877f6a6_1716188242.384",server,"1716188242.382914",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""CPUMetricData.total_cpu_one_minute"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" span=10s
+| timechart avg(""CPUMetricData.total_cpu_one_minute"") AS ""CPUMetricData.total_cpu_one_minute"" span=10s
+| fields - _span*
+","","1716184620.000000000",0,0,"1716188242.000000000",476,1716188242,363,"ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr",476,"1716184620.000000000","1716188242.000000000",completed,"0.085",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5995aadea8b49e258_1716188242.385",server,"1716188242.396551",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""nto-memory-summary.detail/total_used"") as ""Used"" avg(""nto-memory-summary.detail/free_physical_memory"") as ""Free"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""path""=""Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail"" AND source=""xr-1"" span=10s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| stats latest(MemoryUsageRatio) as MemoryUsageRatio
+| eval Percentage = round(MemoryUsageRatio * 100, 2) . ""%""
+| fields Percentage","","1716184620.000000000",0,0,"1716188242.000000000",952,1716188242,1,"ds_2QqwFn7Q_ds_R0h6HA6w",952,"1716184620.000000000","1716188242.000000000",completed,"0.088",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5b28d5fb170203c07_1716188242.386",server,"1716188242.453368",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" span=10s
+| timechart avg(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") AS ""cpmProcessExtRevTable.cpmCPUTotal1minRev"" span=10s
+| fields - _span*
+","","1716184620.000000000",0,0,"1716188242.000000000",726,1716188242,363,"ds_JES3XTUB_ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr",726,"1716184620.000000000","1716188242.000000000",completed,"0.066",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5c12cc73c4809717b_1716188242.387",server,"1716188242.464619",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""infra-statistics.input_drops"") as ""Rate (Avg) /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""source""=""xr-7"" AND ""interface_name""=""GigabitEthernet0/0/0/0""  span=10s
+| fields - _span*
+","","1716184620.000000000",0,0,"1716188242.000000000",238,1716188242,363,"ds_crno381b_ds_in_out",238,"1716184620.000000000","1716188242.000000000",completed,"0.07100000000000001",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5ecfaa6512079846c_1716188242.388",server,"1716188242.571219",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""interface.ifInDiscards"") as ""Rate (Avg) /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""source""=""xr-7"" AND ""ifDescr""=""GigabitEthernet0/0/0/0""  span=10s
+| fields - _span*
+","","1716184620.000000000",0,0,"1716188242.000000000",242,1716188242,363,"ds_wYXJpfDG_ds_crno381b_ds_in_out",242,"1716184620.000000000","1716188242.000000000",completed,"0.064",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1716188242.389",server,"1716188242.583940",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","","1716184620.000000000",0,0,"1716188242.000000000",238,1716188242,363,"ds_in_out",238,"1716184620.000000000","1716188242.000000000",completed,"0.154",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1716188242.390",server,"1716188242.593093",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","","1716184620.000000000",0,0,"1716188242.000000000",242,1716188242,363,"ds_9qTUXhKu_ds_in_out",242,"1716184620.000000000","1716188242.000000000",completed,"0.114",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50439777b1ad49c30_1716188306.393",server,"1716188306.682962",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cempMemPoolTable.cempMemPoolHCFree"") as ""Free"" avg(""cempMemPoolTable.cempMemPoolHCUsed"") as ""Used"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cempMemPoolName""=""processor"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| stats latest(MemoryUsageRatio) as MemoryUsageRatio
+| eval Percentage = round(MemoryUsageRatio * 100, 2) . ""%""
+| fields Percentage
+
+","","1716184680.000000000",0,0,"1716188306.000000000",1452,1716188306,1,"ds_R0h6HA6w",1452,"1716184680.000000000","1716188306.000000000",completed,"0.062",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD527f8756c4ff678b9_1716188306.394",server,"1716188306.700274",0,"UI:dashboard:system_throughput__cpu_clone","| mcatalog values(interface_name) WHERE index=""mertics_data"" by interface_name","","1716173880.000000000",0,0,,16014,1716188306,9,"ds_nameDropDown",16014,"1716173880.000000000",,completed,"0.057",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55c57ca76c41773da_1716188306.395",server,"1716188306.705729",0,"UI:dashboard:system_throughput__cpu_clone","| mcatalog values(source) WHERE index=""mertics_data"" by source ","","1716173880.000000000",0,0,,16014,1716188306,7,"ds_sourceDropDown",16014,"1716173880.000000000",,completed,"0.054",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD50d3d6dc9a7cf6aca_1716188307.396",server,"1716188307.665810",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_fifteen_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184680.000000000",0,0,"1716188307.000000000",238,1716188307,1,"ds_jBWLeYV3_ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U",238,"1716184680.000000000","1716188307.000000000",canceled,"0.081",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD554b657c1e24f9550_1716188307.397",server,"1716188307.672438",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal15minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+
+","","1716184680.000000000",0,0,"1716188307.000000000",20,1716188307,1,"ds_rMN6jDFU_ds_R7u3eP6k_ds_J6paBZ8U",20,"1716188007.000000000","1716188307.000000000",canceled,"0.052000000000000005",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD562ba7f8f610eba4c_1716188307.398",server,"1716188307.686740",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+","","1716184680.000000000",0,0,"1716188307.000000000",20,1716188307,1,"ds_J6paBZ8U",20,"1716188007.000000000","1716188307.000000000",canceled,"0.065",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD577ad264f3d9cfbf4_1716188307.399",server,"1716188307.750302",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cempMemPoolTable.cempMemPoolHCFree"") as ""Free"" avg(""cempMemPoolTable.cempMemPoolHCUsed"") as ""Used"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cempMemPoolName""=""processor"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| timechart avg(MemoryUsageRatio) as ""Memory Usage Ratio"" span=60s
+","","1716184680.000000000",0,0,"1716188307.000000000",1452,1716188307,61,"ds_YfXCHkJr_ds_fr6nNQxr",1452,"1716184680.000000000","1716188307.000000000",canceled,"0.269",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5b572238641bbeb35_1716188307.400",server,"1716188307.796180",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""cpmProcessExtRevTable.cpmCPUTotal5minRev"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""cpmCPUTotalPhysicalIndex""=""13"" AND source=""xr-1""  earliest=-5m latest=now
+| eval latest_value = tostring(latest_value) . ""%""
+
+","","1716184680.000000000",0,0,"1716188307.000000000",20,1716188308,1,"ds_R7u3eP6k_ds_J6paBZ8U",20,"1716188007.000000000","1716188307.000000000",canceled,"0.055",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5d26ba388d5b4308d_1716188308.401",server,"1716188308.018064",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""nto-memory-summary.detail/total_used"") as ""Used"" avg(""nto-memory-summary.detail/free_physical_memory"") as ""Free"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""path""=""Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail"" AND source=""xr-1"" span=60s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| timechart span=10s avg(MemoryUsageRatio) as ""Memory Usage Ratio""
+","","1716184680.000000000",0,0,"1716188308.000000000",952,1716188308,363,"ds_hQ2YJYgT_ds_fr6nNQxr",952,"1716184680.000000000","1716188308.000000000",canceled,"0.055",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5da2a1476eba20b6a_1716188308.402",server,"1716188308.059848",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_five_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184680.000000000",0,0,"1716188308.000000000",238,1716188308,1,"ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U",238,"1716184680.000000000","1716188308.000000000",canceled,"0.056",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5569c6c9f21c20356_1716188308.403",server,"1716188308.692610",0,"UI:dashboard:system_throughput__cpu_clone","| mstats latest(""CPUMetricData.total_cpu_one_minute"") as latest_value WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""node_name""=""0/RP0/CPU0"" AND source=""xr-1"" 
+| eval latest_value = tostring(latest_value) . ""%""
+","","1716184680.000000000",0,0,"1716188308.000000000",238,1716188308,1,"ds_TLb4SkzJ_ds_JfvrEQQ7_ds_R7u3eP6k_ds_J6paBZ8U",238,"1716184680.000000000","1716188308.000000000",canceled,"0.038",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD51cfb68175be8b619_1716188308.404",server,"1716188308.788749",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""interface.ifInUcastPkts"") as ""interface.ifInUcastPkts /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""interface.ifOutUcastPkts"") as ""interface.ifOutUcastPkts /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" ifDescr IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","","1716184680.000000000",0,0,"1716188308.000000000",242,1716188308,363,"ds_9qTUXhKu_ds_in_out",242,"1716184680.000000000","1716188308.000000000",canceled,"0.089",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD56e91a62e0877f6a6_1716188309.405",server,"1716188309.003871",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""CPUMetricData.total_cpu_one_minute"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" span=10s
+| timechart avg(""CPUMetricData.total_cpu_one_minute"") AS ""CPUMetricData.total_cpu_one_minute"" span=10s
+| fields - _span*
+","","1716184680.000000000",0,0,"1716188308.000000000",476,1716188309,363,"ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr",476,"1716184680.000000000","1716188308.000000000",canceled,"0.039",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD55d9bcf66f8a52f18_1716188309.406",server,"1716188309.658176",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""if-statistics.packets_received"") as ""if-statistics.packets_received /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+| append [
+| mstats rate_avg(""if-statistics.packets_sent"") as ""if-statistics.packets_sent /s""         chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND source=""xr-1"" interface_name IN (GigabitEthernet0/0/0/0) span=10s
+| fields - _span*
+]
+| selfjoin keepsingle=true _time","","1716184680.000000000",0,0,"1716188309.000000000",238,1716188309,363,"ds_in_out",238,"1716184680.000000000","1716188309.000000000",canceled,"0.252",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5995aadea8b49e258_1716188309.407",server,"1716188309.686204",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""nto-memory-summary.detail/total_used"") as ""Used"" avg(""nto-memory-summary.detail/free_physical_memory"") as ""Free"" WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""path""=""Cisco-IOS-XR-nto-misc-oper:/memory-summary/nodes/node/detail"" AND source=""xr-1"" span=10s
+| eval MemoryUsageRatio = Used / (Used + Free)
+| stats latest(MemoryUsageRatio) as MemoryUsageRatio
+| eval Percentage = round(MemoryUsageRatio * 100, 2) . ""%""
+| fields Percentage","","1716184680.000000000",0,0,"1716188309.000000000",952,1716188309,1,"ds_2QqwFn7Q_ds_R0h6HA6w",952,"1716184680.000000000","1716188309.000000000",canceled,"0.186",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5b28d5fb170203c07_1716188309.408",server,"1716188309.835404",0,"UI:dashboard:system_throughput__cpu_clone","| mstats avg(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") prestats=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND source=""xr-1"" span=10s
+| timechart avg(""cpmProcessExtRevTable.cpmCPUTotal1minRev"") AS ""cpmProcessExtRevTable.cpmCPUTotal1minRev"" span=10s
+| fields - _span*
+","","1716184680.000000000",0,0,"1716188309.000000000",726,1716188309,363,"ds_JES3XTUB_ds_21fruSKA_ds_hQ2YJYgT_ds_fr6nNQxr",726,"1716184680.000000000","1716188309.000000000",canceled,"0.128",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5c12cc73c4809717b_1716188310.409",server,"1716188310.087473",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""infra-statistics.input_drops"") as ""Rate (Avg) /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""gnmi"" AND ""source""=""xr-7"" AND ""interface_name""=""GigabitEthernet0/0/0/0""  span=10s
+| fields - _span*
+","","1716184680.000000000",0,0,"1716188310.000000000",238,1716188310,363,"ds_crno381b_ds_in_out",238,"1716184680.000000000","1716188310.000000000",canceled,"0.148",,,,,,,,,,,,,,,,,,,,
+"admin__admin_dGVzdF9hcHA__RMD5ecfaa6512079846c_1716188310.410",server,"1716188310.388219",0,"UI:dashboard:system_throughput__cpu_clone","| mstats rate_avg(""interface.ifInDiscards"") as ""Rate (Avg) /s"" chart=true WHERE ""index""=""mertics_data"" AND ""telegraf_tag""=""snmp"" AND ""source""=""xr-7"" AND ""ifDescr""=""GigabitEthernet0/0/0/0""  span=10s
+| fields - _span*
+","","1716184680.000000000",0,0,"1716188310.000000000",242,1716188310,363,"ds_wYXJpfDG_ds_crno381b_ds_in_out",242,"1716184680.000000000","1716188310.000000000",canceled,"0.096",,,,,,,,,,,,,,,,,,,,
+"rt_md_1716188349.413",server,"1716188349.056894",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,,,,0,1716188349,0,,0,,,failed,"64.028",,,,,,,,,,,,,,,,,,,,

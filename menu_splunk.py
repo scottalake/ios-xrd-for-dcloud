@@ -29,7 +29,7 @@ while True:
             c) Restart splunk.
         -------------------------------------------------
 
-        1.  Backup test_app and admin user files
+        1.  Backup test_app, mltk and admin user files
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
 
@@ -37,11 +37,13 @@ while True:
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
 
-        3.  Restore admin user files
+        3.  Restore mltk
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
 
-        4. Restore Admin Files
+        4.  Restore admin user files
+            NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
+                   THIS TASK.  LOG INTO 198.18.133.23
 
         5. Back up user icons
 
@@ -59,6 +61,7 @@ while True:
         local_timezone = pytz.timezone('US/Pacific')
         now = datetime.datetime.now(tz=local_timezone)
         date_time_string = now.strftime("%Y-%m-%d_%H-%M")
+
         os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/test_app/")
         print("Creating tar file for test_app and copying to ~/ios-xr-streaming-telemetry-demo/...")
         print("")
@@ -90,11 +93,11 @@ while True:
         print("Making dated backup copy of tar file and saving to separate directory...")
         os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/xr_commands_alert_action_latest.tar.gz  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_xr_commands_alert_action_latest.tar.gz")
 
-        print("Creating tar file for xr_commands_alert_action2 and copying to ~/ios-xr-streaming-telemetry-demo/...")
-        print("")
-        os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf xr_commands_alert_action2_latest.tar.gz                              -C /opt/splunk/etc/apps/xr_commands_alert_action2    .  && sudo mv /opt/splunk/etc/apps/xr_commands_alert_action2_latest.tar.gz      /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
-        print("Making dated backup copy of tar file and saving to separate directory...")
-        os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/xr_commands_alert_action2_latest.tar.gz  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_xr_commands_alert_action_latest2.tar.gz")
+        # print("Creating tar file for xr_commands_alert_action2 and copying to ~/ios-xr-streaming-telemetry-demo/...")
+        # print("")
+        # os.system("cd /opt/splunk/etc/apps/ &&  sudo tar -czvf xr_commands_alert_action2_latest.tar.gz                              -C /opt/splunk/etc/apps/xr_commands_alert_action2    .  && sudo mv /opt/splunk/etc/apps/xr_commands_alert_action2_latest.tar.gz      /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/")
+        # print("Making dated backup copy of tar file and saving to separate directory...")
+        # os.system(f"cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/xr_commands_alert_action2_latest.tar.gz  /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/archive/{date_time_string}PT_xr_commands_alert_action_latest2.tar.gz")
 
     elif ch == 2:
         # 2.  Restore test_app
@@ -142,10 +145,6 @@ while True:
         print("Unziping Splunk_ML_Toolkit gz file from repo to /opt/splunk/etc/apps/Splunk_ML_Toolkit...")
         print("")
         os.system("sudo tar -xvzf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/Splunk_ML_Toolkit_latest.tar.gz -C /opt/splunk/etc/apps/Splunk_ML_Toolkit/")
-        os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/users/admin")
-        print("Restoring app-related files stored under admin user...")
-        print("")
-        print("")
         print("")
         print("Restoring Splunk_ML_Toolkit and related files... COMPLETE")
         print("")
@@ -153,6 +152,8 @@ while True:
     elif ch == 4:
         print("Restoring admin user persistent files...")
         print("")
+        os.system("sudo chown -R dcloud:dcloud  /opt/splunk/etc/users/admin")
+        print("Restoring app-related files stored under admin user...")
         os.system("sudo cp -rf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/splunk_admin_user_files/admin /opt/splunk/etc/users/")
         os.system("sudo chown -R splunk:splunk  /opt/splunk/etc/users/admin/")
         print("")

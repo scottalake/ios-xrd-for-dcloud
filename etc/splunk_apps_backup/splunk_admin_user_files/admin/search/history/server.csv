@@ -4,3 +4,5 @@ sid,"splunk_server","_time","is_realtime",search,"adhoc_search_level","event_cou
 "1716180267.70",server,"1716180267.135103",0,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",0,1716180267,5,0,completed,"0.062",,,,,,,,,,,,
 "1716180372.75",server,"1716180372.637558",0,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",0,1716180372,5,0,completed,"0.06",,,,,,,,,,,,
 "1716180499.80",server,"1716180499.986211",0,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",0,1716180500,5,0,completed,"0.06",,,,,,,,,,,,
+"1716188403.416",server,"1716188403.143703",0,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",0,1716188403,5,0,completed,"0.135",,,,,,,,,,,,
+"1716218641.1064",server,"1716218641.112510",0,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",0,1716218641,5,0,completed,"0.046",,,,,,,,,,,,

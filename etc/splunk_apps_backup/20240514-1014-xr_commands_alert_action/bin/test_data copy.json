@@ -1,0 +1,26 @@
+{
+  "param": {
+    "username": "cisco",
+    "password": "cisco123",
+    "netmiko_device_type": "cisco_xr",
+    "before_show_command_list": [
+      "show version",
+      "show clock",
+      "show ip bgp neighbor brief"
+    ],
+    "config_commands_list": [
+      "router static",
+      "address-family ipv4 unicast",
+      "198.18.14.10/32 Null0"
+    ],
+    "after_show_command_list": [
+      "show ip route static"
+    ]
+  },
+  "result": {
+    "alert_name": "packets_received_alert_5",
+    "ip_address": "198.18.133.1",
+    "interface_name": "GigabitEthernet0/0/0/0"
+  }
+}
+

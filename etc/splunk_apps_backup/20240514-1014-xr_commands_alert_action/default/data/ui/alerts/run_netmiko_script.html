@@ -1,0 +1,47 @@
+<fieldset>
+  <legend>Interact With Cisco XR Devices Alert Action</legend>
+  Create customizable series of show and configuration commands
+  to execute on the device originating alert<br />
+  <div class="formRow">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="action.run_netmiko_script.param.username" value="cisco" />
+  </div>
+  <div class="formRow">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="action.run_netmiko_script.param.password" value="cisco123" />
+  </div>
+  <div class="formRow">
+    <label for="netmiko_device_type">Netmiko Device Type:</label>
+    <input type="text" id="netmiko_device_type" name="action.run_netmiko_script.param.netmiko_device_type" value="cisco_xr" />
+  </div>
+  <div class="formRow">
+    <label>Before-Configurations-Sent Show Commands:</label>
+    <label>(Enter the show commands you would like to run *before* any configuration commands are sent.)</label>
+    <div class="commandList">
+      <input type="text" name="action.run_netmiko_script.param.before1" size="80" placeholder="BEFORE show command #1" /><br />
+      <input type="text" name="action.run_netmiko_script.param.before2" size="80" placeholder="BEFORE show command #2" /><br />
+      <input type="text" name="action.run_netmiko_script.param.before3" size="80" placeholder="BEFORE show command #3" /><br />
+    </div>
+  </div>
+  <div class="formRow">
+    <label>Config Commands:</label>
+    <label>Enter any confguration commands you would like applied (optional)</label>
+    <div class="commandList">
+      <input type="text" name="action.run_netmiko_script.param.config1" size="80" placeholder="Config Command #1" /><br />
+      <input type="text" name="action.run_netmiko_script.param.config2" size="80" placeholder="Config Command #2" /><br />
+      <input type="text" name="action.run_netmiko_script.param.config3" size="80" placeholder="Config Command #3" /><br />
+      <input type="text" name="action.run_netmiko_script.param.config4" size="80" placeholder="Config Command #4" /><br />
+      <input type="text" name="action.run_netmiko_script.param.config5" size="80" placeholder="Config Command #5" /><br />
+      <input type="text" name="action.run_netmiko_script.param.config6" size="80" placeholder="Config Command #6" /><br />
+    </div>
+  </div>
+  <div class="formRow">
+    <label>After-Configurations-Sent Show Commands:</label>
+    <label>Enter the show commands you would like to run *after* configuration commands are sent (optional).</label>
+    <div class="commandList">
+      <input type="text" name="action.run_netmiko_script.param.after1" size="80" placeholder="AFTER show command #1" /><br />
+      <input type="text" name="action.run_netmiko_script.param.after2" size="80" placeholder="AFTER show command #2" /><br />
+      <input type="text" name="action.run_netmiko_script.param.after3" size="80" placeholder="AFTER show command #3" /><br />
+    </div>
+  </div>
+</fieldset>
