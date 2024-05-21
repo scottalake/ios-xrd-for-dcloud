@@ -1,0 +1,42 @@
+etc/apps/xr_commands_alert_action/default/data/ui/alerts/run_netmiko_script.html<fieldset>
+  <legend>Network Automation Alert Action</legend>
+  
+  <div class="formRow">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="action.run_netmiko_script.param.username" value="cisco" />
+  </div>
+  
+  <div class="formRow">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="action.run_netmiko_script.param.password" value="cisco123" />
+  </div>
+  
+  <div class="formRow">
+    <label for="netmiko_device_type">Netmiko Device Type:</label>
+    <input type="text" id="netmiko_device_type" name="action.run_netmiko_script.param.netmiko_device_type" value="cisco_xr" />
+  </div>
+  
+  <div class="formRow">
+    <label>Before Show Commands:</label>
+    <label>(Enter the show commands you would like to run *before* any configuration commands are sent.)</label>
+    <div class="commandList">
+      <input type="text" name="action.run_netmiko_script.param.before_show_command_list" size="60" placeholder="Enter FIRST *before* show command" />
+    </div>
+  </div>
+  
+  <div class="formRow">
+    <label>Config Commands:</label>
+    <div class="commandList">
+      <input type="text" name="action.run_netmiko_script.param.config_commands_list" size="60" placeholder="Enter FIRST configuration command" />
+    </div>
+  </div>
+  
+  <div class="formRow">
+    <label>After Show Commands:</label>
+    <label>(Enter the show commands you would like to run *after* any configuration commands are sent.)</label>
+    <div class="commandList">
+      <input type="text" name="action.run_netmiko_script.param.after_show_command_list" size="60" placeholder="Enter FIRST *after* show command" />
+    </div>
+  </div>
+  
+</fieldset>
