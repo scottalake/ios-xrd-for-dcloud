@@ -29,7 +29,7 @@ while True:
             c) Restart splunk.
         -------------------------------------------------
 
-        1.  Backup test_app, mltk and admin user files
+        1.  Backup test_app, xr_commands_alert, mltk and admin user files
             NOTE:  YOU MUST BE LOGGED INTO THE SPLUNK SERVER TO PERFORM
                    THIS TASK.  LOG INTO 198.18.133.23
 
@@ -47,7 +47,7 @@ while True:
 
         5. Back up user icons
 
-        6. Back up mltk_training_data_4 index
+        6. Restore mltk_training_data_4 index
 
        10. Restart splunk
 
@@ -165,12 +165,20 @@ while True:
         os.system(f"sudo cp /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/custom_icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg  /opt/splunk/etc/apps/splunk-dashboard-studio/appserver/static/icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg")
         os.system("sudo chown splunk:splunk  /opt/splunk/etc/apps/splunk-dashboard-studio/appserver/static/icons/icon-xrv9k__13a43013-4b5b-4553-a035-ebcb43b0bb9k.svg")
 
+    # elif ch == 6:
+    #     os.system(f"sudo /opt/splunk/bin/splunk stop")
+    #     os.system(f"sudo chown -R dcloud:dcloud /opt/splunk/var/lib/splunk/mltk_training_data_4/")
+    #     os.system(f"sudo chown -R dcloud:dcloud /opt/splunk/var/lib/splunk/mltk_training_data_4.dat")
+    #     os.system(f"cp -Rf /opt/splunk/var/lib/splunk/mltk_training_data_4/ /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/indexes/")
+    #     os.system(f"cp -Rf /opt/splunk/var/lib/splunk/mltk_training_data_4.dat /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/indexes/")
+    #     os.system(f"sudo /opt/splunk/bin/splunk start")
+
     elif ch == 6:
         os.system(f"sudo /opt/splunk/bin/splunk stop")
         os.system(f"sudo chown -R dcloud:dcloud /opt/splunk/var/lib/splunk/mltk_training_data_4/")
         os.system(f"sudo chown -R dcloud:dcloud /opt/splunk/var/lib/splunk/mltk_training_data_4.dat")
-        os.system(f"cp -Rf /opt/splunk/var/lib/splunk/mltk_training_data_4/ /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/indexes/")
-        os.system(f"cp -Rf /opt/splunk/var/lib/splunk/mltk_training_data_4.dat /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/indexes/")
+        os.system(f"cp -Rf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/indexes/ /opt/splunk/var/lib/splunk/mltk_training_data_4/ ")
+        os.system(f"cp -Rf /home/dcloud/ios-xr-streaming-telemetry-demo/etc/splunk_apps_backup/indexes/ /opt/splunk/var/lib/splunk/mltk_training_data_4.dat ")
         os.system(f"sudo /opt/splunk/bin/splunk start")
 
     elif ch == 10:
