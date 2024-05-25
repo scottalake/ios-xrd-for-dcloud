@@ -1,0 +1,91 @@
+
+<dashboard version="2" theme="light">
+    <label>test dashboard</label>
+    <description></description>
+    <definition><![CDATA[
+{
+	"dataSources": {
+		"ds_UFBScJYx": {
+			"type": "ds.search",
+			"options": {
+				"query": "| mstats rate_avg(\"infra-statistics.packets_received\") as \"Rate (Avg) /s\" WHERE \"index\"=\"mertics_data\" AND \"telegraf_tag\"=\"gnmi\" AND (\"interface_name\"=\"GigabitEthernet0/0/0/0\" OR \"interface_name\"=\"GigabitEthernet0/0/0/1\" OR \"interface_name\"=\"GigabitEthernet0/0/0/2\") span=10s BY source,interface_name\n| xyseries interface_name, source, \"Rate (Avg) /s\"",
+				"queryParameters": {
+					"earliest": "-1h",
+					"latest": "now"
+				}
+			},
+			"name": "Cool pivot table - Table search"
+		}
+	},
+	"visualizations": {
+		"viz_G7ni0gQY": {
+			"type": "splunk.table",
+			"options": {
+				"count": 100,
+				"dataOverlayMode": "none",
+				"drilldown": "none",
+				"showRowNumbers": false,
+				"showInternalFields": false
+			},
+			"dataSources": {
+				"primary": "ds_UFBScJYx"
+			},
+			"title": "Cool pivot table"
+		}
+	},
+	"inputs": {
+		"input_global_trp": {
+			"type": "input.timerange",
+			"options": {
+				"token": "global_time",
+				"defaultValue": "-24h@h,now"
+			},
+			"title": "Global Time Range"
+		}
+	},
+	"layout": {
+		"type": "absolute",
+		"options": {
+			"width": 1440,
+			"height": 960,
+			"display": "auto"
+		},
+		"structure": [
+			{
+				"item": "viz_G7ni0gQY",
+				"type": "block",
+				"position": {
+					"x": 0,
+					"y": 5,
+					"w": 1440,
+					"h": 250
+				}
+			}
+		],
+		"globalInputs": [
+			"input_global_trp"
+		]
+	},
+	"title": "test dashboard",
+	"defaults": {
+		"dataSources": {
+			"ds.search": {
+				"options": {
+					"queryParameters": {
+						"latest": "$global_time.latest$",
+						"earliest": "$global_time.earliest$"
+					}
+				}
+			}
+		}
+	}
+}
+    ]]></definition>
+    <meta type="hiddenElements"><![CDATA[
+{
+	"hideEdit": false,
+	"hideOpenInSearch": false,
+	"hideExport": false
+}
+    ]]></meta>
+</dashboard>

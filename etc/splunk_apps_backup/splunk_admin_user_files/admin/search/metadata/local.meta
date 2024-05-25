@@ -1,15 +1,11 @@
 [history/.dummy_history]
 version = 9.1.2
-modtime = 1716323918.014610000
+modtime = 1716390228.603146000
 
 [ui-tour/search-tour]
 version = 9.1.2
-modtime = 1716323922.397448000
+modtime = 1716390231.498699000
 
 [ui-tour/dark-tour]
 version = 9.1.2
-modtime = 1716323924.377497000
-
-[ui-tour/dashboards-tour%3Aenterprise]
-version = 9.1.2
-modtime = 1716323930.748148000
+modtime = 1716390233.859556000

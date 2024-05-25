@@ -1,25 +1,204 @@
 sid,"splunk_server","_time","is_realtime",provenance,search,"adhoc_search_level","api_et","api_lt","event_count","exec_time","result_count","scan_count","search_et","search_lt",status,"total_run_time","api_index_et","api_index_lt","savedsearch_name","__mv_sid","__mv_splunk_server","__mv__time","__mv_is_realtime","__mv_provenance","__mv_search","__mv_adhoc_search_level","__mv_api_et","__mv_api_lt","__mv_event_count","__mv_exec_time","__mv_result_count","__mv_scan_count","__mv_search_et","__mv_search_lt","__mv_status","__mv_total_run_time","__mv_api_index_et","__mv_api_index_lt","__mv_savedsearch_name"
-"1716323918.94",server,"1716323918.015713",0,"UI:Search","search index=_internal sourcetype=splunkd component=sendmodalert action=""run_netmiko_script""",verbose,"1716235200.000000000","1716323917.000000000",0,1716323918,0,0,"1716235200.000000000","1716323917.000000000",completed,"0.11900000000000001",,,,,,,,,,,,,,,,,,,,,,,
-"rt_md_1716323968.99",server,"1716323968.169143",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,,0,1716323968,0,0,,,failed,"83.08500000000001",,,,,,,,,,,,,,,,,,,,,,,
-"1716323981.100",server,"1716323981.115374",0,"UI:Search","| history | search NOT search=""| history*"" AND NOT search=""*metadata*"" AND NOT search=""*loadjob*"" AND NOT savedsearch_name=""*"" AND NOT search=""search"" AND NOT search=""*from sid*"" AND NOT search=""| eventcount summarize=false index=* index=_**"" AND NOT provenance=""UI:LocateData"" AND NOT provenance=""UI:TableEditor"" AND NOT provenance=""UI:DataModel"" AND NOT provenance=""UI:Pivot"" AND NOT provenance=""UI:Dataset"" | dedup search | head 100000","",,,0,1716323981,1,0,,,completed,"0.065",,,,,,,,,,,,,,,,,,,,,,,
-"1716324005.106",server,"1716324005.104631",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","","1716323105.000000000",,43254,1716324005,504,43254,"1716323105.000000000",,canceled,"0.43",,,,,,,,,,,,,,,,,,,,,,,
-"1716324024.107",server,"1716324024.109505",0,,"| mcatalog values(metric_name) WHERE metric_name=""infra-statistics.packets_received"" AND (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index | fields index","","1716320414.488000000","1716324014.488000000",46,1716324024,1,46,"1716320414.488000000","1716324014.488000000",canceled,"0.048",,,,,,,,,,,,,,,,,,,,,,,
-"1716324024.108",server,"1716324024.629348",0,,"| mstats avg(""infra-statistics.packets_received"") prestats=true WHERE ""index""=""mertics_data"" earliest=1716320414.488 latest=1716324014.488 span=10s
-| timechart avg(""infra-statistics.packets_received"") AS ""0 / 652be374-85a5-42f8-a47e-4ba926345b1e / SERIES / Avg"" span=10s
-| fields - _span*","",,,894,1716324024,361,894,"1716320414.488000000","1716324014.488000000",canceled,"0.041",,,,,,,,,,,,,,,,,,,,,,,
-"1716324030.109",server,"1716324030.681412",0,,"| mstats rate_avg(""infra-statistics.packets_received"") as ""0 / 652be374-85a5-42f8-a47e-4ba926345b1e / SERIES / Rate (Avg)"" chart=true WHERE ""index""=""mertics_data"" earliest=1716320414.488 latest=1716324014.488 span=10s
-| fields - _span*","",,,894,1716324030,361,894,"1716320414.488000000","1716324014.488000000",canceled,"0.05",,,,,,,,,,,,,,,,,,,,,,,
-"1716324037.110",server,"1716324037.068511",0,,"| mcatalog values(_dims) WHERE (""index""=""*"" OR ""index""=""_*"") AND NOT metric_name=""*_mrollup_*"" BY index, metric_name | mvexpand values(_dims)","","1716323137.000000000",,11582,1716324037,1453,11582,"1716323137.000000000",,canceled,"0.064",,,,,,,,,,,,,,,,,,,,,,,
-"1716324042.111",server,"1716324042.727861",0,,"| mcatalog values(metric_name) as metrics WHERE NOT metric_name=""*_mrollup_*"" AND ""index""=""mertics_data"" AND (""index""=""*"" OR ""index""=""_*"" ) 
-    | mvexpand metrics limit=20000","","1716323142.000000000",,11045,1716324042,205,11045,"1716323142.000000000",,canceled,"0.041",,,,,,,,,,,,,,,,,,,,,,,
-"1716326933.88",server,"1716326933.117416",0,,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",,,0,1716326933,5,0,,,completed,"0.06",,,,,,,,,,,,,,,,,,,,,,,
-"1716327135.105",server,"1716327135.903513",0,"UI:Search","search index=_internal sourcetype=splunkd component=sendmodalert action=""run_netmiko_script""",verbose,"1716238800.000000000","1716327135.000000000",0,1716327135,0,2,"1716238800.000000000","1716327135.000000000",completed,"0.254",,,,,,,,,,,,,,,,,,,,,,,
-"1716346759.625",server,"1716346759.610213",0,,"| mcatalog values(metric_name) as metric WHERE NOT (""_dims""=""rollup_aggregate"" OR ""_dims""=""rollup_span"" OR ""_dims""=""rollup_source_index"") AND (""index""=""*"" OR ""index""=""_*"" ) BY index
-    | mvexpand metric limit=20000","","1716173959.000000000","1716346759.000000000",25903,1716346759,514,25903,"1716173959.000000000","1716346759.000000000",completed,"0.187",,,,,,,,,,,,,,,,,,,,,,,
-"admin__admin__search__search14_1716347548.739",server,"1716347548.069538",0,"UI:Dashboard:job_details_dashboard","search index=""_introspection"" sourcetype=search_telemetry search_id=*admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD53b33a8f2f1e0938a_1716347508.734* | spath path=search_commands{}.name output=command | spath path=search_commands{}.duration output=duration | eval fields=mvzip(command, duration, "","") | mvexpand fields | rex field=fields ""(?<Command>[^,]+),(?<Duration>.+)$""
-                        | table Command, Duration","","1716333148.000000000",,3,1716347548,3,142,"1716333148.000000000",,completed,"0.265",0,0,search14,,,,,,,,,,,,,,,,,,,,
-"admin__admin__search__baseSearch_1716347548.740",server,"1716347548.089421",0,"UI:Dashboard:job_details_dashboard","| rest /services/search/jobs/admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD53b33a8f2f1e0938a_1716347508.734 splunk_server=local","","1716333148.000000000",,0,1716347548,1,0,"1716333148.000000000",,completed,"0.107",0,0,baseSearch,,,,,,,,,,,,,,,,,,,,
-"1716350170.1628",server,"1716350170.143298",0,"UI:Search","search index=_internal sourcetype=splunkd component=sendmodalert action=""run_netmiko_script""",verbose,"1716260400.000000000","1716350170.000000000",175,1716350170,175,179,"1716260400.000000000","1716350170.000000000",completed,"0.219",,,,,,,,,,,,,,,,,,,,,,,
-"1716350704.7",server,"1716350704.233321",0,"UI:Search","search index=_internal sourcetype=splunkd component=sendmodalert action=""run_netmiko_script""",verbose,"1716264000.000000000","1716350704.000000000",420,1716350704,420,454,"1716264000.000000000","1716350704.000000000",completed,"0.23500000000000001",,,,,,,,,,,,,,,,,,,,,,,
-"1716350769.14",server,"1716350769.914435",0,"UI:Search","search index=_internal sourcetype=splunkd component=sendmodalert action=""run_netmiko_script""",verbose,"1716264000.000000000","1716350769.000000000",424,1716350769,424,424,"1716264000.000000000","1716350769.000000000",completed,"0.272",,,,,,,,,,,,,,,,,,,,,,,
+"1716390228.55",server,"1716390228.603763",0,"UI:Search","search index=_internal sourcetype=splunkd component=sendmodalert action=""run_netmiko_script""",verbose,"1716303600.000000000","1716390228.000000000",0,1716390228,0,40,"1716303600.000000000","1716390228.000000000",completed,"0.357",,,,,,,,,,,,,,,,,,,,,,,
+"1716390277.60",server,"1716390277.467608",0,,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",,,0,1716390277,5,0,,,completed,"0.055",,,,,,,,,,,,,,,,,,,,,,,
+"rt_md_1716400549.206",server,"1716400549.774047",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,,0,1716400549,0,0,,,failed,"70.06700000000001",,,,,,,,,,,,,,,,,,,,,,,
+"rt_md_1716400580.211",server,"1716400580.240778",1,"UI:Search","| metadata type=sourcetypes | search totalCount > 0","",,,0,1716400580,0,0,,,canceled,"10.06",,,,,,,,,,,,,,,,,,,,,,,
+"1716400590.212",server,"1716400590.460819",0,"UI:Search","| mpreview index=""mltk_training_data_4""",verbose,"1716310800.000000000","1716400590.000000000",0,1716400590,0,0,"1716310800.000000000","1716400590.000000000",completed,"0.049",,,,,,,,,,,,,,,,,,,,,,,
+"1716400595.213",server,"1716400595.701100",0,"UI:Search","| mpreview index=""mltk_training_data_4""",verbose,,,5,1716400595,5,1,,,completed,"0.02",,,,,,,,,,,,,,,,,,,,,,,
+"1716401468.276",server,"1716401468.005802",0,"UI:Search","| mstats avg(metric_name::""infra-statistics.packets_received"") as average_packets_received WHERE index=""mltk_training_data_4"" AND ""interface_name=GigabitEthernet0/0/0/0"" span=1h",verbose,,,0,1716401468,0,0,,,failed,"0.005",,,,,,,,,,,,,,,,,,,,,,,
+"1716401508.277",server,"1716401508.306551",0,"UI:Search","| mstats avg(""infra-statistics.packets_received"") as average_packets_received WHERE index=""mltk_training_data_4"" AND ""interface_name=GigabitEthernet0/0/0/0"" span=1h",verbose,,,0,1716401508,0,0,,,failed,"0.004",,,,,,,,,,,,,,,,,,,,,,,
+"1716401614.286",server,"1716401614.368212",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mertics_data"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" span=1m earliest=-5m latest=now",verbose,,,18,1716401614,5,18,"1716401314.000000000","1716401614.000000000",completed,"0.073",,,,,,,,,,,,,,,,,,,,,,,
+"1716401691.291",server,"1716401691.959675",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m",verbose,,,5000,1716401692,2500,5000,,,completed,"0.109",,,,,,,,,,,,,,,,,,,,,,,
+"1716401906.309",server,"1716401906.063069",0,"UI:Search","| mstats rate_avg(metric_name::""infra-statistics.packets_received"") as ""Rate_Avg_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats avg(Rate_Avg_per_s) as Average_Rate",verbose,,,0,1716401906,0,0,,,completed,"0.067",,,,,,,,,,,,,,,,,,,,,,,
+"1716401918.310",server,"1716401918.102822",0,"UI:Search","| mstats rate_avg(metric_name::""infra-statistics.packets_received"") as ""Rate_Avg_per_s"" WHERE index=""mltk_training_data_4"" span=1m",verbose,,,0,1716401918,0,0,,,completed,"0.025",,,,,,,,,,,,,,,,,,,,,,,
+"1716402071.323",server,"1716402071.885745",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_Avg_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats avg(""Rate_Avg_per_s"") as ""Overall_Average_Rate_per_s""",verbose,,,5000,1716402071,1,5000,,,completed,"0.105",,,,,,,,,,,,,,,,,,,,,,,
+"1716402084.324",server,"1716402084.157362",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_Avg_per_s"" WHERE index=""mltk_training_data_4"" span=1m BY _time
+| timechart span=1m avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,0,1716402084,0,0,,,failed,"0.004",,,,,,,,,,,,,,,,,,,,,,,
+"1716402127.329",server,"1716402127.406728",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_Avg_per_s"" WHERE index=""mltk_training_data_4""  BY _time span=1m
+| timechart span=1m avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,0,1716402127,0,0,,,failed,"0.003",,,,,,,,,,,,,,,,,,,,,,,
+"1716402182.334",server,"1716402182.766330",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mertics_data"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" by source, interface_name span=1m",verbose,,,370,1716402182,94,370,,,completed,"0.076",,,,,,,,,,,,,,,,,,,,,,,
+"1716402212.335",server,"1716402212.245221",0,"UI:Search","| mstats avg(metric_name::""infra-statistics.packets_received"") as average_packets_received WHERE index=""mltk_training_data_4"" AND ""interface_name=GigabitEthernet0/0/0/0"" span=1h",verbose,,,0,1716402212,0,0,,,failed,"0.004",,,,,,,,,,,,,,,,,,,,,,,
+"1716402224.336",server,"1716402224.467742",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m",verbose,,,5000,1716402224,2500,5000,,,completed,"0.075",,,,,,,,,,,,,,,,,,,,,,,
+"1716402291.341",server,"1716402291.746163",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" by source, interface_name span=1m",verbose,,,5000,1716402291,2500,5000,,,completed,"0.109",,,,,,,,,,,,,,,,,,,,,,,
+"1716402317.346",server,"1716402317.135801",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" by source, interface_name span=1m
+| timechart span=1m avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402317,2500,5000,,,completed,"0.114",,,,,,,,,,,,,,,,,,,,,,,
+"1716402356.347",server,"1716402356.191816",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m
+| timechart span=1m avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402356,2500,5000,,,completed,"0.066",,,,,,,,,,,,,,,,,,,,,,,
+"1716402456.356",server,"1716402456.329780",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" by _time span=1m",verbose,,,0,1716402456,0,0,,,failed,"0.003",,,,,,,,,,,,,,,,,,,,,,,
+"1716402476.357",server,"1716402476.356329",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m",verbose,,,5000,1716402476,2500,5000,,,completed,"0.07",,,,,,,,,,,,,,,,,,,,,,,
+"1716402515.362",server,"1716402515.757193",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m
+| timechart span=1m avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402515,2500,5000,,,completed,"0.111",,,,,,,,,,,,,,,,,,,,,,,
+"1716402539.363",server,"1716402539.709273",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m
+| timechart avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402539,84,5000,,,completed,"0.063",,,,,,,,,,,,,,,,,,,,,,,
+"1716402552.368",server,"1716402552.963214",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m",verbose,,,5000,1716402553,2500,5000,,,completed,"0.105",,,,,,,,,,,,,,,,,,,,,,,
+"1716402614.373",server,"1716402614.341602",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m
+| timechart avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402614,84,5000,,,completed,"0.111",,,,,,,,,,,,,,,,,,,,,,,
+"1716402623.374",server,"1716402623.691763",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m
+| timechart span=1m avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402623,2500,5000,,,completed,"0.073",,,,,,,,,,,,,,,,,,,,,,,
+"1716402661.379",server,"1716402661.439095",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m",verbose,,,5000,1716402661,2500,5000,,,completed,"0.268",,,,,,,,,,,,,,,,,,,,,,,
+"1716402735.384",server,"1716402735.223713",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m
+| timechart span=1m avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402735,2500,5000,,,completed,"0.11800000000000001",,,,,,,,,,,,,,,,,,,,,,,
+"1716402785.389",server,"1716402785.527728",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m
+| timechart span=1m avg(""Rate (Avg) /s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402785,2500,5000,,,completed,"0.114",,,,,,,,,,,,,,,,,,,,,,,
+"1716402812.390",server,"1716402812.349402",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m",verbose,,,5000,1716402812,2500,5000,,,completed,"0.061",,,,,,,,,,,,,,,,,,,,,,,
+"1716402841.395",server,"1716402841.623631",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m
+| timechart span=1m avg(""Rate (Avg) /s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716402841,2500,5000,,,completed,"0.313",,,,,,,,,,,,,,,,,,,,,,,
+"1716402998.404",server,"1716402998.799198",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m BY _time
+| timechart span=1m min(""Rate (Avg) /s"") as ""Min_Rate_per_s"", max(""Rate (Avg) /s"") as ""Max_Rate_per_s"", stdev(""Rate (Avg) /s"") as ""StdDev_Rate_per_s""",verbose,,,0,1716402998,0,0,,,failed,"0.003",,,,,,,,,,,,,,,,,,,,,,,
+"1716403014.407",server,"1716403014.538796",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" by _time span=1m 
+| timechart span=1m min(""Rate (Avg) /s"") as ""Min_Rate_per_s"", max(""Rate (Avg) /s"") as ""Max_Rate_per_s"", stdev(""Rate (Avg) /s"") as ""StdDev_Rate_per_s""",verbose,,,0,1716403014,0,0,,,failed,"0.003",,,,,,,,,,,,,,,,,,,,,,,
+"1716403026.412",server,"1716403026.318290",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m 
+| timechart span=1m min(""Rate (Avg) /s"") as ""Min_Rate_per_s"", max(""Rate (Avg) /s"") as ""Max_Rate_per_s"", stdev(""Rate (Avg) /s"") as ""StdDev_Rate_per_s""",verbose,,,5000,1716403026,2500,5000,,,completed,"0.112",,,,,,,,,,,,,,,,,,,,,,,
+"1716403327.433",server,"1716403327.959789",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats min(""Rate_per_s"") as ""Min_Rate_per_s"", max(""Rate_per_s"") as ""Max_Rate_per_s"", avg(""Rate_per_s"") as ""Avg_Rate_per_s"", stdev(""Rate_per_s"") as ""StdDev_Rate_per_s""",verbose,,,5000,1716403328,1,5000,,,completed,"0.107",,,,,,,,,,,,,,,,,,,,,,,
+"1716403564.450",server,"1716403564.437344",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats median(Rate_per_s) as Median_Rate_per_s",verbose,,,5000,1716403564,1,5000,,,completed,"0.169",,,,,,,,,,,,,,,,,,,,,,,
+"1716403582.451",server,"1716403582.645981",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats p25(Rate_per_s) as P25, p75(Rate_per_s) as P75, p90(Rate_per_s) as P90",verbose,,,5000,1716403582,1,5000,,,completed,"0.10400000000000001",,,,,,,,,,,,,,,,,,,,,,,
+"1716403609.452",server,"1716403609.651070",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats var(Rate_per_s) as Variance_Rate_per_s",verbose,,,5000,1716403609,1,5000,,,completed,"0.06",,,,,,,,,,,,,,,,,,,,,,,
+"1716403747.465",server,"1716403747.749535",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats min(Rate_per_s) as ""Min Rate/s"", max(Rate_per_s) as ""Max Rate/s"", avg(Rate_per_s) as ""Avg Rate/s"", stdev(Rate_per_s) as ""Std Dev Rate/s"", median(Rate_per_s) as ""Median Rate/s""
+| table ""Min Rate/s"", ""Max Rate/s"", ""Avg Rate/s"", ""Std Dev Rate/s"", ""Median Rate/s""",verbose,,,5000,1716403747,1,5000,,,completed,"0.112",,,,,,,,,,,,,,,,,,,,,,,
+"1716403775.466",server,"1716403775.211453",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" span=1m 
+| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" by source, interface_name span=1m",verbose,,,0,1716403775,0,0,,,failed,"0.004",,,,,,,,,,,,,,,,,,,,,,,
+"1716403784.467",server,"1716403784.395356",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" by source, interface_name span=1m",verbose,,,5000,1716403784,2500,5000,,,completed,"0.07200000000000001",,,,,,,,,,,,,,,,,,,,,,,
+"1716403800.472",server,"1716403800.641689",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" by source, interface_name span=1m
+| timechart span=1m avg(""Rate_Avg_per_s"") as ""Avg_Rate_per_s""",verbose,,,5000,1716403800,2500,5000,,,completed,"0.116",,,,,,,,,,,,,,,,,,,,,,,
+"1716403879.477",server,"1716403879.455158",0,"UI:Search","| mpreview index=""mltk_training_data_4""",verbose,,,5,1716403879,5,1,,,completed,"0.066",,,,,,,,,,,,,,,,,,,,,,,
+"1716403929.482",server,"1716403929.202971",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate (Avg) /s"" WHERE index=""mltk_training_data_4"" AND source=""xr-1"" AND interface_name=""GigabitEthernet0/0/0/0"" by source, interface_name, telegraf_tag span=1m",verbose,,,5000,1716403929,2500,5000,,,completed,"0.114",,,,,,,,,,,,,,,,,,,,,,,
+"1716403961.483",server,"1716403961.833213",0,"UI:Search","| stats avg(Rate_per_s) as ""Average Rate/s""
+| chart values(""Average Rate/s"")",verbose,,,0,1716403961,0,0,,,completed,"0.009000000000000001",,,,,,,,,,,,,,,,,,,,,,,
+"1716404028.488",server,"1716404028.131789",0,"UI:Search","| stats min(Rate_per_s) as ""Min Rate/s"", max(Rate_per_s) as ""Max Rate/s"", avg(Rate_per_s) as ""Avg Rate/s"", stdev(Rate_per_s) as ""Std Dev Rate/s"", median(Rate_per_s) as ""Median Rate/s""
+| table ""Min Rate/s"", ""Max Rate/s"", ""Avg Rate/s"", ""Std Dev Rate/s"", ""Median Rate/s""",verbose,,,0,1716404028,0,0,,,completed,"0.049",,,,,,,,,,,,,,,,,,,,,,,
+"1716404058.493",server,"1716404058.524077",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats min(Rate_per_s) as ""Min Rate/s"", max(Rate_per_s) as ""Max Rate/s"", avg(Rate_per_s) as ""Avg Rate/s"", stdev(Rate_per_s) as ""Std Dev Rate/s"", median(Rate_per_s) as ""Median Rate/s""
+| table ""Min Rate/s"", ""Max Rate/s"", ""Avg Rate/s"", ""Std Dev Rate/s"", ""Median Rate/s""",verbose,,,5000,1716404058,1,5000,,,completed,"0.106",,,,,,,,,,,,,,,,,,,,,,,
+"1716404115.498",server,"1716404115.375992",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| fit DensityFunction Rate_per_s into df_output
+| eval skewness = df_output(""skewness""), kurtosis = df_output(""kurtosis"")",verbose,,,0,1716404119,0,0,,,failed,"0.004",,,,,,,,,,,,,,,,,,,,,,,
+"1716404743.545",server,"1716404743.119144",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| eventstats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval diff= 'Rate_per_s' - 'mean'
+| eval diff_cube= pow('diff', 3)
+| eventstats sum('diff_cube') as ""sum_diff_cube""
+| eval skewness = 'sum_diff_cube' / ('count' * pow('stdev', 3))
+| table skewness",verbose,,,5000,1716404743,0,5000,,,completed,"0.106",,,,,,,,,,,,,,,,,,,,,,,
+"1716404771.550",server,"1716404771.423805",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| eventstats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""",verbose,,,5000,1716404771,2500,5000,,,completed,"0.114",,,,,,,,,,,,,,,,,,,,,,,
+"1716404781.551",server,"1716404781.788708",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| eventstats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval diff= 'Rate_per_s' - 'mean'",verbose,,,5000,1716404781,2500,5000,,,completed,"0.064",,,,,,,,,,,,,,,,,,,,,,,
+"1716404791.552",server,"1716404791.434633",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| eventstats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval diff= 'Rate_per_s' - 'mean'
+| eval diff_cube= pow('diff', 3)",verbose,,,5000,1716404791,2500,5000,,,completed,"0.11900000000000001",,,,,,,,,,,,,,,,,,,,,,,
+"1716404802.553",server,"1716404802.400751",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| eventstats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval diff= 'Rate_per_s' - 'mean'
+| eval diff_cube= pow('diff', 3)
+| eventstats sum('diff_cube') as ""sum_diff_cube""",verbose,,,5000,1716404802,2500,5000,,,completed,"0.065",,,,,,,,,,,,,,,,,,,,,,,
+"1716404840.560",server,"1716404840.417901",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| eventstats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval diff= 'Rate_per_s' - 'mean'
+| eval diff_cube= pow('diff', 3)
+| eventstats sum('diff_cube') as ""sum_diff_cube""
+| eval skewness = 'sum_diff_cube' / ('count' * pow('stdev', 3))",verbose,,,5000,1716404840,2500,5000,,,completed,"0.115",,,,,,,,,,,,,,,,,,,,,,,
+"1716404852.561",server,"1716404852.717502",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| eventstats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval diff= 'Rate_per_s' - 'mean'
+| eval diff_cube= pow('diff', 3)
+| eventstats sum('diff_cube') as ""sum_diff_cube""
+| eval skewness = 'sum_diff_cube' / ('count' * pow('stdev', 3))
+| table skewness",verbose,,,5000,1716404852,0,5000,,,completed,"0.065",,,,,,,,,,,,,,,,,,,,,,,
+"1716405090.578",server,"1716405090.242930",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed
+| eval skewness = sum_diff_cubed / (count(pow(stdev, 3)))
+| table skewness",verbose,,,0,1716405090,0,0,,,failed,"0.003",,,,,,,,,,,,,,,,,,,,,,,
+"1716405120.583",server,"1716405120.576570",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""",verbose,,,5000,1716405120,1,5000,,,completed,"0.105",,,,,,,,,,,,,,,,,,,,,,,
+"1716405137.584",server,"1716405137.163944",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'",verbose,,,5000,1716405137,1,5000,,,completed,"0.101",,,,,,,,,,,,,,,,,,,,,,,
+"1716405155.585",server,"1716405155.909082",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed
+| eval skewness = sum_diff_cubed / (count(pow(stdev, 3)))
+| table skewness",verbose,,,0,1716405156,0,0,,,failed,"0.015",,,,,,,,,,,,,,,,,,,,,,,
+"1716405236.590",server,"1716405236.285761",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed
+| eval skewness = sum_diff_cubed / ('count' * pow('stdev', 3))
+| table skewness",verbose,,,5000,1716405236,0,5000,,,completed,"0.10300000000000001",,,,,,,,,,,,,,,,,,,,,,,
+"1716405247.595",server,"1716405247.483439",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed",verbose,,,5000,1716405247,0,5000,,,completed,"0.105",,,,,,,,,,,,,,,,,,,,,,,
+"1716405256.596",server,"1716405256.087852",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""",verbose,,,5000,1716405256,1,5000,,,completed,"0.062",,,,,,,,,,,,,,,,,,,,,,,
+"1716405262.597",server,"1716405262.474537",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)",verbose,,,5000,1716405262,1,5000,,,completed,"0.07100000000000001",,,,,,,,,,,,,,,,,,,,,,,
+"1716405268.598",server,"1716405268.664104",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed",verbose,,,5000,1716405268,0,5000,,,completed,"0.061",,,,,,,,,,,,,,,,,,,,,,,
+"1716405327.603",server,"1716405327.698333",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed",verbose,,,5000,1716405327,0,5000,,,completed,"0.10400000000000001",,,,,,,,,,,,,,,,,,,,,,,
+"1716405363.608",server,"1716405363.376476",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed
+| eval skewness = sum_diff_cubed / ('count' * pow('stdev', 3))
+| table sum_diff_cubed,skewness",verbose,,,5000,1716405363,0,5000,,,completed,"0.109",,,,,,,,,,,,,,,,,,,,,,,
+"1716405368.609",server,"1716405368.774716",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed
+| eval skewness = sum_diff_cubed / ('count' * pow('stdev', 3))
+| table sum_diff_cubed",verbose,,,5000,1716405368,0,5000,,,completed,"0.106",,,,,,,,,,,,,,,,,,,,,,,
+"1716405382.610",server,"1716405382.470876",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| stats sum(diff_cubed) as sum_diff_cubed
+| table sum_diff_cubed",verbose,,,5000,1716405382,0,5000,,,completed,"0.067",,,,,,,,,,,,,,,,,,,,,,,
+"1716405402.611",server,"1716405402.176938",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| eval diff_cubed = pow(mean_diff, 3)
+| table diff_cubed",verbose,,,5000,1716405402,0,5000,,,completed,"0.06",,,,,,,,,,,,,,,,,,,,,,,
+"1716405412.612",server,"1716405412.242206",0,"UI:Search","| mstats rate_avg(""infra-statistics.packets_received"") as ""Rate_per_s"" WHERE index=""mltk_training_data_4"" span=1m
+| stats count as ""count"", avg(""Rate_per_s"") as ""mean"", stdev(""Rate_per_s"") as ""stdev""
+| eval mean_diff = 'Rate_per_s' - 'mean'
+| table mean_diff",verbose,,,5000,1716405412,0,5000,,,completed,"0.077",,,,,,,,,,,,,,,,,,,,,,,
+"1716411304.1092",server,"1716411304.152602",0,,"| mcatalog values(metric_name) as metric WHERE NOT (""_dims""=""rollup_aggregate"" OR ""_dims""=""rollup_span"" OR ""_dims""=""rollup_source_index"") AND (""index""=""*"" OR ""index""=""_*"" ) BY index
+    | mvexpand metric limit=20000","","1716238504.000000000","1716411304.000000000",30988,1716411304,514,30988,"1716238504.000000000","1716411304.000000000",completed,"0.459",,,,,,,,,,,,,,,,,,,,,,,
+"1716422187.1889",server,"1716422187.317244",0,,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",,,0,1716422187,5,0,,,completed,"0.074",,,,,,,,,,,,,,,,,,,,,,,
+"admin__admin__search__search14_1716422272.1897",server,"1716422272.287811",0,"UI:Dashboard:job_details_dashboard","search index=""_introspection"" sourcetype=search_telemetry search_id=*admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD53348c1e9e320a031_1716422233.1896* | spath path=search_commands{}.name output=command | spath path=search_commands{}.duration output=duration | eval fields=mvzip(command, duration, "","") | mvexpand fields | rex field=fields ""(?<Command>[^,]+),(?<Duration>.+)$""
+                        | table Command, Duration","","1716407872.000000000",,3,1716422272,3,91,"1716407872.000000000",,completed,"0.213",0,0,search14,,,,,,,,,,,,,,,,,,,,
+"admin__admin__search__baseSearch_1716422272.1898",server,"1716422272.297754",0,"UI:Dashboard:job_details_dashboard","| rest /services/search/jobs/admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD53348c1e9e320a031_1716422233.1896 splunk_server=local","","1716407872.000000000",,0,1716422272,1,0,"1716407872.000000000",,canceled,"0.075",0,0,baseSearch,,,,,,,,,,,,,,,,,,,,
+"admin__admin__search__baseSearch_1716422289.1927",server,"1716422289.691542",0,"UI:Dashboard:job_details_dashboard","| rest /services/search/jobs/admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD53348c1e9e320a031_1716422233.1896 splunk_server=local","","1716407889.000000000",,0,1716422289,1,0,"1716407889.000000000",,completed,"0.105",0,0,baseSearch,,,,,,,,,,,,,,,,,,,,
+"admin__admin__search__search14_1716422333.1952",server,"1716422333.433161",0,"UI:Dashboard:job_details_dashboard","search index=""_introspection"" sourcetype=search_telemetry search_id=*admin__admin_U3BsdW5rX01MX1Rvb2xraXQ__RMD53348c1e9e320a031_1716422233.1896* | spath path=search_commands{}.name output=command | spath path=search_commands{}.duration output=duration | eval fields=mvzip(command, duration, "","") | mvexpand fields | rex field=fields ""(?<Command>[^,]+),(?<Duration>.+)$""
+                        | table Command, Duration","","1716407933.000000000",,3,1716422333,3,95,"1716407933.000000000",,completed,"0.114",0,0,search14,,,,,,,,,,,,,,,,,,,,
+"1716423292.2037",server,"1716423292.920181",0,,"| eventcount summarize=false index=* | dedup index | rename index as name | fields name","",,,0,1716423293,5,0,,,completed,"0.058",,,,,,,,,,,,,,,,,,,,,,,
+"1716605291.21097",server,"1716605291.721469",0,,"| loadjob 1716605143.21084 | search mpreview index=mertics_data | head 100 | fields | abstract maxlines=15","",,"1716589830.000000000",0,1716605291,0,0,,"1716589830.000000000",canceled,"0.066",,,,,,,,,,,,,,,,,,,,,,,
+"1716605291.21098",server,"1716605291.903495",0,,"search mpreview index=mertics_data | head 100 | fields | abstract maxlines=15","",,"1716589830.000000000",0,1716605291,0,0,,"1716589830.000000000",canceled,"0.209",,,,,,,,,,,,,,,,,,,,,,,
+"1716605292.21099",server,"1716605292.203023",0,,"search mpreview index=mertics_data | head 100 | fields | abstract maxlines=15","",,,0,1716605292,0,0,,,canceled,"0.117",,,,,,,,,,,,,,,,,,,,,,,
