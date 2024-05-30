@@ -87,63 +87,11 @@
 <body>
 
 <div class="page-title">CiscoLive 2024 Las Vegas</div>
+<div class="page-subtitle">LABDEV-1001- Harnessing the Power of Streaming Telemetry: Learn how to Migrate from SNMP to Streaming Telemetry for Enhanced Network Visibility in your IOS-XR Network</div>
 <div class="page-subtitle">LABDEV-2000 Improving reliability and observability using closed-loop automation with AI-driven telemetry and Splunk</div>
 <div class="page-subsubtitle">
-  1.  Use the following snippets in your lab as outlined in your lab guide.<br>
-  2.  Scroll past snippets to view telegraf.conf files used in this lab.<br>
+  View telegraf.conf files below.<br>
 </div>
-
-<div class="snippet-box">
-  <div class="snippet-title">Packet Rate Calculation</div>
-  <pre class="code" id="snippet-1">
-    | mstats rate_avg("infra-statistics.packets_received") as "Rate (Avg) /s"
-    WHERE "index"="mertics_data"
-    AND "interface_name"="GigabitEthernet0/0/0/0"
-    OR "interface_name"="GigabitEthernet0/0/0/1"
-    OR "interface_name"="GigabitEthernet0/0/0/2"
-    span=10s
-  </pre>
-  <button class="copy-btn" onclick="copyToClipboard('snippet-1')">Copy</button>
-  <p class="snippet-description">Use this snippet to calculate the average packet rate across specified interfaces over a 10-second span.</p>
-</div>
-
-<div class="snippet-box">
-  <div class="snippet-title">Packet Rate Calculation #2</div>
-  <pre class="code" id="snippet-2">
-    | mstats rate_avg("infra-statistics.packets_received") as "Rate (Avg) /s" chart=true WHERE "index"="mertics_data" AND "telegraf_tag"="gnmi" AND ("interface_name"="GigabitEthernet0/0/0/0" OR "interface_name"="GigabitEthernet0/0/0/1" OR "interface_name"="GigabitEthernet0/0/0/2") span=10s BY interface_name
-  </pre>
-  <button class="copy-btn" onclick="copyToClipboard('snippet-2')">Copy</button>
-  <p class="snippet-description">Use this snippet to calculate the average packet rate across specified interfaces over a 10-second span.</p>
-</div>
-
-
-<!-- Additional snippet boxes can be added here following the same structure -->
-
-<script>
-  function copyToClipboard(id) {
-    var text = document.getElementById(id);
-    var selection = window.getSelection();
-    var range = document.createRange();
-    range.selectNodeContents(text);
-    selection.removeAllRanges();
-    selection.addRange(range);
-    try {
-      var successful = document.execCommand('copy');
-      var msg = successful ? 'successful' : 'unsuccessful';
-      console.log('Copy command was ' + msg);
-      // Optionally, you can display an alert or another form of notification here
-    } catch (err) {
-      console.log('Oops, unable to copy');
-      // Optionally, you can alert the user here that the copy failed
-    }
-    // Clear the selection after copying
-    selection.removeAllRanges();
-  }
-</script>
-
-</body>
-</html>
-
 
 <div class="snippet-box">
   <div class="snippet-title">View contents of telegraf.conf file containing gNMI subscriptions.</div>
