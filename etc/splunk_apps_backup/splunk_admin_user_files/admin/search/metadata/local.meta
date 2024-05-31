@@ -1,7 +1,15 @@
 [history/.dummy_history]
 version = 9.1.2
+<<<<<<< HEAD
 modtime = 1717178081.194209000
 
 [ui-tour/dark-tour]
 version = 9.1.2
 modtime = 1717178084.002755000
+=======
+modtime = 1717114430.182014000
+
+[ui-tour/dark-tour]
+version = 9.1.2
+modtime = 1717114433.714432000
+>>>>>>> 751a4480d88a63b64d1a77bd421c9713b2dc05d4

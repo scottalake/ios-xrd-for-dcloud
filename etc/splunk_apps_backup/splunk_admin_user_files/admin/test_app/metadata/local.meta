@@ -1,3 +1,7 @@
 [history/.dummy_history]
 version = 9.1.2
+<<<<<<< HEAD
 modtime = 1717100744.654020000
+=======
+modtime = 1717127358.336044000
+>>>>>>> 751a4480d88a63b64d1a77bd421c9713b2dc05d4
